@@ -76,7 +76,7 @@ const MostOrdered = () => {
         <Box sx={{
             width: '100%',
             mb: 6,
-            px: isMobile ? 2 : 4,
+            px: isMobile ? 2 : 2,
             backgroundColor: 'transparent'
         }}>
             <Typography
@@ -115,27 +115,72 @@ const MostOrdered = () => {
                                 flex: '0 0 auto',
                                 minWidth: isMobile ? 250 : 280,
                                 maxWidth: isMobile ? 250 : 280,
-                                marginRight: '24px'
+                                marginRight: '16px',
+                                marginLeft: '10px'
                             }}
                         >
                             <Card sx={{
                                 background: 'linear-gradient(145deg, #2C0606, #110A09)',
-                                border: '2px solid #230F0F',
-                                borderRadius: '20px',
-                                overflow: 'hidden',
+                                borderRadius: '40px',
                                 color: 'white',
                                 display: 'flex',
                                 flexDirection: 'column',
                                 transition: 'all 0.3s ease',
-                                '&:hover': {
-                                    transform: 'translateY(-5px)',
-                                    boxShadow: '0 10px 25px rgba(175, 29, 29, 0.3)',
-                                }
+                                position: 'relative' // Adicionado para referência
                             }}>
+                                {/* Container do SVG - AGORA FORA da imagem, no canto superior direito do Card */}
+                                <Box sx={{
+                                    position: 'absolute',
+                                    top: 0,
+                                    right: 0,
+                                    width: 170,
+                                    height: 98,
+                                    zIndex: 9, // Garante que fique sobre a imagem
+                                    pointerEvents: 'none' // Permite interação com elementos abaixo
+                                }}>
+                                    {/* SVG como fundo */}
+                                    <svg
+                                        width="180"
+                                        height="90"
+                                        viewBox="0 0 48 28"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        style={{
+                                            position: 'absolute',
+                                            top: 0,
+                                            right: 0,
+                                            width: '100%',
+                                            height: '100%'
+                                        }}
+                                    >
+                                        <path d="M5.5567 8.5L5.5567 5.5567C5.5567 2.48782 3.06888 0 0 0H18.642H32.2508H39C44.5229 0 49 4.47715 49 10V14V28C49 21.0005 43.3258 15.3263 36.3263 15.3263H32.2508H18.642H12.383C8.61293 15.3263 5.5567 12.27 5.5567 8.5Z" fill="#2C0606" />
+                                    </svg>
+
+                                    {/* Preço sobreposto no SVG */}
+                                    <Typography
+                                        sx={{
+                                            position: 'absolute',
+                                            top: '25%',
+                                            right: 28,
+                                            transform: 'translateY(-50%)',
+                                            zIndex: 3,
+                                            fontFamily: '"Libre Baskerville", serif',
+                                            fontWeight: 'bold',
+                                            fontSize: '1.3rem',
+                                            color: '#FFFFFF',
+                                            textShadow: '0 1px 3px rgba(0,0,0,0.8)',
+                                            lineHeight: 1,
+                                            pointerEvents: 'none',
+                                        }}
+                                    >
+                                        R$ {item.preco?.toFixed(2).replace('.', ',') || '00,00'}
+                                    </Typography>
+                                </Box>
+
                                 {/* Imagem */}
                                 <Box sx={{
                                     width: '100%',
-                                    height: 160,
+                                    height: 170,
                                     position: 'relative'
                                 }}>
                                     <CardMedia
@@ -148,28 +193,11 @@ const MostOrdered = () => {
                                             objectFit: 'cover'
                                         }}
                                     />
-
-                                    {/* Preço */}
-                                    <Box sx={{
-                                        position: 'absolute',
-                                        top: 12,
-                                        right: 12,
-                                        backgroundColor: '#AF1D1D',
-                                        color: 'white',
-                                        padding: '4px 12px',
-                                        borderRadius: '20px',
-                                        fontFamily: '"Libre Baskerville", serif',
-                                        fontWeight: 'bold',
-                                        fontSize: '0.9rem',
-                                        boxShadow: '0 3px 10px rgba(0,0,0,0.3)'
-                                    }}>
-                                        R$ {item.preco?.toFixed(2).replace('.', ',') || '00,00'}
-                                    </Box>
                                 </Box>
 
                                 {/* Conteúdo */}
                                 <CardContent sx={{
-                                    p: 2.5,
+                                    p: 1.5,
                                     flex: 1,
                                     display: 'flex',
                                     flexDirection: 'column'
@@ -182,7 +210,7 @@ const MostOrdered = () => {
                                             mb: 0.5,
                                             color: '#FFFFFF',
                                             fontSize: '1.1rem',
-                                            lineHeight: 1.2
+                                            lineHeight: 1.2,
                                         }}
                                     >
                                         {item.nome}
@@ -211,12 +239,12 @@ const MostOrdered = () => {
                                             fontFamily: '"Libre Baskerville", serif',
                                             backgroundColor: '#AF1D1D',
                                             color: 'white',
-                                            borderRadius: '15px',
+                                            borderRadius: '30px',
                                             padding: '8px 16px',
                                             fontSize: '0.9rem',
                                             textTransform: 'none',
                                             fontWeight: 'bold',
-                                            mt: 'auto',
+                                            mt: 'auto', mb: 0,
                                             '&:hover': {
                                                 backgroundColor: '#8a1818',
                                                 transform: 'translateY(-2px)',

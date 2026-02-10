@@ -10,6 +10,7 @@ import MesaRedirect from './components/MesaRedirect';
 import { Box } from '@mui/material';
 import './App.css';
 import Footer from './components/Footer/Footer';
+import QRCodeGenerator from './components/QRGenerator.jsx';
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
             <Route path="/carrinho" element={<Carrinho />} />
             {/* Rota simples que só redireciona */}
             <Route path="/mesa/:mesaId" element={<MesaRedirect />} />
+            
+            {/* rota interna pra gerar QR */}
+            <Route path="/gerar-qrcode" element={<QRCodeGenerator />} />
           </Routes>
         </Box>
         <Footer />

@@ -98,12 +98,14 @@ const Testimonials = () => {
                 sx={{
                     flex: '0 0 auto',
                     width: isMobile ? '280px' : isTablet ? '350px' : '400px',
-                    margin: '0 12px',
+                    margin: '0 8px',
                     border: '1px solid rgba(175, 29, 29, 0.3)',
                     borderRadius: '30px',
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
+                    backgroundColor: 'rgba(22, 10, 10, 0.7)',
+                    backdropFilter: 'blur(10px)',
                 }}
             >
                 <Box sx={{ p: 2, flex: 1, display: 'flex', flexDirection: 'column' }}>
@@ -245,18 +247,33 @@ const Testimonials = () => {
         </motion.div>
     );
 
-    // Opções do carrossel
+    // Opções do carrossel - CORRIGIDO para mobile
     const emblaOptions = {
-        align: 'start',
+        align: 'center', // Mudado para center para melhor visualização no mobile
         loop: true,
         skipSnaps: false,
         containScroll: 'trimSnaps',
         dragFree: false,
         slidesToScroll: 1,
+        startIndex: 1, // Começa no segundo slide para melhor visualização
         breakpoints: {
-            '(min-width: 600px)': { slidesToScroll: 2 },
-            '(min-width: 900px)': { slidesToScroll: 3 },
-            '(min-width: 1200px)': { slidesToScroll: 4 }
+            '(max-width: 600px)': {
+                align: 'center',
+                slidesToScroll: 1,
+                loop: true
+            },
+            '(min-width: 600px)': {
+                align: 'start',
+                slidesToScroll: 2
+            },
+            '(min-width: 900px)': {
+                align: 'start',
+                slidesToScroll: 3
+            },
+            '(min-width: 1200px)': {
+                align: 'start',
+                slidesToScroll: 4
+            }
         }
     };
 
@@ -306,6 +323,7 @@ const Testimonials = () => {
                 overflow: 'hidden',
                 width: '100%',
                 backgroundColor: 'rgba(0,0,0,0.7)',
+                px: isMobile ? 0 : 2, // Remove padding lateral no mobile
             }}
             ref={containerRef}
         >
@@ -321,7 +339,7 @@ const Testimonials = () => {
                     mb: { xs: 8, md: 7 },
                     position: 'relative',
                     zIndex: 2,
-                    // REMOVI O PADDING LATERAL
+                    px: isMobile ? 2 : 0, // Adiciona padding apenas no mobile
                 }}>
                     <motion.div
                         initial={{ scale: 0.8, opacity: 0 }}
@@ -335,7 +353,7 @@ const Testimonials = () => {
                                 fontFamily: '"Libre Baskerville", serif',
                                 fontWeight: 700,
                                 color: '#AF1D1D',
-                                fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+                                fontSize: { xs: '1.8rem', sm: '2.5rem', md: '3rem' },
                                 mb: 2,
                                 textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
                             }}
@@ -354,10 +372,11 @@ const Testimonials = () => {
                             variant="subtitle1"
                             sx={{
                                 color: 'rgba(255, 255, 255, 0.8)',
-                                fontSize: { xs: '1rem', md: '1.1rem' },
+                                fontSize: { xs: '0.95rem', md: '1.1rem' },
                                 maxWidth: '600px',
                                 margin: '0 auto',
-                                mb: 3
+                                mb: 3,
+                                px: isMobile ? 1 : 0,
                             }}
                         >
                             Experiências reais de quem já provou nossos sabores
@@ -418,7 +437,7 @@ const Testimonials = () => {
                 </Box>
             </motion.div>
 
-            {/* Estatísticas - REMOVIDO MARGENS LATERAIS E CENTRALIZAÇÃO */}
+            {/* Estatísticas */}
             <motion.div
                 variants={containerVariants}
                 initial="hidden"
@@ -432,8 +451,8 @@ const Testimonials = () => {
                     padding: { xs: 3, md: 4 },
                     borderRadius: '20px',
                     border: '1px solid rgba(175, 29, 29, 0.1)',
-                    // REMOVI mx E margin: '0 auto' - AGORA OCUPA LARGURA TOTAL
-                    mx: 2, // Apenas uma margem mínima para não colar nas bordas
+                    mx: isMobile ? 2 : 'auto',
+                    maxWidth: '1200px',
                 }}>
                     <Box sx={{
                         display: 'grid',
@@ -487,7 +506,7 @@ const Testimonials = () => {
                 </Box>
             </motion.div>
 
-            {/* Carrossel de avaliações - SEM LIMITAÇÕES DE LARGURA */}
+            {/* Carrossel de avaliações - CORRIGIDO para mobile */}
             <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -497,10 +516,10 @@ const Testimonials = () => {
                 <Box sx={{
                     position: 'relative',
                     width: '100%',
-                    height: '350px',
+                    height: isMobile ? '380px' : '350px',
                     mt: 6,
                     mb: 6,
-                    p: 2,
+                    px: isMobile ? 1 : 2, // Reduz padding no mobile
                     '& > div': {
                         width: '100%',
                         height: '100%'
@@ -508,11 +527,11 @@ const Testimonials = () => {
                 }}>
                     <EmblaCarousel
                         showControls={true}
-                        controlPosition="bottom-center"
+                        controlPosition={isMobile ? "bottom-center" : "bottom-center"}
                         controlColor="#AF1D1D"
                         controlBgColor="rgba(22, 10, 10, 0.95)"
                         autoPlayInterval={5000}
-                        controlOffset={{ x: -845, y: -75 }}
+                        controlOffset={isMobile ? { x: 0, y: -60 } : { x: -845, y: -75 }}
                         options={emblaOptions}
                         style={{
                             width: '100%',
@@ -526,7 +545,7 @@ const Testimonials = () => {
                                     display: 'flex',
                                     justifyContent: 'center',
                                     alignItems: 'stretch',
-                                    padding: '0 8px',
+                                    padding: isMobile ? '0 4px' : '0 8px', // Menos padding no mobile
                                     height: '100%'
                                 }}
                             >
@@ -537,7 +556,7 @@ const Testimonials = () => {
                 </Box>
             </motion.div>
 
-            {/* Elementos decorativos - POSICIONAMENTO ABSOLUTO SEM AFETAR FLUXO */}
+            {/* Elementos decorativos */}
             <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -597,32 +616,6 @@ const Testimonials = () => {
                         width: '100%',
                         height: '100%',
                         background: 'radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, transparent 70%)',
-                    }}
-                />
-            </motion.div>
-
-            {/* Elemento decorativo adicional */}
-            <motion.div
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.8, duration: 1 }}
-                style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '10%',
-                    width: '100px',
-                    height: '100px',
-                    zIndex: 1
-                }}
-            >
-                <Box
-                    sx={{
-                        width: '100%',
-                        height: '100%',
-                        background: 'radial-gradient(circle, rgba(32, 4, 4, 0.1) 0%, transparent 70%)',
-                        borderRadius: '50%',
-                        filter: 'blur(10px)'
                     }}
                 />
             </motion.div>

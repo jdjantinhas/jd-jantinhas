@@ -12,9 +12,9 @@ const Footer = () => {
     const handleSocialClick = (platform) => {
         const urls = {
             facebook: 'https://facebook.com/seu-restaurante',
-            instagram: 'https://instagram.com/seu-restaurante',
-            whatsapp: 'https://wa.me/5511999999999',
-            email: 'mailto:contato@jdjantinhas.com'
+            instagram: 'https://instagram.com/jdjantinhas/',
+            whatsapp: 'https://wa.me/5562992802125',
+            email: 'mailto:adm@jdjantinhas.com'
         };
 
         if (urls[platform]) {
@@ -35,10 +35,8 @@ const Footer = () => {
             <div>
                 <div className="footer">
                     <div className="footer-row">
-                        {/* Coluna da Imagem/SVG à esquerda */}
                         <div className="footer-column footer-image-column">
                             <div className="footer-image-container">
-                                {/* Aqui você pode colocar uma imagem ou SVG */}
                                 <svg
                                     className="footer-logo-svg"
                                     viewBox="0 0 200 200"
@@ -53,9 +51,6 @@ const Footer = () => {
                                         JD
                                     </text>
                                 </svg>
-
-                                {/* Ou se preferir uma imagem, use este código: */}
-                                {/* <img src="/logo.png" alt="JD Jantinhas" className="footer-logo-img" /> */}
 
                                 {/* Botões de redes sociais na mesma coluna */}
                                 <div className="social-media-container">
@@ -103,7 +98,7 @@ const Footer = () => {
                         {/* Coluna da Descrição */}
                         <div className="footer-column">
                             <div className="footer-brand">
-                                <h4 className="footer-title">JD Jantinhas</h4>
+                                <h4 className="footer-title">JD Jantinha's</h4>
                                 <p className="brand-tagline">
                                     Comida de qualidade para todos os momentos
                                 </p>
@@ -119,10 +114,7 @@ const Footer = () => {
                                 <h5 className="section-title">Horário de Funcionamento</h5>
                                 <div className="section-info">
                                     <div className="info-item">
-                                        <span className="info-text">Segunda a Sábado: 11h - 23h</span>
-                                    </div>
-                                    <div className="info-item">
-                                        <span className="info-text">Domingo: 12h - 22h</span>
+                                        <span className="info-text">Segunda a Sábado: 19h - 23:30h</span>
                                     </div>
                                 </div>
                             </div>
@@ -134,10 +126,10 @@ const Footer = () => {
                                 <h5 className="section-title">Contato</h5>
                                 <div className="section-info">
                                     <div className="info-item">
-                                        <span className="info-text">Tel: (11) 99999-9999</span>
+                                        <span className="info-text">Telefone: (62) 99280-2125</span>
                                     </div>
                                     <div className="info-item">
-                                        <span className="info-text">Email: contato@jdjantinhas.com</span>
+                                        <span className="info-text">Email: adm@jdjantinhas.com</span>
                                     </div>
                                 </div>
                             </div>
@@ -148,7 +140,7 @@ const Footer = () => {
                     <div className="footer-bottom">
                         <div className="copyright">
                             <p className="copyright-text">
-                                &copy; {currentYear} JD Jantinhas - Todos os direitos reservados
+                                &copy; {currentYear} JD Jantinha's - Todos os direitos reservados
                             </p>
                         </div>
                     </div>

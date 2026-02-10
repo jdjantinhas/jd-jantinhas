@@ -150,7 +150,7 @@ const Carrinho = () => {
             fullScreen={isMobile} // Em mobile, ocupa tela inteira
             PaperProps={{
                 sx: {
-                    borderRadius: isMobile ? 0 : '16px',
+                    borderRadius: isMobile ? 0 : '30px',
                     overflow: 'hidden',
                     backgroundColor: '#1A1A1A',
                     maxWidth: { xs: '100%', sm: '500px' },
@@ -269,9 +269,8 @@ const Carrinho = () => {
                     elevation={0}
                     sx={{
                         backgroundColor: '#252525',
-                        borderRadius: '12px',
+                        borderRadius: '20px',
                         mb: 3,
-                        border: '1px solid #333'
                     }}
                 >
                     <CardContent sx={{ p: 2.5 }}>
@@ -337,17 +336,11 @@ const Carrinho = () => {
                                 </Typography>
                             </Box>
 
-                            {/* Divisor sutil */}
-                            <Divider sx={{
-                                borderColor: '#333',
-                                my: 0.5
-                            }} />
-
                             {/* Total */}
                             <Box sx={{
                                 display: 'flex',
                                 alignItems: 'center',
-                                justifyContent: 'space-between'
+                                justifyContent: 'space-between',
                             }}>
                                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                                     <AttachMoneyIcon sx={{
@@ -378,9 +371,8 @@ const Carrinho = () => {
                     elevation={0}
                     sx={{
                         backgroundColor: '#252525',
-                        borderRadius: '12px',
+                        borderRadius: '20px',
                         mb: 3,
-                        border: '1px solid #333',
                         display: 'flex',
                         flexDirection: 'column',
                         height: 'auto',
@@ -390,8 +382,7 @@ const Carrinho = () => {
                     <CardContent sx={{ p: 0, flex: 1, display: 'flex', flexDirection: 'column' }}>
                         <Box sx={{
                             p: 2.5,
-                            borderBottom: '1px solid #333',
-                            flexShrink: 0 // Não encolhe o cabeçalho
+                            flexShrink: 0
                         }}>
                             <Typography variant="subtitle2" sx={{
                                 color: '#888',
@@ -475,7 +466,7 @@ const Carrinho = () => {
                     backgroundColor: 'rgba(175, 29, 29, 0.08)',
                     borderRadius: '8px',
                     border: '1px solid rgba(175, 29, 29, 0.2)',
-                    mb: 2
+                    mb: 0
                 }}>
                     <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'flex-start' }}>
                         <WarningIcon sx={{
@@ -982,62 +973,60 @@ const Carrinho = () => {
             px: { xs: 2, sm: 3, md: 4 }
         }}>
             {/* Cabeçalho */}
-            <Box sx={{
-                mb: 4,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                flexWrap: 'wrap',
-                gap: 2
-            }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                    <Button
-                        onClick={handleBackToMenu}
-                        startIcon={<ArrowBackIcon />}
+            <Box
+                sx={{
+                    mb: 4,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 2
+                }}
+            >
+                <Button
+                    onClick={handleBackToMenu}
+                    startIcon={<ArrowBackIcon />}
+                    sx={{
+                        alignSelf: 'flex-start',
+                        color: '#AF1D1D',
+                        fontFamily: '"Libre Baskerville", serif',
+                        textTransform: 'none',
+                        fontSize: { xs: '0.9rem', sm: '1rem' },
+                        backgroundColor: 'rgba(175, 29, 29, 0.2)',
+                        borderRadius: '30px',
+                        padding: { xs: '8px 10px', sm: '5px 15px' },
+                        '&:hover': {
+                            backgroundColor: 'rgba(175, 29, 29, 0.1)',
+                        }
+                    }}
+                >
+                    Voltar
+                </Button>
+
+                <Typography
+                    variant="h4"
+                    sx={{
+                        fontFamily: '"Libre Baskerville", serif',
+                        fontSize: { xs: '1.4rem', sm: '2rem', md: '2rem' },
+                        fontWeight: 'bold',
+                        color: '#AF1D1D'
+                    }}
+                >
+                    Meu Carrinho ({getTotalItems()})
+                </Typography>
+
+                {tableNumber && (
+                    <Typography
+                        variant="subtitle1"
                         sx={{
-                            color: '#AF1D1D',
+                            color: '#25D366',
                             fontFamily: '"Libre Baskerville", serif',
-                            textTransform: 'none',
-                            fontSize: { xs: '0.9rem', sm: '1rem' },
-                            '&:hover': {
-                                backgroundColor: 'rgba(175, 29, 29, 0.1)',
-                            }
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 0.5
                         }}
                     >
-                        Voltar
-                    </Button>
-
-                    <Box>
-                        <Typography
-                            variant="h4"
-                            sx={{
-                                fontFamily: '"Libre Baskerville", serif',
-                                fontSize: { xs: '1.6rem', sm: '2rem', md: '2.5rem' },
-                                fontWeight: 'bold',
-                                color: '#AF1D1D'
-                            }}
-                        >
-                            Meu Carrinho ({getTotalItems()})
-                        </Typography>
-
-                        {/* Mostra mesa atual se definida */}
-                        {tableNumber && (
-                            <Typography
-                                variant="subtitle1"
-                                sx={{
-                                    color: '#25D366',
-                                    fontFamily: '"Libre Baskerville", serif',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: 0.5
-                                }}
-                            >
-                                <TableBarIcon fontSize="small" />
-                                Mesa: {tableNumber}
-                            </Typography>
-                        )}
-                    </Box>
-                </Box>
+                        Mesa: {tableNumber}
+                    </Typography>
+                )}
             </Box>
 
             {/* Lista de Itens do Carrinho */}
@@ -1169,9 +1158,8 @@ const Carrinho = () => {
                     <Button
                         variant="contained"
                         onClick={handleFinalizeOrder}
-                        startIcon={<WhatsAppIcon />}
+                        startIcon={<WhatsAppIcon sx={{ fontSize: { xs: '2rem', sm: '2rem', md: '2.2rem' } }} />}
                         sx={{
-                            fontFamily: '"Libre Baskerville", serif',
                             backgroundColor: '#25D366',
                             color: 'white',
                             borderRadius: '30px',
@@ -1188,7 +1176,15 @@ const Carrinho = () => {
                             transition: 'all 0.3s ease',
                         }}
                     >
-                        Enviar via WhatsApp
+                        <Typography
+                            sx={{
+                                fontSize: { xs: '1.1rem', sm: '1.2rem' },
+                                fontWeight: 'bold',
+                                color: 'white',
+                            }}
+                        >
+                            Enviar Pedido no WhatsApp
+                        </Typography>
                     </Button>
                 </Stack>
             </Paper>
