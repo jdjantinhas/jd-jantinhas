@@ -1,0 +1,133 @@
+/* Animação para os cards */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.testimonial-card {
+    animation: fadeInUp 0.6s ease-out;
+    animation-fill-mode: both;
+}
+
+/* Atraso para animação em cascata */
+.testimonial-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.testimonial-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.testimonial-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.testimonial-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.testimonial-card:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.testimonial-card:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+/* Efeito de foco nos cards */
+.testimonial-card:hover {
+    transform: translateY(-5px) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Estilos para o Embla Carousel */
+.embla {
+    position: relative;
+    width: 100%;
+}
+
+.embla__container {
+    display: flex;
+    height: auto;
+    min-height: 350px;
+}
+
+.embla__slide {
+    flex: 0 0 auto;
+    min-width: 0;
+    position: relative;
+    padding: 0 10px;
+}
+
+/* Estilos para controles do Embla */
+/* .embla-controls-container {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: rgba(22, 10, 10, 0.9);
+    padding: 8px 16px;
+    border-radius: 50px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.embla-controls-indicators {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.embla-controls-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+} */
+
+/* Responsividade extra para telas muito pequenas */
+@media (max-width: 480px) {
+    .testimonial-card {
+        margin: 0 8px;
+        min-height: 280px;
+    }
+
+    .testimonials-section {
+        padding: 40px 16px;
+    }
+
+    .embla-controls-container {
+        bottom: -40px;
+        padding: 6px 12px;
+    }
+}
+
+/* Para telas médias */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .testimonial-card {
+        min-height: 320px;
+    }
+}
+
+/* Para telas grandes (mais de 1200px) */
+@media (min-width: 1200px) {
+    .testimonial-card {
+        min-height: 340px;
+    }
+}
+
+/* Ajuste para altura dos slides */
+.embla__slide>div {
+    height: 100%;
+    display: flex;
+    align-items: stretch;
+}

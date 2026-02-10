@@ -1,0 +1,365 @@
+.main-footer {
+    background: linear-gradient(180deg, #1a0f0e 0%, #0A0403 100%);
+    color: white;
+    margin-top: 0px;
+    padding-top: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* SEU SVG ORIGINAL - Não mexa nisso! */
+.main-footer>div:first-child {
+    display: block;
+    width: 100%;
+    margin-top: -1px;
+    /* Para evitar linha branca */
+}
+
+.main-footer>div:first-child svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Conteúdo principal do footer - Mantendo seu layout original */
+.text-white {
+    padding: 40px 20px 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer {
+    width: 100%;
+}
+
+.footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 200px;
+    padding: 0 15px;
+}
+
+/* Coluna da imagem à esquerda */
+.footer-image-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+/* Estilo para o SVG da logo */
+.footer-logo-svg {
+    width: 150px;
+    height: 150px;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+    transition: all 0.3s ease;
+}
+
+.footer-logo-svg:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.4));
+}
+
+/* Estilo para imagem da logo (se preferir usar imagem) */
+.footer-logo-img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+    border-radius: 50%;
+    background: rgba(175, 29, 29, 0.1);
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.footer-logo-img:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.4));
+    background: rgba(175, 29, 29, 0.2);
+}
+
+/* Botões de Redes Sociais - Agora dentro da coluna da imagem */
+.social-media-container {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.social-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.social-btn svg {
+    font-size: 1.3rem;
+    transition: transform 0.3s ease;
+}
+
+.social-btn:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.social-btn:hover svg {
+    transform: scale(1.2);
+}
+
+/* Cores específicas para cada rede social */
+.facebook-btn {
+    background: transparent;
+    border: 2px solid rgba(87, 31, 31, 0.35);
+    color: white;
+}
+
+.instagram-btn {
+    background: transparent;
+    border: 2px solid rgba(87, 31, 31, 0.35);
+    color: white;
+}
+
+.whatsapp-btn {
+    background: transparent;
+    border: 2px solid rgba(87, 31, 31, 0.35);
+    color: white;
+}
+
+.email-btn {
+    background: transparent;
+    border: 2px solid rgba(87, 31, 31, 0.35);
+    color: white;
+}
+
+/* Restante do seu CSS original */
+.footer-brand {
+    margin-bottom: 20px;
+}
+
+.footer-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #AF1D1D;
+    margin-bottom: 10px;
+}
+
+.brand-tagline {
+    font-size: 1.1rem;
+    color: #FFFFFF;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.brand-description {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    max-width: 300px;
+}
+
+.footer-section {
+    margin-bottom: 25px;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+    font-family: 'Playfair Display', serif;
+}
+
+.section-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.info-item {
+    padding: 8px 0;
+}
+
+.info-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Footer bottom - mantendo seu estilo original */
+.footer-bottom {
+    background-color: #be260b;
+    margin-top: 20px;
+    padding-top: 25px;
+    text-align: center;
+    width: 100%;
+}
+
+.copyright {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.copyright-text {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .text-white {
+        padding: 30px 15px 30px;
+    }
+
+    .footer-row {
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+    }
+
+    .footer-column {
+        padding: 0;
+        text-align: center;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .footer-image-column {
+        align-items: center;
+    }
+
+    .footer-image-container {
+        align-items: center;
+    }
+
+    .brand-description {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .social-buttons {
+        gap: 10px;
+    }
+
+    .social-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .social-btn svg {
+        font-size: 1.1rem;
+    }
+
+    .footer-logo-svg,
+    .footer-logo-img {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .social-buttons {
+        gap: 8px;
+    }
+
+    .social-btn {
+        width: 38px;
+        height: 38px;
+    }
+
+    .social-btn svg {
+        font-size: 1rem;
+    }
+
+    .footer-logo-svg,
+    .footer-logo-img {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* Animações */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+.social-btn:hover {
+    animation: float 1s ease-in-out infinite;
+}
+
+/* Efeito de brilho nos botões */
+.social-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.social-btn:hover::before {
+    left: 100%;
+}
+
+/* Tooltip nos botões */
+.social-btn::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.social-btn:hover::after {
+    opacity: 1;
+    visibility: visible;
+}

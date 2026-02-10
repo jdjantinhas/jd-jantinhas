@@ -1,0 +1,53 @@
+.embla {
+    overflow: hidden;
+    width: 100%;
+}
+
+.embla__container {
+    display: flex;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.embla__slide {
+    position: relative;
+    flex: 0 0 100%;
+    min-width: 0;
+}
+
+/* Transição suave entre slides */
+.embla__slide {
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Estilo para os dots - se quiser estilizar mais via CSS */
+.banner-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(175, 29, 29, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 8px;
+}
+
+.banner-dot.active {
+    background-color: #AF1D1D;
+    transform: scale(1.1);
+}
+
+/* Para garantir que as imagens se ajustem bem */
+.banner-image-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.banner-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
