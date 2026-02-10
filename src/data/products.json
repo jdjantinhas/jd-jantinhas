@@ -46,7 +46,7 @@
             "orderCount": 0
         },
         {
-            "id": 3,
+            "id": 20,
             "nome": "Jantinha Vegetariana",
             "descricao": "Arroz de brócolis, quinoa, abobrinha grelhada, salada verde e molho de iogurte.",
             "preco": 20.00,
@@ -55,7 +55,7 @@
             "orderCount": 0
         },
         {
-            "id": 3,
+            "id": 23,
             "nome": "Jantinha Vegetariana",
             "descricao": "Arroz de brócolis, quinoa, abobrinha grelhada, salada verde e molho de iogurte.",
             "preco": 20.00,
@@ -64,7 +64,7 @@
             "orderCount": 0
         },
         {
-            "id": 3,
+            "id": 24,
             "nome": "Jantinha Vegetariana",
             "descricao": "Arroz de brócolis, quinoa, abobrinha grelhada, salada verde e molho de iogurte.",
             "preco": 20.00,
