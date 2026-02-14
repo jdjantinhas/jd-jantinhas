@@ -10,9 +10,6 @@ import {
     Divider,
 } from '@mui/material';
 import { motion } from 'framer-motion';
-import RestaurantIcon from '@mui/icons-material/Restaurant';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import GroupIcon from '@mui/icons-material/Group';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 const teamMembers = [
