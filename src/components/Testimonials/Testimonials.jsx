@@ -155,7 +155,7 @@ const Testimonials = () => {
                                     <StarIcon
                                         sx={{
                                             fontSize: 20,
-                                            color: index < testimonial.rating ? '#FFD700' : 'rgba(255, 255, 255, 0.3)'
+                                            color: index < testimonial.rating ? '#af1d1d' : 'rgba(255, 255, 255, 0.3)'
                                         }}
                                     />
                                 </motion.div>
@@ -412,12 +412,12 @@ const Testimonials = () => {
                                     ease: "linear"
                                 }}
                             >
-                                <StarIcon sx={{ color: '#FFD700', fontSize: 20, mr: 0.5 }} />
+                                <StarIcon sx={{ color: '#af1d1d', fontSize: 20, mr: 0.5 }} />
                             </motion.div>
                             <Typography
                                 variant="h6"
                                 sx={{
-                                    color: '#FFD700',
+                                    color: '#af1d1d',
                                     fontWeight: 'bold',
                                     mr: 1
                                 }}

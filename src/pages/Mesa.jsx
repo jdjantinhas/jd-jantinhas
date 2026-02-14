@@ -66,7 +66,7 @@ const Mesa = () => {
                     fontSize: { xs: '2.5rem', md: '3.5rem' },
                     fontWeight: 700,
                     mb: 2,
-                    color: '#FFD700'
+                    color: '#af1d1d'
                 }}
             >
                 Mesa {mesaId}

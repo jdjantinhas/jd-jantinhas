@@ -1,35 +1,56 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, useTheme, useMediaQuery } from '@mui/material';
 import EmblaCarousel from '../EmblaCarousel/EmblaCarousel';
 import BannerSlide from './BannerSlide';
 
 import bannerComida from '../../assets/img/Banner1.png';
 import bannerBatata from '../../assets/img/Banner2.png';
+import bannerSobremesa from '../../assets/img/Banner3.png';
 
 const Banner = () => {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm')); // Apenas mobile
+    const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md')); // Apenas tablet
+
     const bannerItems = [
         {
             id: 1,
-            title: 'Comida',
-            subtitle: 'Deliciosa',
+            dot: 'Novo',
+            subDot: 'No Cardápio',
+            title: 'Deliciosas Comidas',
+            subtitle: 'Foods Place',
+            description: 'Explore nosso cardápio repleto de pratos irresistíveis, preparados com ingredientes frescos e sabores autênticos. De clássicos a criações exclusivas, cada mordida é uma experiência gastronômica única. Venha saborear o melhor da culinária conosco!',
             buttonText: 'Ver Cardápio',
             imageUrl: bannerComida,
         },
         {
             id: 2,
+            dot: 'Mais Pedido',
+            subDot: 'Sugestão do Chef',
             title: 'Bebidas',
             subtitle: 'Refrescantes',
+            description: 'Explore nosso cardápio repleto de pratos irresistíveis, preparados com ingredientes frescos e sabores autênticos. De clássicos a criações exclusivas, cada mordida é uma experiência gastronômica única. Venha saborear o melhor da culinária conosco!',
             buttonText: 'Ver Cardápio',
             imageUrl: bannerBatata,
         },
         {
             id: 3,
+            dot: 'Especial',
+            subDot: 'Sobremesa da Casa',
             title: 'Sobremesas',
             subtitle: 'Irresistíveis',
+            description: 'Explore nosso cardápio repleto de pratos irresistíveis, preparados com ingredientes frescos e sabores autênticos. De clássicos a criações exclusivas, cada mordida é uma experiência gastronômica única. Venha saborear o melhor da culinária conosco!',
             buttonText: 'Ver Opções',
-            imageUrl: 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=1200&auto=format&fit=crop',
+            imageUrl: bannerSobremesa,
         }
     ];
+
+    // Define offset baseado no dispositivo
+    const getControlOffset = () => {
+        if (isMobile) return { x: 20, y: 105 }; // Mobile
+        if (isTablet) return { x: 20, y: 130 }; // Tablet
+        return { x: 40, y: 35 }; // Desktop
+    };
 
     return (
         <Box sx={{
@@ -42,7 +63,7 @@ const Banner = () => {
                 showControls={true}
                 controlPosition="bottom-left"
                 autoPlayDelay={5000}
-                controlOffset={{ x: 40, y: 55 }}
+                controlOffset={getControlOffset()}
                 controlColor="#C32020"
                 controlBgColor="rgba(22, 10, 10, 0.9)"
                 useAutoplayPlugin={true}

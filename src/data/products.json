@@ -30,7 +30,7 @@
         {
             "id": 1,
             "nome": "Jantinha Completa",
-            "descricao": "Arroz, feijão, batata frita, salada e carne bovina grelhada. Acompanha molho especial da casa.",
+            "descricao": "Arroz, feijão, salada e carne bovina grelhada. Acompanha molho especial da casa.",
             "preco": 25.00,
             "categoria": "jantinhas",
             "imagem": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&auto=format&fit=crop",
@@ -92,12 +92,34 @@
         },
         {
             "id": 6,
-            "nome": "Espetinho de Carne",
-            "descricao": "Espetinho de carne bovina grelhada na churrasqueira com tempero caseiro.",
+            "nome": "Espetinhos",
+            "descricao": "Escolha o sabor do seu espetinho!",
             "preco": 8.00,
             "categoria": "espetinhos",
             "imagem": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&auto=format&fit=crop",
-            "orderCount": 0
+            "orderCount": 0,
+            "variantes": [
+                {
+                    "id": "carne",
+                    "nome": "Carne",
+                    "preco": 8.00
+                },
+                {
+                    "id": "frango",
+                    "nome": "Frango",
+                    "preco": 7.00
+                },
+                {
+                    "id": "linguica",
+                    "nome": "Linguiça",
+                    "preco": 7.50
+                },
+                {
+                    "id": "coracao",
+                    "nome": "Coração",
+                    "preco": 9.00
+                }
+            ]
         },
         {
             "id": 7,

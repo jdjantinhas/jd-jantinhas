@@ -27,7 +27,6 @@ export const AnimationProvider = ({ children }) => {
 
     return (
         <AnimationContext.Provider value={value}>
-            {/* Barra de progresso de scroll */}
             <motion.div
                 style={{
                     scaleX,

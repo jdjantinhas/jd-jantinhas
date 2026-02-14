@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { CartProvider } from './contexts/CartContext';
+import { Box } from '@mui/material';
 import Header from './components/Header/Header';
 import Home from './pages/Home';
 import Cardapio from './pages/Cardapio';
@@ -7,10 +8,9 @@ import SobreNos from './pages/SobreNos';
 import Contato from './pages/Contato';
 import Carrinho from './pages/Carrinho';
 import MesaRedirect from './components/MesaRedirect';
-import { Box } from '@mui/material';
-import './App.css';
 import Footer from './components/Footer/Footer';
 import QRCodeGenerator from './components/QRGenerator.jsx';
+import './App.css';
 
 function App() {
   return (

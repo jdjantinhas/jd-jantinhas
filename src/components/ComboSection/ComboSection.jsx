@@ -256,7 +256,7 @@ const ComboSection = () => {
                                                     icon={slide.icon}
                                                     sx={{
                                                         backgroundColor: 'rgba(175, 29, 29, 0.2)',
-                                                        color: '#FFD700',
+                                                        color: '#af1d1d',
                                                         fontFamily: '"Libre Baskerville", serif',
                                                         fontWeight: 700,
                                                         fontSize: '0.7rem',
@@ -274,7 +274,7 @@ const ComboSection = () => {
                                                         mb: 1,
                                                         fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.8rem' },
                                                         lineHeight: 1.1,
-                                                        background: 'linear-gradient(135deg, #FFD700 0%, #AF1D1D 50%, #FFD700 100%)',
+                                                        background: 'linear-gradient(135deg, #af1d1d 0%, #AF1D1D 50%, #af1d1d 100%)',
                                                         WebkitBackgroundClip: 'text',
                                                         WebkitTextFillColor: 'transparent',
                                                         backgroundClip: 'text',
@@ -323,7 +323,7 @@ const ComboSection = () => {
                                                 <Box
                                                     sx={{
                                                         backgroundColor: 'rgba(175, 29, 29, 0.1)',
-                                                        borderLeft: '3px solid #FFD700',
+                                                        borderLeft: '3px solid #af1d1d',
                                                         p: 2.5,
                                                         mb: 4,
                                                         borderRadius: '4px'

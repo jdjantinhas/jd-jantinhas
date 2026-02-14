@@ -614,7 +614,7 @@ export default function Header() {
                             sx: {
                                 backgroundColor: 'rgba(10, 10, 10, 0.95)',
                                 backdropFilter: 'blur(20px)',
-                                borderRadius: '16px',
+                                borderRadius: '30px',
                                 border: '1px solid rgba(255, 255, 255, 0.1)',
                                 color: '#fff',
                                 fontFamily: '"Libre Baskerville", serif',
@@ -634,7 +634,7 @@ export default function Header() {
                                     textAlign: 'center',
                                     fontFamily: '"Libre Baskerville", serif',
                                     fontWeight: 'bold',
-                                    fontSize: '24px',
+                                    fontSize: '20px',
                                     color: '#fff',
                                     pt: 3,
                                 }}
@@ -701,10 +701,12 @@ export default function Header() {
                                         sx={{
                                             color: 'rgba(255, 255, 255, 0.7)',
                                             borderColor: 'rgba(255, 255, 255, 0.2)',
+                                            backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                                            borderRadius: '50px',
+                                            padding: '8px 22px',
+                                            fontFamily: '"Inter", serif',
+                                            textTransform: 'capitalize',
                                             mr: 2,
-                                            '&:hover': {
-                                                backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                                            }
                                         }}
                                     >
                                         Cancelar
@@ -724,6 +726,7 @@ export default function Header() {
                                             fontFamily: '"Libre Baskerville", serif',
                                             fontWeight: 'bold',
                                             borderRadius: '50px',
+                                            textTransform: 'capitalize',
                                             px: 3,
                                             py: 1,
                                             '&:hover': {

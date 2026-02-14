@@ -211,7 +211,7 @@ const CategoriesCarousel = ({
                             borderRadius: '24px',
                             backdropFilter: 'blur(10px)',
                             '& .MuiChip-icon': {
-                                color: activeCategory === categoria.id ? '#FFD700' : 'white',
+                                color: activeCategory === categoria.id ? '#af1d1d' : 'white',
                                 fontSize: { xs: '1rem', sm: '1.1rem', md: '1.2rem' },
                                 marginLeft: { xs: '8px', md: '10px' }
                             },
@@ -225,7 +225,7 @@ const CategoriesCarousel = ({
                             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                             cursor: 'pointer',
                             border: activeCategory === categoria.id
-                                ? '2px solid #FFD700'
+                                ? '2px solid #af1d1d'
                                 : '1px solid rgba(175, 29, 29, 0.3)',
                             flexShrink: 0,
                             minWidth: { xs: '140px', sm: '150px', md: '160px' },
