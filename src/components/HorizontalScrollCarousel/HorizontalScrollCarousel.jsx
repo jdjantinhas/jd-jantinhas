@@ -66,18 +66,19 @@ const HorizontalScrollCarousel = () => {
                             alignItems: 'center',
                             justifyContent: 'space-between',
                             gap: isMobile ? 2 : 4,
-                            padding: isMobile ? 3 : 5
+                            padding: isMobile ? 3 : 5,
+                            background: 'linear-gradient(30deg, #461220 0%, #220901)',
                         }}>
                             {/* Conteúdo de texto */}
                             <Box sx={{
                                 display: 'flex',
                                 flexDirection: 'column',
                                 justifyContent: 'center',
-                                width: isMobile ? '100%' : '45%',
+                                width: isMobile ? '100%' : '35%',
                                 height: isMobile ? 'auto' : '100%', // Altura automática no mobile
                                 minHeight: isMobile ? '300px' : 'auto', // Altura mínima para o texto
                                 zIndex: 2,
-                                padding: isMobile ? 2 : 0,
+                                padding: isMobile ? 2 : 4,
                                 order: isMobile ? 1 : 'initial' // Garante que no mobile o texto vem primeiro
                             }}>
                                 <Typography
@@ -161,14 +162,14 @@ const HorizontalScrollCarousel = () => {
 
                             {/* Imagem */}
                             <Box sx={{
-                                width: isMobile ? '100%' : '55%',
+                                width: isMobile ? '100%' : '35%',
                                 height: isMobile ? '250px' : '100%', // Altura fixa no mobile
                                 display: 'flex',
                                 justifyContent: 'center',
                                 alignItems: 'center',
                                 position: 'relative',
                                 zIndex: 1,
-                                order: isMobile ? 2 : 'initial' // Garante que no mobile a imagem vem depois
+                                order: isMobile ? 2 : 'initial'
                             }}>
                                 <Box
                                     component="img"

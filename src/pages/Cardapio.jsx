@@ -6,22 +6,30 @@ import {
     IconButton,
     Container,
     Fade,
-    Paper,
     AppBar,
     Toolbar,
     Button
 } from '@mui/material';
+import { keyframes } from '@mui/system';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import LocalCafeIcon from '@mui/icons-material/LocalCafe';
 import LocalBarIcon from '@mui/icons-material/LocalBar';
+import { GiftIcon } from 'lucide-react';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import CardItem from '../components/Cards/CardItem.jsx';
 import ModalVariants from '../components/Modals/ModalVariants';
+import ModalDetails from '../components/Modals/ModalDetails'; // <-- Importe o ModalDetails
 import { useCart } from '../contexts/CartContext';
 import { useProducts } from '../hooks/useProducts';
+
+// Animação de borda pulsante para destacar a categoria Combos
+const pulseBorder = keyframes`
+  0% { border-color: #FFD700; box-shadow: 0 0 5px #FFD700; }
+  50% { border-color: #AF1D1D; box-shadow: 0 0 15px #AF1D1D; }
+  100% { border-color: #FFD700; box-shadow: 0 0 5px #FFD700; }
+`;
 
 // Componente para o menu fixo de navegação
 const FixedNavigation = ({ categories, activeSection, scrollToSection, showFixedMenu }) => {
@@ -44,9 +52,7 @@ const FixedNavigation = ({ categories, activeSection, scrollToSection, showFixed
                     minHeight: '70px !important',
                     padding: '0 !important',
                     overflowX: 'auto',
-                    '&::-webkit-scrollbar': {
-                        display: 'none'
-                    }
+                    '&::-webkit-scrollbar': { display: 'none' }
                 }}>
                     <Box sx={{
                         display: 'flex',
@@ -68,17 +74,26 @@ const FixedNavigation = ({ categories, activeSection, scrollToSection, showFixed
                                     backgroundColor: activeSection === categoria.id ? 'rgba(175, 29, 29, 0.1)' : 'transparent',
                                     borderRadius: '20px',
                                     padding: '6px 16px',
-                                    fontSize: '0.8rem',
+                                    fontSize: '0.85rem',
                                     fontWeight: activeSection === categoria.id ? 600 : 400,
                                     textTransform: 'none',
                                     whiteSpace: 'nowrap',
                                     minWidth: 'auto',
+                                    border: activeSection === categoria.id ? '1px solid rgba(175, 29, 29, 0.3)' : '1px solid transparent',
                                     '&:hover': {
                                         backgroundColor: 'rgba(175, 29, 29, 0.2)',
-                                        transform: 'translateY(-1px)'
+                                        transform: 'translateY(-1px)',
+                                        boxShadow: '0 4px 12px rgba(175, 29, 29, 0.2)'
                                     },
                                     transition: 'all 0.3s ease',
-                                    border: activeSection === categoria.id ? '1px solid rgba(175, 29, 29, 0.3)' : '1px solid transparent'
+                                    ...(categoria.id === 'combos' && {
+                                        border: '2px solid #FFD700',
+                                        animation: `${pulseBorder} 2s infinite`,
+                                        '&:hover': {
+                                            animation: 'none',
+                                            borderColor: '#AF1D1D'
+                                        }
+                                    })
                                 }}
                             >
                                 {categoria.icone}
@@ -136,81 +151,32 @@ const CategoriesCarousel = ({ categories, scrollToSection, activeSection }) => {
     }, []);
 
     return (
-        <Box sx={{
-            position: 'relative',
-            mb: { xs: 4, md: 6 },
-            px: { xs: 0, sm: 2 }
-        }}>
+        <Box sx={{ position: 'relative', mb: { xs: 4, md: 6 }, px: { xs: 0, sm: 2 } }}>
             {showLeftArrow && (
-                <IconButton
-                    onClick={scrollLeft}
-                    sx={{
-                        position: 'absolute',
-                        left: -8,
-                        top: '50%',
-                        transform: 'translateY(-50%)',
-                        zIndex: 10,
-                        backgroundColor: '#AF1D1D',
-                        color: 'white',
-                        display: { xs: 'flex', md: 'none' },
-                        '&:hover': {
-                            backgroundColor: '#8a1818'
-                        },
-                        width: 32,
-                        height: 32,
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
-                        '&:active': {
-                            transform: 'translateY(-50%)',
-                        }
-                    }}
-                >
+                <IconButton onClick={scrollLeft} sx={{
+                    position: 'absolute', left: -8, top: '50%', transform: 'translateY(-50%)',
+                    zIndex: 10, backgroundColor: '#AF1D1D', color: 'white',
+                    display: { xs: 'flex', md: 'none' }, '&:hover': { backgroundColor: '#8a1818' },
+                    width: 32, height: 32, boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
+                }}>
                     <ChevronLeftIcon fontSize="small" />
                 </IconButton>
             )}
-
             {showRightArrow && (
-                <IconButton
-                    onClick={scrollRight}
-                    sx={{
-                        position: 'absolute',
-                        right: -8,
-                        top: '50%',
-                        transform: 'translateY(-50%)',
-                        zIndex: 10,
-                        backgroundColor: '#AF1D1D',
-                        color: 'white',
-                        display: { xs: 'flex', md: 'none' },
-                        '&:hover': {
-                            backgroundColor: '#8a1818'
-                        },
-                        width: 32,
-                        height: 32,
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
-                        '&:active': {
-                            transform: 'translateY(-50%)',
-                        }
-                    }}
-                >
+                <IconButton onClick={scrollRight} sx={{
+                    position: 'absolute', right: -8, top: '50%', transform: 'translateY(-50%)',
+                    zIndex: 10, backgroundColor: '#AF1D1D', color: 'white',
+                    display: { xs: 'flex', md: 'none' }, '&:hover': { backgroundColor: '#8a1818' },
+                    width: 32, height: 32, boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
+                }}>
                     <ChevronRightIcon fontSize="small" />
                 </IconButton>
             )}
-
-            <Box
-                ref={scrollContainerRef}
-                sx={{
-                    display: 'flex',
-                    overflowX: { xs: 'auto', md: 'visible' },
-                    overflowY: 'hidden',
-                    gap: { xs: 1.5, sm: 2 },
-                    pb: 1,
-                    px: { xs: 2, sm: 0 },
-                    scrollbarWidth: 'none',
-                    '&::-webkit-scrollbar': {
-                        display: 'none'
-                    },
-                    msOverflowStyle: 'none',
-                }}
-            >
+            <Box ref={scrollContainerRef} sx={{
+                display: 'flex', overflowX: { xs: 'auto', md: 'visible' }, overflowY: 'hidden',
+                gap: { xs: 1.5, sm: 2 }, pb: 1, px: { xs: 2, sm: 0 },
+                scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' }
+            }}>
                 {categories.map((categoria) => (
                     <Chip
                         key={categoria.id}
@@ -221,24 +187,28 @@ const CategoriesCarousel = ({ categories, scrollToSection, activeSection }) => {
                             fontFamily: '"Libre Baskerville", serif',
                             fontSize: { xs: '0.75rem', sm: '0.85rem', md: '0.9rem' },
                             padding: { xs: '6px 12px', md: '8px 16px' },
-                            height: 'auto',
-                            minHeight: { xs: '36px', md: '48px' },
+                            height: 'auto', minHeight: { xs: '36px', md: '48px' },
                             backgroundColor: activeSection === categoria.id ? '#AF1D1D' : '#200404',
-                            color: 'white',
-                            borderRadius: '24px',
+                            color: 'white', borderRadius: '24px',
                             '& .MuiChip-icon': {
-                                color: 'white',
-                                fontSize: { xs: '1rem', sm: '1.1rem', md: '1.2rem' },
+                                color: 'white', fontSize: { xs: '1rem', sm: '1.1rem', md: '1.2rem' },
                                 marginLeft: { xs: '6px', md: '8px' }
                             },
+                            ...(categoria.id === 'combos' && {
+                                animation: `${pulseBorder} 2s infinite`,
+                                border: '2px solid #FFD700',
+                                '&:hover': {
+                                    animation: 'none',
+                                    backgroundColor: activeSection === categoria.id ? '#8a1818' : '#8a1818',
+                                    borderColor: '#AF1D1D'
+                                }
+                            }),
                             '&:hover': {
                                 backgroundColor: activeSection === categoria.id ? '#8a1818' : '#8a1818',
                                 boxShadow: '0 4px 12px rgba(175, 29, 29, 0.3)',
                             },
                             transition: 'all 0.3s ease',
-                            cursor: 'pointer',
-                            border: '1px solid #AF1D1D',
-                            flexShrink: 0,
+                            cursor: 'pointer', flexShrink: 0,
                             minWidth: { xs: '120px', sm: '140px', md: '160px' }
                         }}
                     />
@@ -250,32 +220,19 @@ const CategoriesCarousel = ({ categories, scrollToSection, activeSection }) => {
 
 // Botão flutuante para voltar ao topo
 const ScrollToTopButton = ({ show }) => {
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
+    const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
     return (
         <Fade in={show}>
-            <IconButton
-                onClick={scrollToTop}
-                sx={{
-                    position: 'fixed',
-                    bottom: 20,
-                    right: 20,
-                    backgroundColor: '#AF1D1D',
-                    color: 'white',
-                    zIndex: 1000,
-                    width: 56,
-                    height: 56,
-                    boxShadow: '0 4px 12px rgba(175, 29, 29, 0.4)',
-                    '&:hover': {
-                        backgroundColor: '#8a1818',
-                        transform: 'translateY(-2px)',
-                        boxShadow: '0 6px 16px rgba(175, 29, 29, 0.5)'
-                    },
-                    transition: 'all 0.3s ease',
-                }}
-            >
+            <IconButton onClick={scrollToTop} sx={{
+                position: 'fixed', bottom: 20, right: 20, backgroundColor: '#AF1D1D',
+                color: 'white', zIndex: 1000, width: 56, height: 56,
+                boxShadow: '0 4px 12px rgba(175, 29, 29, 0.4)',
+                '&:hover': {
+                    backgroundColor: '#8a1818', transform: 'translateY(-2px)',
+                    boxShadow: '0 6px 16px rgba(175, 29, 29, 0.5)'
+                },
+                transition: 'all 0.3s ease',
+            }}>
                 <KeyboardArrowUpIcon />
             </IconButton>
         </Fade>
@@ -284,15 +241,15 @@ const ScrollToTopButton = ({ show }) => {
 
 const Cardapio = () => {
     const { addToCart } = useCart();
-    const {
-        categories,
-        getProductsByCategory,
-        isLoading
-    } = useProducts();
+    const { categories, getProductsByCategory, isLoading } = useProducts();
 
     // Estados para o modal de variantes
     const [modalOpen, setModalOpen] = useState(false);
     const [produtoSelecionado, setProdutoSelecionado] = useState(null);
+
+    // Estados para o modal de detalhes
+    const [detalhesOpen, setDetalhesOpen] = useState(false);
+    const [produtoDetalhes, setProdutoDetalhes] = useState(null);
 
     // Estados para scroll spy e navegação
     const [activeSection, setActiveSection] = useState('');
@@ -300,27 +257,22 @@ const Cardapio = () => {
     const [showScrollToTop, setShowScrollToTop] = useState(false);
     const [lastScrollY, setLastScrollY] = useState(0);
 
-    // Criar refs para cada seção
     const sectionRefs = useRef({});
     const observerRef = useRef(null);
 
-    // Mapeamento de ícones
     const iconMap = {
         RestaurantIcon: <RestaurantIcon sx={{ fontSize: 18 }} />,
         LocalCafeIcon: <LocalCafeIcon sx={{ fontSize: 18 }} />,
-        LocalBarIcon: <LocalBarIcon sx={{ fontSize: 18 }} />
+        LocalBarIcon: <LocalBarIcon sx={{ fontSize: 18 }} />,
+        Gift: <GiftIcon size={18} />,
     };
 
-    // Preparar categorias com ícones e refs
     const categoriesWithIcons = useMemo(() => {
         if (!categories || categories.length === 0) return [];
-
         return categories.map(category => {
-            // Inicializar ref para esta categoria se não existir
             if (!sectionRefs.current[category.id]) {
                 sectionRefs.current[category.id] = React.createRef();
             }
-
             return {
                 ...category,
                 icone: iconMap[category.icone] || <RestaurantIcon sx={{ fontSize: 18 }} />,
@@ -329,27 +281,16 @@ const Cardapio = () => {
         });
     }, [categories]);
 
-    // Configurar Intersection Observer para scroll spy
+    // Intersection Observer para scroll spy
     useEffect(() => {
         if (categoriesWithIcons.length === 0) return;
-
-        const options = {
-            root: null,
-            rootMargin: '-20% 0px -70% 0px',
-            threshold: 0
-        };
-
+        const options = { root: null, rootMargin: '-20% 0px -70% 0px', threshold: 0 };
         const handleIntersect = (entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setActiveSection(entry.target.id);
-                }
+                if (entry.isIntersecting) setActiveSection(entry.target.id);
             });
         };
-
         observerRef.current = new IntersectionObserver(handleIntersect, options);
-
-        // Observar todas as seções
         categoriesWithIcons.forEach(category => {
             const element = sectionRefs.current[category.id]?.current;
             if (element) {
@@ -357,55 +298,49 @@ const Cardapio = () => {
                 observerRef.current.observe(element);
             }
         });
-
-        return () => {
-            if (observerRef.current) {
-                observerRef.current.disconnect();
-            }
-        };
+        return () => observerRef.current?.disconnect();
     }, [categoriesWithIcons]);
 
-    // Configurar scroll listener para mostrar/ocultar menu fixo
+    // Scroll listener para menus flutuantes
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
-
-            // Mostrar menu fixo após rolar 300px
             setShowFixedMenu(currentScrollY > 300);
-
-            // Mostrar botão de voltar ao topo após rolar 500px
             setShowScrollToTop(currentScrollY > 500);
-
-            // Controlar direção do scroll (opcional para animações)
             setLastScrollY(currentScrollY);
         };
-
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [lastScrollY]);
+    }, []);
 
     const scrollToSection = useCallback((categoryId) => {
         const ref = sectionRefs.current[categoryId];
         if (ref?.current) {
-            const offset = 120; // Ajuste considerando header fixo + menu fixo
+            const offset = 120;
             const elementTop = ref.current.getBoundingClientRect().top + window.pageYOffset;
-            window.scrollTo({
-                top: elementTop - offset,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: elementTop - offset, behavior: 'smooth' });
             setActiveSection(categoryId);
         }
     }, []);
 
-    // Função para lidar com adição ao carrinho
+    // Função para abrir modal de detalhes
+    const handleOpenDetalhes = useCallback((item) => {
+        setProdutoDetalhes(item);
+        setDetalhesOpen(true);
+    }, []);
+
+    const handleCloseDetalhes = useCallback(() => {
+        setDetalhesOpen(false);
+        // Opcional: limpar o produto após fechar para evitar flash de conteúdo antigo
+        // setTimeout(() => setProdutoDetalhes(null), 200);
+    }, []);
+
+    // Função para adicionar ao carrinho
     const handleAddToCart = useCallback((item) => {
-        // Verificar se o produto tem variantes (sabores)
         if (item.variantes && item.variantes.length > 0) {
-            // Abrir modal para seleção da variante
             setProdutoSelecionado(item);
             setModalOpen(true);
         } else {
-            // Adicionar diretamente ao carrinho (produto sem variantes)
             try {
                 addToCart({
                     id: item.id,
@@ -413,8 +348,6 @@ const Cardapio = () => {
                     preco: parseFloat(item.preco),
                     imagem: item.imagem || item.imageUrl
                 }, 1);
-
-                console.log('Item adicionado:', item.nome);
             } catch (error) {
                 console.error('Erro ao adicionar ao carrinho:', error);
             }
@@ -423,11 +356,7 @@ const Cardapio = () => {
 
     const handleConfirmarVariante = useCallback((produtoComVariante) => {
         try {
-            console.log('Produto recebido do modal:', produtoComVariante);
-
-            // Se for um produto variado (múltiplos sabores)
             if (produtoComVariante.ehVariado) {
-                // Para produtos variados, adicionamos como um item único com preço total
                 addToCart({
                     id: produtoComVariante.id,
                     nome: produtoComVariante.nome,
@@ -440,7 +369,6 @@ const Cardapio = () => {
                     observacao: produtoComVariante.observacao
                 });
             } else {
-                // Para produto único com variante
                 addToCart({
                     id: produtoComVariante.id,
                     nome: produtoComVariante.nome,
@@ -454,8 +382,6 @@ const Cardapio = () => {
                     observacao: produtoComVariante.observacao
                 });
             }
-
-            console.log('Item adicionado ao carrinho:', produtoComVariante.nome);
         } catch (error) {
             console.error('Erro ao adicionar variante ao carrinho:', error);
         }
@@ -463,83 +389,44 @@ const Cardapio = () => {
 
     const renderSection = useCallback((category) => {
         const produtos = getProductsByCategory(category.id);
-
-        if (!produtos || produtos.length === 0) {
-            return null;
-        }
+        if (!produtos || produtos.length === 0) return null;
 
         return (
             <Box
                 key={category.id}
                 ref={sectionRefs.current[category.id]}
-                sx={{
-                    mb: { xs: 6, md: 8 },
-                    scrollMarginTop: '120px', // Ajuste para o menu fixo
-                    '&:first-of-type': {
-                        mt: { xs: 0, md: 0 }
-                    }
-                }}
+                sx={{ mb: { xs: 6, md: 8 }, scrollMarginTop: '120px' }}
             >
-                <Box
-                    sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        mb: 3,
-                    }}
-                >
-                    {/* Marcador visual da seção ativa */}
-                    <Box
-                        sx={{
-                            width: activeSection === category.id ? 8 : 6,
-                            height: activeSection === category.id ? 46 : 42,
-                            background: activeSection === category.id
-                                ? 'linear-gradient(180deg, #AF1D1D 0%, #af1d1d 100%)'
-                                : 'linear-gradient(180deg, rgba(175, 29, 29, 0.7) 0%, rgba(255, 215, 0, 0.7) 100%)',
-                            borderRadius: 2,
-                            mr: 1.5,
-                            transition: 'all 0.3s ease',
-                            boxShadow: activeSection === category.id
-                                ? '0 0 10px rgba(175, 29, 29, 0.5)'
-                                : 'none'
-                        }}
-                    />
-
-                    {/* Título */}
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+                    <Box sx={{
+                        width: activeSection === category.id ? 8 : 6,
+                        height: activeSection === category.id ? 46 : 42,
+                        background: activeSection === category.id
+                            ? 'linear-gradient(180deg, #AF1D1D 0%, #af1d1d 100%)'
+                            : 'linear-gradient(180deg, rgba(175, 29, 29, 0.7) 0%, rgba(255, 215, 0, 0.7) 100%)',
+                        borderRadius: 2, mr: 1.5,
+                        transition: 'all 0.3s ease',
+                        boxShadow: activeSection === category.id ? '0 0 10px rgba(175, 29, 29, 0.5)' : 'none'
+                    }} />
                     <Box>
-                        <Typography
-                            variant="h4"
-                            sx={{
-                                fontFamily: '"Libre Baskerville", serif',
-                                fontSize: { xs: '1.3rem', sm: '1.5rem', md: '1.7rem' },
-                                fontWeight: 700,
-                                color: activeSection === category.id ? '#af1d1d' : '#fff',
-                                lineHeight: 1.1,
-                                letterSpacing: '0.4px',
-                                transition: 'all 0.3s ease',
-                                textShadow: activeSection === category.id
-                                    ? '0 2px 4px rgba(0,0,0,0.3)'
-                                    : 'none'
-                            }}
-                        >
+                        <Typography variant="h4" sx={{
+                            fontFamily: '"Libre Baskerville", serif',
+                            fontSize: { xs: '1rem', sm: '1.5rem', md: '1.3rem' },
+                            fontWeight: 700,
+                            color: activeSection === category.id ? '#af1d1d' : '#fff',
+                            lineHeight: 1,
+                            letterSpacing: '0.4px',
+                            transition: 'all 0.3s ease',
+                            textShadow: activeSection === category.id ? '0 2px 4px rgba(0,0,0,0.3)' : 'none'
+                        }}>
                             {category.nome}
                         </Typography>
-
-                        <Typography
-                            variant="body2"
-                            sx={{
-                                fontFamily: '"Libre Baskerville", serif',
-                                color: activeSection === category.id
-                                    ? 'rgba(255, 215, 0, 0.8)'
-                                    : 'rgba(255,255,255,0.6)',
-                                fontSize: '0.8rem',
-                                fontStyle: 'italic',
-                                mt: 0.25,
-                                transition: 'all 0.3s ease'
-                            }}
-                        >
-                            {category.id === 'espetinhos'
-                                ? 'Escolha seu sabor favorito!'
-                                : 'Conheça nossa seleção especial'}
+                        <Typography variant="body2" sx={{
+                            fontFamily: '"Libre Baskerville", serif',
+                            color: activeSection === category.id ? 'rgba(255, 215, 0, 0.8)' : 'rgba(255,255,255,0.6)',
+                            fontSize: '0.9rem', fontStyle: 'italic', mt: 0.25
+                        }}>
+                            {category.id === 'espetinhos' ? 'Escolha seu sabor favorito!' : 'Conheça nossa seleção especial'}
                         </Typography>
                     </Box>
                 </Box>
@@ -567,21 +454,17 @@ const Cardapio = () => {
                                 variantes: item.variantes
                             }}
                             onAddToCart={() => handleAddToCart(item)}
+                            onOpenDetalhes={handleOpenDetalhes} // <-- Prop adicionada
                         />
                     ))}
                 </Box>
             </Box>
         );
-    }, [getProductsByCategory, activeSection, handleAddToCart]);
+    }, [getProductsByCategory, activeSection, handleAddToCart, handleOpenDetalhes]);
 
     if (isLoading) {
         return (
-            <Container maxWidth="xl" sx={{
-                py: { xs: 3, md: 4 },
-                px: { xs: 2, sm: 3, md: 4 },
-                textAlign: 'center',
-                color: 'white'
-            }}>
+            <Container maxWidth="xl" sx={{ py: 4, textAlign: 'center', color: 'white' }}>
                 <Typography>Carregando cardápio...</Typography>
             </Container>
         );
@@ -589,73 +472,48 @@ const Cardapio = () => {
 
     return (
         <>
-            {/* Menu fixo de navegação */}
             <FixedNavigation
                 categories={categoriesWithIcons}
                 activeSection={activeSection}
                 scrollToSection={scrollToSection}
                 showFixedMenu={showFixedMenu}
             />
-
-            <Container maxWidth="xl" sx={{
-                py: { xs: 3, md: 4 },
-                px: { xs: 2, sm: 3, md: 4 },
-                position: 'relative',
-                mt: showFixedMenu ? '56px' : 0 // Compensar o espaço do menu fixo
-            }}>
-                {/* Cabeçalho */}
-                <Box sx={{
-                    mb: { xs: 4, md: 6 },
-                    textAlign: { xs: 'center', sm: 'left' }
-                }}>
-                    <Typography
-                        variant="h3"
-                        sx={{
-                            fontFamily: '"Libre Baskerville", serif',
-                            fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
-                            fontWeight: 700,
-                            color: '#AF1D1D',
-                            textShadow: '2px 2px 4px rgba(0,0,0,0.2)',
-                            mb: 2
-                        }}
-                    >
+            <Container maxWidth="xl" sx={{ py: { xs: 3, md: 4 }, px: { xs: 2, sm: 3, md: 4 }, mt: showFixedMenu ? '56px' : 0 }}>
+                <Box sx={{ mb: { xs: 4, md: 6 }, textAlign: { xs: 'center', sm: 'left' } }}>
+                    <Typography variant="h3" sx={{
+                        fontFamily: '"Libre Baskerville", serif',
+                        fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+                        fontWeight: 700, color: '#AF1D1D', mb: 2
+                    }}>
                         Cardápio
                     </Typography>
-                    <Typography
-                        variant="subtitle1"
-                        sx={{
-                            color: 'rgba(255,255,255,0.8)',
-                            fontSize: { xs: '0.95rem', md: '1.1rem' },
-                            maxWidth: '600px',
-                            mx: { xs: 'auto', sm: 0 }
-                        }}
-                    >
+                    <Typography variant="subtitle1" sx={{ color: 'rgba(255,255,255,0.8)', fontSize: { xs: '0.95rem', md: '1.1rem' }, maxWidth: '600px' }}>
                         Explore nosso menu completo. Clique nas categorias para navegar rapidamente.
                     </Typography>
                 </Box>
 
-                {/* Carrossel de categorias inicial */}
                 <CategoriesCarousel
                     categories={categoriesWithIcons}
                     scrollToSection={scrollToSection}
                     activeSection={activeSection}
                 />
 
-                {/* Seções do menu */}
                 {categories.map(category => renderSection(category))}
 
-                {/* Modal de Variantes */}
                 <ModalVariants
                     open={modalOpen}
-                    onClose={() => {
-                        setModalOpen(false);
-                        setProdutoSelecionado(null);
-                    }}
+                    onClose={() => { setModalOpen(false); setProdutoSelecionado(null); }}
                     produto={produtoSelecionado}
                     onConfirm={handleConfirmarVariante}
                 />
 
-                {/* Botão flutuante para voltar ao topo */}
+                {/* Modal de Detalhes */}
+                <ModalDetails
+                    open={detalhesOpen}
+                    onClose={handleCloseDetalhes}
+                    produto={produtoDetalhes}
+                />
+
                 <ScrollToTopButton show={showScrollToTop} />
             </Container>
         </>

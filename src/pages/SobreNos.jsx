@@ -11,6 +11,17 @@ import {
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+
+// Configuração do ícone do marcador (Leaflet)
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+    iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
+    iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+    shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
+});
 
 const teamMembers = [
     {
@@ -34,9 +45,12 @@ const teamMembers = [
 ];
 
 const SobreNos = () => {
+    // Coordenadas do JD Jantinha's (aproximadas – ajuste se necessário)
+    const position = [-16.6869, -49.2648];
+
     return (
         <Box sx={{ bgcolor: '#0A0A0A' }}>
-            {/* ===== HERO – animado na entrada ===== */}
+            {/* ===== HERO – mantido igual ===== */}
             <Box
                 component={motion.div}
                 initial={{ opacity: 0 }}
@@ -58,7 +72,7 @@ const SobreNos = () => {
                     },
                 }}
             >
-                {/* FUNDO SVG – somente desktop (estático, sem animação) */}
+                {/* FUNDO SVG – somente desktop */}
                 <Box
                     sx={{
                         position: 'absolute',
@@ -101,7 +115,7 @@ const SobreNos = () => {
                 {/* Coluna vazia esquerda */}
                 <Box sx={{ width: { xs: '0%', md: '10%' }, display: { xs: 'none', md: 'block' }, position: 'relative', zIndex: 2 }} />
 
-                {/* SVG PRINCIPAL – fade in na imagem */}
+                {/* SVG PRINCIPAL */}
                 <Box
                     component={motion.div}
                     initial={{ opacity: 0 }}
@@ -125,69 +139,39 @@ const SobreNos = () => {
                     </Box>
                 </Box>
 
-                {/* TEXTO HERO – fade up em cascata */}
+                {/* TEXTO HERO */}
                 <Box sx={{ width: { xs: '100%', md: '50%' }, textAlign: { xs: 'center', md: 'left' }, pl: { xs: 0, md: 4 }, position: 'relative', zIndex: 2 }}>
-                    <Box
-                        component={motion.div}
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.3 }}
-                    >
+                    <Box component={motion.div} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}>
                         <Typography variant="h3" component="h1" sx={{ fontFamily: '"Libre Baskerville", serif', fontWeight: 700, mb: 2, mt: { xs: 0, md: 0, lg: 2 }, background: 'linear-gradient(130deg, #C32020 0%, #5D0F0F 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', textFillColor: 'transparent', display: 'inline-block' }}>
                             Sobre Nós
                         </Typography>
                     </Box>
-                    <Box
-                        component={motion.div}
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.4 }}
-                    >
+                    <Box component={motion.div} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }}>
                         <Typography variant="h5" sx={{ fontFamily: '"Libre Baskerville", serif', fontWeight: 400, color: '#e5e5e5', mb: 3 }}>
-                            O encontro entre tradição e criatividade
+                            Tradição e comida brasileira raiz em cada prato
                         </Typography>
                     </Box>
-                    <Box
-                        component={motion.div}
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.5 }}
-                    >
+                    <Box component={motion.div} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.5 }}>
                         <Typography variant="body1" paragraph sx={{ fontSize: '1.1rem', color: '#fff' }}>
                             O JD Jantinha’s é o lugar ideal para quem busca sabor, qualidade e aquele clima agradável no fim do dia.
                             Localizado no Residencial Itaipú, em Goiânia, oferecemos jantinhas caprichadas e pratos preparados com ingredientes selecionados,
                             sempre com aquele tempero especial que conquista nossos clientes.
                         </Typography>
                     </Box>
-                    <Box
-                        component={motion.div}
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.6 }}
-                    >
+                    <Box component={motion.div} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.6 }}>
                         <Typography variant="body1" paragraph sx={{ fontSize: '1.1rem', color: '#fff' }}>
                             Com um ambiente acolhedor, mesas externas e Wi-Fi disponível, proporcionamos uma experiência completa — seja para reunir a família,
                             encontrar amigos ou simplesmente aproveitar uma boa refeição. Trabalhamos com preços acessíveis e porções bem servidas, mantendo o compromisso com
                             qualidade e bom atendimento.
                         </Typography>
                     </Box>
-                    <Box
-                        component={motion.div}
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.7 }}
-                    >
+                    <Box component={motion.div} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.7 }}>
                         <Typography variant="body1" paragraph sx={{ fontSize: '1.1rem', color: '#fff' }}>
                             No JD Jantinha’s, cada detalhe é pensado para que você se sinta em casa.
                             Venha conhecer e descobrir por que somos tão bem avaliados por quem já experimentou!
                         </Typography>
                     </Box>
-                    <Box
-                        component={motion.div}
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.8 }}
-                    >
+                    <Box component={motion.div} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.8 }}>
                         <Typography variant="body1" sx={{ fontSize: '1.1rem', color: '#cccccc' }}>
                             Aqui, cada prato conta uma história – e queremos que você faça parte dela.
                         </Typography>
@@ -209,57 +193,20 @@ const SobreNos = () => {
             >
                 <Container maxWidth="lg">
                     <Grid container spacing={6} alignItems="center">
-                        {/* TEXTO */}
                         <Grid size={{ xs: 12, md: 6 }}>
-                            <Typography
-                                variant="h4"
-                                sx={{
-                                    fontFamily: '"Libre Baskerville", serif',
-                                    fontWeight: 600,
-                                    background: 'linear-gradient(130deg, #C32020 0%, #5D0F0F 100%)',
-                                    WebkitBackgroundClip: 'text',
-                                    WebkitTextFillColor: 'transparent',
-                                    mb: 3,
-                                }}
-                            >
+                            <Typography variant="h4" sx={{ fontFamily: '"Libre Baskerville", serif', fontWeight: 600, background: 'linear-gradient(130deg, #C32020 0%, #5D0F0F 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', mb: 3 }}>
                                 Nossa História
                             </Typography>
                             <Typography variant="body1" paragraph sx={{ color: '#e0e0e0', lineHeight: 1.8 }}>
-                                O restaurante nasceu do sonho de dois amigos apaixonados por
-                                gastronomia. O que começou como uma pequena casa de almoço
-                                rapidamente se tornou referência na cidade, graças ao cuidado
-                                com os detalhes e à busca incessante pela excelência.
+                                O restaurante nasceu do sonho de dois amigos apaixonados por gastronomia. O que começou como uma pequena casa de almoço rapidamente se tornou referência na cidade, graças ao cuidado com os detalhes e à busca incessante pela excelência.
                             </Typography>
                             <Typography variant="body1" sx={{ color: '#e0e0e0', lineHeight: 1.8 }}>
-                                Hoje, mantemos a mesma essência: um ambiente acolhedor,
-                                atendimento afetivo e pratos que surpreendem. Nossa cozinha é
-                                uma ponte entre o regional e o contemporâneo.
+                                Hoje, mantemos a mesma essência: um ambiente acolhedor, atendimento afetivo e pratos que surpreendem. Nossa cozinha é uma ponte entre o regional e o contemporâneo.
                             </Typography>
                         </Grid>
-                        {/* IMAGEM */}
                         <Grid size={{ xs: 12, md: 6 }}>
-                            <Box
-                                component={motion.div}
-                                initial={{ opacity: 0, x: 50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true, amount: 0.3 }}
-                                transition={{ duration: 0.7, delay: 0.2 }}
-                                sx={{
-                                    display: 'flex',
-                                    justifyContent: { xs: 'center', md: 'flex-end' },
-                                }}
-                            >
-                                <Box
-                                    component="img"
-                                    src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&auto=format&fit=crop"
-                                    alt="Equipe na cozinha"
-                                    sx={{
-                                        width: { xs: '100%', md: '90%' },
-                                        maxWidth: 520,
-                                        borderRadius: '0 60px',
-                                        boxShadow: '0 12px 30px rgba(0,0,0,0.7)',
-                                    }}
-                                />
+                            <Box component={motion.div} initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.7, delay: 0.2 }} sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-end' } }}>
+                                <Box component="img" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&auto=format&fit=crop" alt="Equipe na cozinha" sx={{ width: { xs: '100%', md: '90%' }, maxWidth: 520, borderRadius: '0 60px', boxShadow: '0 12px 30px rgba(0,0,0,0.7)' }} />
                             </Box>
                         </Grid>
                     </Grid>
@@ -268,322 +215,119 @@ const SobreNos = () => {
 
             {/* ===== MISSÃO, VISÃO, VALORES ===== */}
             <Box sx={{ bgcolor: '#0A0A0A', py: 8 }}>
-                {/* Título da seção – animado */}
-                <Box
-                    component={motion.div}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.6 }}
-                    sx={{
-                        textAlign: 'center',
-                        mb: 6,
-                        px: { xs: 2, md: 0 }
-                    }}
-                >
-                    <Typography
-                        variant="h4"
-                        sx={{
-                            fontFamily: '"Libre Baskerville", serif',
-                            fontWeight: 600,
-                            background: 'linear-gradient(130deg, #C32020 0%, #5D0F0F 100%)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            backgroundClip: 'text',
-                            textFillColor: 'transparent',
-                            display: 'inline-block',
-                        }}
-                    >
+                <Box component={motion.div} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6 }} sx={{ textAlign: 'center', mb: 6, px: { xs: 2, md: 0 } }}>
+                    <Typography variant="h4" sx={{ fontFamily: '"Libre Baskerville", serif', fontWeight: 600, background: 'linear-gradient(130deg, #C32020 0%, #5D0F0F 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', display: 'inline-block' }}>
                         Missão, Visão e Valores
                     </Typography>
                 </Box>
-
-                {/* Flex container – 3 divs lado a lado, SEMPRE horizontais */}
-                <Box
-                    sx={{
-                        display: 'flex',
-                        flexDirection: 'row',      // forçado horizontal
-                        flexWrap: 'wrap',          // quebra apenas se não couber
-                        justifyContent: 'center',
-                        alignItems: 'stretch',
-                        gap: { xs: 2, md: 4 },    // espaçamento entre cards
-                        maxWidth: '1200px',        // ou 'lg'
-                        mx: 'auto',
-                        px: { xs: 2, md: 0 },
-                    }}
-                >
-                    {/* MISSÃO – vermelho 1 */}
-                    <Box
-                        component={motion.div}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.3 }}
-                        transition={{ duration: 0.5, delay: 0.1 }}
-                        whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                        sx={{
-                            flex: { xs: '1 1 280px', md: '1 1 0' }, // mínimo 280px, depois igual
-                            minWidth: '280px',      // evita que fique muito estreito
-                            textAlign: 'center',
-                            p: 3,
-                            borderRadius: '40px',
-                            bgcolor: '#C32020',     // vermelho principal
-                            boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
-                            transition: 'box-shadow 0.3s ease',
-                            '&:hover': { boxShadow: '0 8px 24px rgba(195,32,32,0.5)' },
-                        }}
-                    >
-                        <Box
-                            component="svg"
-                            sx={{ fontSize: 60, width: 60, height: 60, mb: 2, color: 'white' }}
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                        >
-                            <path d="M12 2L15 9H22L16 14L19 21L12 16.5L5 21L8 14L2 9H9L12 2Z" />
-                        </Box>
-                        <Typography variant="h6" sx={{ fontWeight: 600, color: '#fff', mb: 1 }}>
-                            Missão
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.9)' }}>
-                            Oferecer experiências gastronômicas memoráveis, combinando sabor,
-                            qualidade e acolhimento em cada jantinha servida.
-                        </Typography>
+                <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'stretch', gap: { xs: 2, md: 4 }, maxWidth: '1200px', mx: 'auto', px: { xs: 2, md: 0 } }}>
+                    {/* MISSÃO */}
+                    <Box component={motion.div} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.5, delay: 0.1 }} whileHover={{ y: -8 }} sx={{ flex: { xs: '1 1 280px', md: '1 1 0' }, minWidth: '280px', textAlign: 'center', p: 3, borderRadius: '40px', bgcolor: '#C32020', boxShadow: '0 4px 12px rgba(0,0,0,0.5)', transition: 'box-shadow 0.3s ease', '&:hover': { boxShadow: '0 8px 24px rgba(195,32,32,0.5)' } }}>
+                        <Box component="svg" sx={{ fontSize: 60, width: 60, height: 60, mb: 2, color: 'white' }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15 9H22L16 14L19 21L12 16.5L5 21L8 14L2 9H9L12 2Z" /></Box>
+                        <Typography variant="h6" sx={{ fontWeight: 600, color: '#fff', mb: 1 }}>Missão</Typography>
+                        <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.9)' }}>Oferecer experiências gastronômicas memoráveis, combinando sabor, qualidade e acolhimento em cada jantinha servida.</Typography>
                     </Box>
-
-                    {/* VISÃO – vermelho 2 */}
-                    <Box
-                        component={motion.div}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.3 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                        sx={{
-                            flex: { xs: '1 1 280px', md: '1 1 0' },
-                            minWidth: '280px',
-                            textAlign: 'center',
-                            p: 3,
-                            borderRadius: '40px',
-                            bgcolor: '#8B1A1A',     // vermelho escuro
-                            boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
-                            transition: 'box-shadow 0.3s ease',
-                            '&:hover': { boxShadow: '0 8px 24px rgba(139,26,26,0.5)' },
-                        }}
-                    >
-                        <Box
-                            component="svg"
-                            sx={{ fontSize: 60, width: 60, height: 60, mb: 2, color: 'white' }}
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                        >
-                            <path d="M12 4C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19S21.27 15.89 23 11.5C21.27 7.11 17 4 12 4M12 16C9.24 16 7 13.76 7 11S9.24 6 12 6 17 8.24 17 11 14.76 16 12 16M12 8C10.34 8 9 9.34 9 11S10.34 14 12 14 15 12.66 15 11 13.66 8 12 8Z" />
-                        </Box>
-                        <Typography variant="h6" sx={{ fontWeight: 600, color: '#fff', mb: 1 }}>
-                            Visão
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.9)' }}>
-                            Ser referência em comida caseira e jantinhas na região, reconhecida
-                            pela excelência, inovação e pelo carinho no atendimento.
-                        </Typography>
+                    {/* VISÃO */}
+                    <Box component={motion.div} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.5, delay: 0.2 }} whileHover={{ y: -8 }} sx={{ flex: { xs: '1 1 280px', md: '1 1 0' }, minWidth: '280px', textAlign: 'center', p: 3, borderRadius: '40px', bgcolor: '#8B1A1A', boxShadow: '0 4px 12px rgba(0,0,0,0.5)', transition: 'box-shadow 0.3s ease', '&:hover': { boxShadow: '0 8px 24px rgba(139,26,26,0.5)' } }}>
+                        <Box component="svg" sx={{ fontSize: 60, width: 60, height: 60, mb: 2, color: 'white' }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19S21.27 15.89 23 11.5C21.27 7.11 17 4 12 4M12 16C9.24 16 7 13.76 7 11S9.24 6 12 6 17 8.24 17 11 14.76 16 12 16M12 8C10.34 8 9 9.34 9 11S10.34 14 12 14 15 12.66 15 11 13.66 8 12 8Z" /></Box>
+                        <Typography variant="h6" sx={{ fontWeight: 600, color: '#fff', mb: 1 }}>Visão</Typography>
+                        <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.9)' }}>Ser referência em comida caseira e jantinhas na região, reconhecida pela excelência, inovação e pelo carinho no atendimento.</Typography>
                     </Box>
-
-                    {/* VALORES – vermelho 3 */}
-                    <Box
-                        component={motion.div}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.3 }}
-                        transition={{ duration: 0.5, delay: 0.3 }}
-                        whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                        sx={{
-                            flex: { xs: '1 1 280px', md: '1 1 0' },
-                            minWidth: '280px',
-                            textAlign: 'center',
-                            p: 3,
-                            borderRadius: '40px',
-                            bgcolor: '#A52A2A',     // vermelho acastanhado
-                            boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
-                            transition: 'box-shadow 0.3s ease',
-                            '&:hover': { boxShadow: '0 8px 24px rgba(165,42,42,0.5)' },
-                        }}
-                    >
-                        <Box
-                            component="svg"
-                            sx={{ fontSize: 60, width: 60, height: 60, mb: 2, color: 'white' }}
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                        >
-                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7m0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5" />
-                        </Box>
-                        <Typography variant="h6" sx={{ fontWeight: 600, color: '#fff', mb: 1 }}>
-                            Valores
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.9)' }}>
-                            Tradição, respeito aos ingredientes, hospitalidade genuína e
-                            compromisso inabalável com a satisfação de quem nos visita.
-                        </Typography>
+                    {/* VALORES */}
+                    <Box component={motion.div} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.5, delay: 0.3 }} whileHover={{ y: -8 }} sx={{ flex: { xs: '1 1 280px', md: '1 1 0' }, minWidth: '280px', textAlign: 'center', p: 3, borderRadius: '40px', bgcolor: '#A52A2A', boxShadow: '0 4px 12px rgba(0,0,0,0.5)', transition: 'box-shadow 0.3s ease', '&:hover': { boxShadow: '0 8px 24px rgba(165,42,42,0.5)' } }}>
+                        <Box component="svg" sx={{ fontSize: 60, width: 60, height: 60, mb: 2, color: 'white' }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7m0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5" /></Box>
+                        <Typography variant="h6" sx={{ fontWeight: 600, color: '#fff', mb: 1 }}>Valores</Typography>
+                        <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.9)' }}>Tradição, respeito aos ingredientes, hospitalidade genuína e compromisso inabalável com a satisfação de quem nos visita.</Typography>
                     </Box>
                 </Box>
             </Box>
 
-            {/* ===== NOSSA EQUIPE ===== */}
-            <Box sx={{ bgcolor: '#0F0F0F', py: 8 }}>
-                <Container maxWidth="lg">
+            <Grid container spacing={6} alignItems="stretch" sx={{ px: { xs: 2, md: 12 }, pb: 8 }}>
+                {/* ESQUERDA — CARD COMPLETO */}
+                <Grid size={{ xs: 12, md: 3 }}>
                     <Box
-                        component={motion.div}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.3 }}
-                        transition={{ duration: 0.6 }}
+                        sx={{
+                            height: '100%',
+                            bgcolor: '#111',
+                            borderRadius: 4,
+                            overflow: 'hidden',
+                            boxShadow: '0 8px 20px rgba(0,0,0,0.6)',
+                            display: 'flex',
+                            flexDirection: 'column',
+                        }}
                     >
-                        <Typography
-                            variant="h4"
-                            align="center"
+                        {/* IMAGEM */}
+                        <Box
+                            component="img"
+                            src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=1200&auto=format&fit=crop"
+                            alt="Fachada do restaurante"
                             sx={{
-                                fontFamily: '"Libre Baskerville", serif',
-                                fontWeight: 600,
-                                background: 'linear-gradient(130deg, #C32020 0%, #5D0F0F 100%)',
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent',
-                                backgroundClip: 'text',
-                                textFillColor: 'transparent',
-                                mb: 2,
+                                width: '100%',
+                                height: 250,
+                                objectFit: 'cover',
                             }}
-                        >
-                            Nossa Equipe
-                        </Typography>
-                        <Typography
-                            variant="subtitle1"
-                            align="center"
-                            sx={{ mb: 6, color: '#cccccc' }}
-                        >
-                            Profissionais apaixonados que fazem a diferença
-                        </Typography>
-                    </Box>
-                    <Grid container spacing={4}>
-                        {teamMembers.map((member, index) => (
-                            <Grid item xs={12} md={4} key={index}>
-                                <Box
-                                    component={motion.div}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, amount: 0.3 }}
-                                    transition={{ duration: 0.5, delay: index * 0.15 }}
-                                    whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.3 } }}
-                                >
-                                    <Card
-                                        sx={{
-                                            height: '100%',
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            alignItems: 'center',
-                                            textAlign: 'center',
-                                            p: 3,
-                                            bgcolor: '#1E1E1E',
-                                            color: '#fff',
-                                            boxShadow: '0 6px 16px rgba(0,0,0,0.7)',
-                                            borderRadius: 3,
-                                            transition: 'box-shadow 0.3s ease, border 0.3s ease',
-                                            border: '1px solid #333',
-                                            '&:hover': {
-                                                boxShadow: '0 12px 28px rgba(195,32,32,0.4)',
-                                                borderColor: '#C32020',
-                                            },
-                                        }}
-                                    >
-                                        <Avatar
-                                            src={member.image}
-                                            alt={member.name}
-                                            sx={{ width: 120, height: 120, mb: 2, border: '3px solid #C32020' }}
-                                        />
-                                        <CardContent sx={{ p: 0 }}>
-                                            <Typography variant="h6" sx={{ fontWeight: 600, color: '#fff' }}>
-                                                {member.name}
-                                            </Typography>
-                                            <Typography
-                                                variant="subtitle2"
-                                                sx={{ color: '#C32020', mb: 1, fontWeight: 500 }}
-                                            >
-                                                {member.role}
-                                            </Typography>
-                                            <Typography variant="body2" sx={{ color: '#b0b0b0' }}>
-                                                {member.bio}
-                                            </Typography>
-                                        </CardContent>
-                                    </Card>
-                                </Box>
-                            </Grid>
-                        ))}
-                    </Grid>
-                </Container>
-            </Box>
-
-            {/* ===== VISITE-NOS ===== */}
-            <Box
-                component={motion.div}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.7 }}
-                sx={{ bgcolor: '#0A0A0A', py: 8 }}
-            >
-                <Container maxWidth="lg">
-                    <Grid container spacing={4} alignItems="center">
-                        <Grid item xs={12} md={6}>
-                            <Typography
-                                variant="h4"
-                                sx={{
-                                    fontFamily: '"Libre Baskerville", serif',
-                                    fontWeight: 600,
-                                    background: 'linear-gradient(130deg, #C32020 0%, #5D0F0F 100%)',
-                                    WebkitBackgroundClip: 'text',
-                                    WebkitTextFillColor: 'transparent',
-                                    backgroundClip: 'text',
-                                    textFillColor: 'transparent',
-                                    mb: 3,
-                                }}
-                            >
-                                Venha nos Conhecer
+                        />
+                        {/* INFORMAÇÕES */}
+                        <Box sx={{ p: 3 }}>
+                            <Typography variant="h6" sx={{ color: '#fff', mb: 2, borderBottom: '1px solid #C32020', pb: 1 }}>
+                                Informações
                             </Typography>
-                            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                                <LocationOnIcon sx={{ color: '#C32020', mr: 1 }} />
-                                <Typography variant="body1" sx={{ color: '#e0e0e0' }}>
-                                    Rua das Flores, 123 – Centro, São Paulo/SP
-                                </Typography>
-                            </Box>
-                            <Typography variant="body1" paragraph sx={{ color: '#e0e0e0' }}>
+                            <Typography variant="body2" sx={{ color: '#ccc', mb: 1, display: 'flex', alignItems: 'center', gap: 1 }}>
+                                <LocationOnIcon sx={{ color: '#C32020', fontSize: 18 }} /> Residencial Itaipú, Goiânia - GO
+                            </Typography>
+                            <Typography variant="body2" sx={{ color: '#ccc', mb: 1 }}>
                                 Funcionamento: Terça a Domingo, das 19h às 23h.
                             </Typography>
-                            <Typography variant="body1" sx={{ color: '#e0e0e0' }}>
-                                Faça sua reserva pelo telefone (11) 99999-9999 ou pelo nosso site.
+                            <Typography variant="body2" sx={{ color: '#ccc' }}>
+                                Faça sua reserva pelo telefone (62) 99999-9999.
                             </Typography>
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <Box
-                                component={motion.div}
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true, amount: 0.3 }}
-                                transition={{ duration: 0.6, delay: 0.2 }}
-                            >
-                                <Box
-                                    component="img"
-                                    src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=600&auto=format&fit=crop"
-                                    alt="Fachada do restaurante"
-                                    sx={{
-                                        width: '100%',
-                                        borderRadius: 2,
-                                        boxShadow: '0 8px 20px rgba(0,0,0,0.6)',
-                                        border: '2px solid #C32020',
-                                    }}
-                                />
-                            </Box>
-                        </Grid>
-                    </Grid>
-                </Container>
-            </Box>
+                        </Box>
+                    </Box>
+                </Grid>
+
+                {/* DIREITA — MAPA */}
+                <Grid size={{ xs: 12, md: 6 }}>
+                    <Box
+                        sx={{
+                            height: '100%',
+                            minHeight: 450,
+                            borderRadius: '30px',
+                            overflow: 'hidden',
+                            boxShadow: '0 8px 20px rgba(0,0,0,0.6)',
+                        }}
+                    >
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1909.8611924117783!2d-49.365549767528556!3d-16.7904819820936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935ef90ae6862ced%3A0xbd8cddc0ac01c62d!2sJD%20JANTINHA&#39;S!5e0!3m2!1spt-BR!2sbr"
+                            width="100%"
+                            height="100%"
+                            style={{ border: 0 }}
+                            loading="lazy"
+                            title="JD Jantinha's"
+                        />
+                    </Box>
+                </Grid>
+
+                <Grid size={{ xs: 12, md: 3 }}>
+                    <Box
+                        sx={{
+                            height: '100%',
+                            minHeight: 450,
+                            borderRadius: '30px',
+                            overflow: 'hidden',
+                            boxShadow: '0 8px 20px rgba(0,0,0,0.6)',
+                        }}
+                    >
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1909.8611924117783!2d-49.365549767528556!3d-16.7904819820936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935ef90ae6862ced%3A0xbd8cddc0ac01c62d!2sJD%20JANTINHA&#39;S!5e0!3m2!1spt-BR!2sbr"
+                            width="100%"
+                            height="100%"
+                            style={{ border: 0 }}
+                            loading="lazy"
+                            title="JD Jantinha's"
+                        />
+                    </Box>
+                </Grid>
+            </Grid>
         </Box>
     );
 };

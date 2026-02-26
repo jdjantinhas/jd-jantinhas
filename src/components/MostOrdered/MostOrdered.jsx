@@ -13,15 +13,12 @@ const MostOrdered = () => {
 
     const handleAddToCart = (item) => {
         try {
-            // Apenas adicionar ao carrinho - NÃO incrementar contador!
             addToCart({
                 id: item.id,
                 nome: item.nome,
                 preco: item.preco,
                 imagem: item.imagem
             }, 1);
-
-            // Feedback opcional
             console.log(`${item.nome} adicionado ao carrinho`);
         } catch (error) {
             console.error('Erro ao adicionar ao carrinho:', error);
@@ -119,26 +116,28 @@ const MostOrdered = () => {
                                 marginLeft: '10px'
                             }}
                         >
+                            {/* Card com altura fixa */}
                             <Card sx={{
                                 background: 'linear-gradient(145deg, #2C0606, #110A09)',
-                                borderRadius: '40px',
+                                borderRadius: '20px',
                                 color: 'white',
                                 display: 'flex',
                                 flexDirection: 'column',
                                 transition: 'all 0.3s ease',
-                                position: 'relative' // Adicionado para referência
+                                position: 'relative',
+                                height: isMobile ? 360 : 380, // Altura fixa
+                                width: '100%'
                             }}>
-                                {/* Container do SVG - AGORA FORA da imagem, no canto superior direito do Card */}
+                                {/* Container do SVG - canto superior direito */}
                                 <Box sx={{
                                     position: 'absolute',
                                     top: 0,
                                     right: 0,
                                     width: 170,
                                     height: 98,
-                                    zIndex: 9, // Garante que fique sobre a imagem
-                                    pointerEvents: 'none' // Permite interação com elementos abaixo
+                                    zIndex: 9,
+                                    pointerEvents: 'none'
                                 }}>
-                                    {/* SVG como fundo */}
                                     <svg
                                         width="180"
                                         height="90"
@@ -155,8 +154,6 @@ const MostOrdered = () => {
                                     >
                                         <path d="M5.5567 8.5L5.5567 5.5567C5.5567 2.48782 3.06888 0 0 0H18.642H32.2508H39C44.5229 0 49 4.47715 49 10V14V28C49 21.0005 43.3258 15.3263 36.3263 15.3263H32.2508H18.642H12.383C8.61293 15.3263 5.5567 12.27 5.5567 8.5Z" fill="#2C0606" />
                                     </svg>
-
-                                    {/* Preço sobreposto no SVG */}
                                     <Typography
                                         sx={{
                                             position: 'absolute',
@@ -177,10 +174,10 @@ const MostOrdered = () => {
                                     </Typography>
                                 </Box>
 
-                                {/* Imagem */}
+                                {/* Imagem com altura fixa */}
                                 <Box sx={{
                                     width: '100%',
-                                    height: 170,
+                                    height: 200,
                                     position: 'relative'
                                 }}>
                                     <CardMedia
@@ -195,41 +192,61 @@ const MostOrdered = () => {
                                     />
                                 </Box>
 
-                                {/* Conteúdo */}
+                                {/* Conteúdo - ocupa o restante do espaço */}
                                 <CardContent sx={{
                                     p: 1.5,
                                     flex: 1,
                                     display: 'flex',
-                                    flexDirection: 'column'
+                                    flexDirection: 'column',
+                                    height: `calc(100% - 170px)`, // altura restante
                                 }}>
-                                    <Typography
-                                        variant="h6"
-                                        sx={{
-                                            fontFamily: '"Libre Baskerville", serif',
-                                            fontWeight: 'bold',
-                                            mb: 0.5,
-                                            color: '#FFFFFF',
-                                            fontSize: '1.1rem',
-                                            lineHeight: 1.2,
-                                        }}
-                                    >
-                                        {item.nome}
-                                    </Typography>
+                                    {/* Container para título e descrição com altura flexível e mínima */}
+                                    <Box sx={{
+                                        flex: 1,
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        minHeight: 80, // evita que o botão suba demais com texto curto
+                                    }}>
+                                        {/* Título com limite de 2 linhas */}
+                                        <Typography
+                                            variant="h6"
+                                            sx={{
+                                                fontFamily: '"Libre Baskerville", serif',
+                                                fontWeight: 'bold',
+                                                mb: 0.5,
+                                                color: '#FFFFFF',
+                                                fontSize: '1.1rem',
+                                                lineHeight: 1.2,
+                                                overflow: 'hidden',
+                                                textOverflow: 'ellipsis',
+                                                display: '-webkit-box',
+                                                WebkitLineClamp: 2,
+                                                WebkitBoxOrient: 'vertical',
+                                            }}
+                                        >
+                                            {item.nome}
+                                        </Typography>
 
-                                    <Typography
-                                        variant="body2"
-                                        sx={{
-                                            fontFamily: '"Libre Baskerville", serif',
-                                            color: 'rgba(255, 255, 255, 0.8)',
-                                            mb: 2,
-                                            fontSize: '0.9rem',
-                                            lineHeight: 1.2,
-                                            minHeight: '2.4em'
-                                        }}
-                                    >
-                                        {item.descricao}
-                                    </Typography>
+                                        {/* Descrição com limite de 1 linha */}
+                                        <Typography
+                                            variant="body2"
+                                            sx={{
+                                                fontFamily: '"Libre Baskerville", serif',
+                                                color: 'rgba(255, 255, 255, 0.8)',
+                                                fontSize: '0.9rem',
+                                                lineHeight: 1.2,
+                                                overflow: 'hidden',
+                                                textOverflow: 'ellipsis',
+                                                display: '-webkit-box',
+                                                WebkitLineClamp: 1,
+                                                WebkitBoxOrient: 'vertical',
+                                            }}
+                                        >
+                                            {item.descricao}
+                                        </Typography>
+                                    </Box>
 
+                                    {/* Botão sempre na parte inferior */}
                                     <Button
                                         variant="contained"
                                         fullWidth
@@ -244,7 +261,7 @@ const MostOrdered = () => {
                                             fontSize: '0.9rem',
                                             textTransform: 'none',
                                             fontWeight: 'bold',
-                                            mt: 'auto', mb: 0,
+                                            mt: 'auto', // empurra para o final
                                             '&:hover': {
                                                 backgroundColor: '#8a1818',
                                                 transform: 'translateY(-2px)',

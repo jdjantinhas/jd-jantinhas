@@ -1,10 +1,8 @@
-import React from 'react';
 import { Card, CardMedia, CardContent, Typography, Button, Box, useTheme, useMediaQuery } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import RestaurantIcon from '@mui/icons-material/Restaurant';
 
-const CardItem = ({ item, onAddToCart }) => {
+const CardItem = ({ item, onAddToCart, onOpenDetalhes }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
@@ -12,12 +10,25 @@ const CardItem = ({ item, onAddToCart }) => {
     // Verificar se tem variantes
     const hasVariants = item.variantes && item.variantes.length > 0;
 
+    // Handler para clique no card (abre detalhes)
+    const handleCardClick = () => {
+        if (onOpenDetalhes) {
+            onOpenDetalhes(item);
+        }
+    };
+
+    // Handler para clique no botão (adicionar ao carrinho)
+    const handleAddClick = (e) => {
+        e.stopPropagation(); // Impede que o clique no botão também abra o modal
+        onAddToCart(item);
+    };
+
     // SVG de fundo para os cards
     const CardBackgroundSVG = () => (
         <Box
             sx={{
                 position: 'absolute',
-                top: '20%', // Começa depois da imagem circular
+                top: '20%',
                 left: 0,
                 width: '100%',
                 height: '100%',
@@ -70,10 +81,10 @@ const CardItem = ({ item, onAddToCart }) => {
                     sm: '140px',
                     md: '180px'
                 },
-                borderRadius: '38%',
+                borderRadius: '32%',
                 overflow: 'hidden',
                 margin: '0 auto',
-                backgroundColor: '#000'
+                backgroundColor: '#263238'
             }}
         >
             <CardMedia
@@ -92,21 +103,28 @@ const CardItem = ({ item, onAddToCart }) => {
     // Layout para mobile
     if (isMobile) {
         return (
-            <Card sx={{
-                width: '100%',
-                minHeight: '400px',
-                background: 'transparent',
-                border: '2px solid rgba(175, 29, 29, 0.3)',
-                borderRadius: '40px',
-                overflow: 'hidden',
-                color: 'white',
-                transition: 'all 0.3s ease',
-                position: 'relative',
-                display: 'flex',
-                flexDirection: 'column',
-
-            }}>
-                {/* Fundo SVG (70%) */}
+            <Card
+                onClick={handleCardClick}
+                sx={{
+                    width: '100%',
+                    minHeight: '400px',
+                    background: 'transparent',
+                    border: '1px solid rgba(175, 29, 29, 0.3)',
+                    borderRadius: '40px',
+                    overflow: 'hidden',
+                    color: 'white',
+                    transition: 'all 0.3s ease',
+                    position: 'relative',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    cursor: 'pointer',
+                    '&:hover': {
+                        transform: 'translateY(-4px)',
+                        boxShadow: '0 8px 20px rgba(175,29,29,0.3)'
+                    }
+                }}
+            >
+                {/* Fundo SVG */}
                 <CardBackgroundSVG />
 
                 {/* Conteúdo sobre o SVG */}
@@ -119,7 +137,7 @@ const CardItem = ({ item, onAddToCart }) => {
                     height: '100%',
                     p: 2
                 }}>
-                    {/* TÍTULO ACIMA */}
+                    {/* Título */}
                     <Box sx={{ mb: 2 }}>
                         <Typography
                             variant="h6"
@@ -136,7 +154,7 @@ const CardItem = ({ item, onAddToCart }) => {
                         </Typography>
                     </Box>
 
-                    {/* IMAGEM NA POSIÇÃO ATUAL */}
+                    {/* Imagem */}
                     <Box sx={{
                         display: 'flex',
                         justifyContent: 'center',
@@ -148,7 +166,8 @@ const CardItem = ({ item, onAddToCart }) => {
                     {/* Badge para produtos com variantes */}
                     {hasVariants && (
                         <Box sx={{
-                            backgroundColor: '#AF1D1D',
+                            backgroundColor: '#110A09',
+                            border: '1px solid #fff',
                             color: '#FFFFFF',
                             padding: '2px 10px',
                             borderRadius: '12px',
@@ -158,14 +177,14 @@ const CardItem = ({ item, onAddToCart }) => {
                             textAlign: 'center',
                             width: 'fit-content',
                             mx: 'auto',
-                            mb: 0,
+                            mb: 2,
                             boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
                         }}>
                             ESCOLHA O SABOR
                         </Box>
                     )}
 
-                    {/* DESCRIÇÃO ABAIXO DA IMAGEM */}
+                    {/* Descrição */}
                     <Box sx={{ flex: 1, mb: 0 }}>
                         <Typography
                             variant="body2"
@@ -183,7 +202,7 @@ const CardItem = ({ item, onAddToCart }) => {
                                 fontStyle: hasVariants ? 'italic' : 'normal'
                             }}
                         >
-                            {hasVariants ? 'Clique para escolher o sabor!' : item.descricao}
+                            {hasVariants ? '' : item.descricao}
                         </Typography>
                     </Box>
 
@@ -221,12 +240,12 @@ const CardItem = ({ item, onAddToCart }) => {
                         variant="contained"
                         fullWidth
                         startIcon={<AddShoppingCartIcon />}
-                        onClick={() => onAddToCart(item)}
+                        onClick={handleAddClick}
                         sx={{
                             fontFamily: '"Libre Baskerville", serif',
                             backgroundColor: '#AF1D1D',
                             color: 'white',
-                            borderRadius: '15px',
+                            borderRadius: '30px',
                             padding: '10px',
                             fontSize: '0.9rem',
                             textTransform: 'none',
@@ -249,24 +268,28 @@ const CardItem = ({ item, onAddToCart }) => {
     // Layout para tablet
     if (isTablet) {
         return (
-            <Card sx={{
-                width: '100%',
-                minHeight: '400px',
-                background: 'transparent',
-                border: '2px solid rgba(175, 29, 29, 0.3)',
-                borderRadius: '40px',
-                overflow: 'hidden',
-                color: 'white',
-                transition: 'all 0.3s ease',
-                position: 'relative',
-                display: 'flex',
-                flexDirection: 'column',
-                '&:hover': {
-                    transform: 'translateY(-5px)',
-                    boxShadow: '0 10px 25px rgba(175, 29, 29, 0.3)',
-                }
-            }}>
-                {/* Fundo SVG (70%) */}
+            <Card
+                onClick={handleCardClick}
+                sx={{
+                    width: '100%',
+                    minHeight: '400px',
+                    background: 'transparent',
+                    border: '2px solid rgba(175, 29, 29, 0.3)',
+                    borderRadius: '40px',
+                    overflow: 'hidden',
+                    color: 'white',
+                    transition: 'all 0.3s ease',
+                    position: 'relative',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    cursor: 'pointer',
+                    '&:hover': {
+                        transform: 'translateY(-5px)',
+                        boxShadow: '0 10px 25px rgba(175, 29, 29, 0.3)',
+                    }
+                }}
+            >
+                {/* Fundo SVG */}
                 <CardBackgroundSVG />
 
                 {/* Conteúdo sobre o SVG */}
@@ -279,7 +302,7 @@ const CardItem = ({ item, onAddToCart }) => {
                     height: '100%',
                     p: 3
                 }}>
-                    {/* TÍTULO ACIMA */}
+                    {/* Título */}
                     <Box sx={{ mb: 2 }}>
                         <Typography
                             variant="h6"
@@ -296,7 +319,7 @@ const CardItem = ({ item, onAddToCart }) => {
                         </Typography>
                     </Box>
 
-                    {/* IMAGEM NA POSIÇÃO ATUAL */}
+                    {/* Imagem */}
                     <Box sx={{
                         display: 'flex',
                         justifyContent: 'center',
@@ -307,7 +330,8 @@ const CardItem = ({ item, onAddToCart }) => {
                     {/* Badge para produtos com variantes */}
                     {hasVariants && (
                         <Box sx={{
-                            backgroundColor: '#AF1D1D',
+                            backgroundColor: '#110A09',
+                            border: '1px solid #fff',
                             color: '#FFFFFF',
                             padding: '4px 12px',
                             borderRadius: '15px',
@@ -324,7 +348,7 @@ const CardItem = ({ item, onAddToCart }) => {
                         </Box>
                     )}
 
-                    {/* DESCRIÇÃO ABAIXO DA IMAGEM */}
+                    {/* Descrição */}
                     <Box sx={{ flex: 1, mb: 2 }}>
                         <Typography
                             variant="body2"
@@ -379,7 +403,7 @@ const CardItem = ({ item, onAddToCart }) => {
                     <Button
                         variant="contained"
                         startIcon={<AddIcon />}
-                        onClick={() => onAddToCart(item)}
+                        onClick={handleAddClick}
                         sx={{
                             fontFamily: '"Libre Baskerville", serif',
                             background: 'linear-gradient(135deg, #AF1D1D 0%, #8a1818 100%)',
@@ -406,21 +430,29 @@ const CardItem = ({ item, onAddToCart }) => {
 
     // Layout para desktop
     return (
-        <Card sx={{
-            width: '100%',
-            maxWidth: 350,
-            minHeight: '500px',
-            background: 'transparent',
-            border: '1px solid #121212',
-            borderRadius: '40px',
-            overflow: 'hidden',
-            color: 'white',
-            transition: 'all 0.3s ease',
-            position: 'relative',
-            display: 'flex',
-            flexDirection: 'column',
-        }}>
-            {/* Fundo SVG (70%) */}
+        <Card
+            onClick={handleCardClick}
+            sx={{
+                width: '100%',
+                maxWidth: 350,
+                minHeight: '500px',
+                background: 'transparent',
+                border: '1px solid #250902',
+                borderRadius: '40px',
+                overflow: 'hidden',
+                color: 'white',
+                transition: 'all 0.3s ease',
+                position: 'relative',
+                display: 'flex',
+                flexDirection: 'column',
+                cursor: 'pointer',
+                '&:hover': {
+                    transform: 'translateY(-4px)',
+                    boxShadow: '0 8px 20px rgba(175,29,29,0.3)'
+                }
+            }}
+        >
+            {/* Fundo SVG */}
             <CardBackgroundSVG />
 
             {/* Conteúdo sobre o SVG */}
@@ -431,26 +463,9 @@ const CardItem = ({ item, onAddToCart }) => {
                 display: 'flex',
                 flexDirection: 'column',
                 height: '100%',
-                p: 4
+                p: 2
             }}>
-                {/* TÍTULO ACIMA */}
-                <Box sx={{ mb: 3 }}>
-                    <Typography
-                        variant="h6"
-                        sx={{
-                            fontFamily: '"Libre Baskerville", serif',
-                            fontWeight: 'bold',
-                            textAlign: 'center',
-                            color: '#FFFFFF',
-                            fontSize: '1.4rem',
-                            lineHeight: 1.3
-                        }}
-                    >
-                        {item.nome}
-                    </Typography>
-                </Box>
-
-                {/* IMAGEM NA POSIÇÃO ATUAL */}
+                {/* Imagem */}
                 <Box sx={{
                     display: 'flex',
                     justifyContent: 'center',
@@ -459,28 +474,24 @@ const CardItem = ({ item, onAddToCart }) => {
                     <CircularImage />
                 </Box>
 
-                {/* Badge para produtos com variantes */}
-                {hasVariants && (
-                    <Box sx={{
-                        backgroundColor: '#AF1D1D',
-                        color: '#FFFFFF',
-                        padding: '6px 16px',
-                        borderRadius: '20px',
-                        fontFamily: '"Libre Baskerville", serif',
-                        fontWeight: 'bold',
-                        fontSize: '0.85rem',
-                        textAlign: 'center',
-                        width: 'fit-content',
-                        mx: 'auto',
-                        mb: 3,
-                        boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
-                        letterSpacing: '0.5px'
-                    }}>
-                        ESCOLHA O SABOR
-                    </Box>
-                )}
+                {/* Título */}
+                <Box sx={{ mb: 3 }}>
+                    <Typography
+                        variant="h6"
+                        sx={{
+                            fontFamily: '"Libre Baskerville", serif',
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                            color: '#FFFFFF',
+                            fontSize: '16px',
+                            lineHeight: 1.3
+                        }}
+                    >
+                        {item.nome}
+                    </Typography>
+                </Box>
 
-                {/* DESCRIÇÃO ABAIXO DA IMAGEM */}
+                {/* Descrição */}
                 <Box sx={{ flex: 1, mb: 3 }}>
                     <Typography
                         variant="body2"
@@ -501,6 +512,27 @@ const CardItem = ({ item, onAddToCart }) => {
                         {hasVariants ? 'Clique para escolher entre nossos deliciosos sabores de espetinho!' : item.descricao}
                     </Typography>
                 </Box>
+
+                {/* Badge para produtos com variantes */}
+                {hasVariants && (
+                    <Box sx={{
+                        backgroundColor: '#220b0b',
+                        color: '#FFFFFF',
+                        padding: '6px 16px',
+                        borderRadius: '20px',
+                        fontFamily: '"Libre Baskerville", serif',
+                        fontWeight: '600',
+                        fontSize: '0.85rem',
+                        textAlign: 'center',
+                        width: 'fit-content',
+                        mx: 'auto',
+                        mb: 3,
+                        boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
+                        letterSpacing: '0.5px',
+                    }}>
+                        Escolha o Sabor
+                    </Box>
+                )}
 
                 {/* Preço */}
                 <Box sx={{
@@ -535,7 +567,7 @@ const CardItem = ({ item, onAddToCart }) => {
                 <Button
                     variant="contained"
                     startIcon={<AddIcon />}
-                    onClick={() => onAddToCart(item)}
+                    onClick={handleAddClick}
                     fullWidth
                     sx={{
                         fontFamily: '"Inter", serif',
