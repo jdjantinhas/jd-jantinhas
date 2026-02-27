@@ -19,7 +19,9 @@ import {
     DialogActions,
     DialogTitle,
     DialogContentText,
+    Divider,
 } from '@mui/material';
+import { Store } from "lucide-react";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
@@ -237,7 +239,7 @@ export default function Header() {
             variants={drawerVariants}
             style={{ height: '100%' }}
         >
-            <Box sx={{ width: 280, height: '100%', backgroundColor: '#0a0a0a' }}>
+            <Box sx={{ width: 280, height: '100%', backgroundColor: '#0a0a0a', display: 'flex', flexDirection: 'column' }}>
                 <Box sx={{ p: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <motion.div
                         initial={{ opacity: 0 }}
@@ -291,7 +293,7 @@ export default function Header() {
                     </motion.div>
                 )}
 
-                <List>
+                <List sx={{ flex: 1 }}>
                     {menuItems.map((item, index) => (
                         <motion.div
                             key={item.id}
@@ -323,12 +325,79 @@ export default function Header() {
                         </motion.div>
                     ))}
                 </List>
+
+                {/* Seção de Delivery no Drawer - apenas mobile (já que o drawer só aparece em mobile) */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.8 }}
+                >
+                    <Box sx={{ px: 2, py: 2 }}>
+                        <Typography
+                            variant="subtitle2"
+                            sx={{
+                                fontFamily: '"Inter", sans-serif',
+                                color: 'rgba(255,255,255,0.6)',
+                                textTransform: 'uppercase',
+                                letterSpacing: '1px',
+                                fontSize: '12px',
+                                mb: 1.5,
+                            }}
+                        >
+                            Entrega Delivery
+                        </Typography>
+                        <Box sx={{ display: 'flex', gap: 1, justifyContent: 'space-between' }}>
+                            <Button
+                                variant="contained"
+                                startIcon={<Store size={16} />}
+                                fullWidth
+                                sx={{
+                                    backgroundColor: '#FFDD00',
+                                    color: '#000',
+                                    borderRadius: '30px',
+                                    textTransform: 'none',
+                                    fontWeight: 600,
+                                    fontSize: '12px',
+                                    py: 1,
+                                    '&:hover': {
+                                        backgroundColor: '#e6c800',
+                                    },
+                                }}
+                                onClick={() => window.open('https://www.99food.com.br/', '_blank')}
+                            >
+                                99Food
+                            </Button>
+                            <Button
+                                variant="contained"
+                                startIcon={<Store size={16} />}
+                                fullWidth
+                                sx={{
+                                    backgroundColor: '#EA1D2C',
+                                    color: '#fff',
+                                    borderRadius: '30px',
+                                    textTransform: 'none',
+                                    fontWeight: 600,
+                                    fontSize: '12px',
+                                    py: 1,
+                                    '&:hover': {
+                                        backgroundColor: '#c41724',
+                                    },
+                                }}
+                                onClick={() => window.open('https://www.ifood.com.br/', '_blank')}
+                            >
+                                iFood
+                            </Button>
+                        </Box>
+                    </Box>
+                    <Divider sx={{ backgroundColor: 'rgba(255,255,255,0.1)', my: 1 }} />
+                </motion.div>
+
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.9 }}
                 >
-                    <Box sx={{ p: 3, position: 'absolute', bottom: 0, width: '100%' }}>
+                    <Box sx={{ p: 3 }}>
                         <Button
                             fullWidth
                             variant="contained"
@@ -439,7 +508,7 @@ export default function Header() {
                             )}
                         </Box>
 
-                        {/* Menu flutuante para desktop - POSIÇÃO ORIGINAL */}
+                        {/* Menu flutuante para desktop */}
                         {!isMobile && (
                             <Box
                                 sx={{

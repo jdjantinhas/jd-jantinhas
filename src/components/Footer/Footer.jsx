@@ -1,18 +1,19 @@
-import './Footer.css';
 import {
     Facebook,
     Instagram,
     WhatsApp,
     Email
 } from '@mui/icons-material';
-import { Box, Typography, Link } from '@mui/material';
+import { Store } from 'lucide-react';
+import { Box, Typography, Link, Button } from '@mui/material';
+import './Footer.css';
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
 
     const handleSocialClick = (platform) => {
         const urls = {
-            facebook: 'https://facebook.com/seu-restaurante',
+            // facebook: 'https://facebook.com/seu-restaurante',
             instagram: 'https://instagram.com/jdjantinhas/',
             whatsapp: 'https://wa.me/5562992802125',
             email: 'mailto:adm@jdjantinhas.com'
@@ -23,9 +24,17 @@ const Footer = () => {
         }
     };
 
+    const handleDeliveryClick = (app) => {
+        const urls = {
+            ifood: 'https://www.ifood.com.br/',
+            noventaNove: 'https://www.99food.com.br/'
+        };
+        window.open(urls[app], '_blank', 'noopener,noreferrer');
+    };
+
     return (
         <footer className="main-footer">
-            {/* SEU SVG ORIGINAL EXATAMENTE COMO ESTAVA */}
+            {/* SVG ondulado superior */}
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                     <path fill="#0A0403" fillOpacity="1" d="M0,224L80,213.3C160,203,320,181,480,192C640,203,800,245,960,261.3C1120,277,1280,267,1360,261.3L1440,256L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
@@ -36,9 +45,11 @@ const Footer = () => {
             <div>
                 <div className="footer">
                     <div className="footer-row">
+                        {/* Coluna da Imagem */}
                         <div className="footer-column footer-image-column">
                             <div className="footer-image-container">
                                 <svg width="227" height="325" viewBox="0 0 427 375" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    {/* (conteúdo do SVG mantido igual) */}
                                     <g clip-path="url(#clip0_199_2)">
                                         <path d="M195 143.103V115L130 234.866H141.412L146.249 234.789C173.765 234.353 195.755 211.763 195.453 184.246L195 143.103Z" fill="#DC0612" />
                                         <g filter="url(#filter0_d_199_2)">
@@ -69,47 +80,6 @@ const Footer = () => {
                                         </clipPath>
                                     </defs>
                                 </svg>
-
-                                {/* Botões de redes sociais na mesma coluna */}
-                                <div className="social-media-container">
-                                    <div className="social-buttons">
-                                        <button
-                                            className="social-btn facebook-btn"
-                                            onClick={() => handleSocialClick('facebook')}
-                                            aria-label="Facebook"
-                                            title="Facebook"
-                                        >
-                                            <Facebook />
-                                        </button>
-
-                                        <button
-                                            className="social-btn instagram-btn"
-                                            onClick={() => handleSocialClick('instagram')}
-                                            aria-label="Instagram"
-                                            title="Instagram"
-                                        >
-                                            <Instagram />
-                                        </button>
-
-                                        <button
-                                            className="social-btn whatsapp-btn"
-                                            onClick={() => handleSocialClick('whatsapp')}
-                                            aria-label="WhatsApp"
-                                            title="WhatsApp"
-                                        >
-                                            <WhatsApp />
-                                        </button>
-
-                                        <button
-                                            className="social-btn email-btn"
-                                            onClick={() => handleSocialClick('email')}
-                                            aria-label="Email"
-                                            title="Email"
-                                        >
-                                            <Email />
-                                        </button>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
@@ -123,6 +93,44 @@ const Footer = () => {
                                 <p className="brand-description">
                                     Sabores autênticos que transformam cada refeição em uma experiência única.
                                 </p>
+                            </div>
+
+                            {/* Redes Sociais - alinhadas horizontalmente à esquerda */}
+                            <div className="footer-section">
+                                <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', gap: 1, mt: 1 }}>
+                                    <button
+                                        className="social-btn facebook-btn"
+                                        onClick={() => handleSocialClick('facebook')}
+                                        aria-label="Facebook"
+                                        title="Facebook"
+                                    >
+                                        <Facebook />
+                                    </button>
+                                    <button
+                                        className="social-btn instagram-btn"
+                                        onClick={() => handleSocialClick('instagram')}
+                                        aria-label="Instagram"
+                                        title="Instagram"
+                                    >
+                                        <Instagram />
+                                    </button>
+                                    <button
+                                        className="social-btn whatsapp-btn"
+                                        onClick={() => handleSocialClick('whatsapp')}
+                                        aria-label="WhatsApp"
+                                        title="WhatsApp"
+                                    >
+                                        <WhatsApp />
+                                    </button>
+                                    <button
+                                        className="social-btn email-btn"
+                                        onClick={() => handleSocialClick('email')}
+                                        aria-label="Email"
+                                        title="Email"
+                                    >
+                                        <Email />
+                                    </button>
+                                </Box>
                             </div>
                         </div>
 
@@ -147,7 +155,7 @@ const Footer = () => {
                             </div>
                         </div>
 
-                        {/* Coluna de Contato */}
+                        {/* Coluna de Contato + Delivery */}
                         <div className="footer-column">
                             <div className="footer-section">
                                 <h5 className="section-title">Contato</h5>
@@ -160,9 +168,59 @@ const Footer = () => {
                                     </div>
                                 </div>
                             </div>
+
+                            {/* Delivery Apps */}
+                            <div className="footer-section">
+                                <h5 className="section-title">Peça por delivery</h5>
+                                <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                                    <Button
+                                        variant="contained"
+                                        startIcon={<Store size={18} />}
+                                        onClick={() => handleDeliveryClick('noventaNove')}
+                                        sx={{
+                                            backgroundColor: '#FFDD00',
+                                            color: '#000',
+                                            borderRadius: '30px',
+                                            textTransform: 'none',
+                                            fontWeight: 600,
+                                            fontSize: '12px',
+                                            py: 1,
+                                            px: 2,
+                                            flex: { xs: '1 1 auto', sm: '0 1 auto' },
+                                            '&:hover': {
+                                                backgroundColor: '#e6c800',
+                                            },
+                                        }}
+                                    >
+                                        99Food
+                                    </Button>
+                                    <Button
+                                        variant="contained"
+                                        startIcon={<Store size={18} />}
+                                        onClick={() => handleDeliveryClick('ifood')}
+                                        sx={{
+                                            backgroundColor: '#EA1D2C',
+                                            color: '#fff',
+                                            borderRadius: '30px',
+                                            textTransform: 'none',
+                                            fontWeight: 600,
+                                            fontSize: '12px',
+                                            py: 1,
+                                            px: 2,
+                                            flex: { xs: '1 1 auto', sm: '0 1 auto' },
+                                            '&:hover': {
+                                                backgroundColor: '#c41724',
+                                            },
+                                        }}
+                                    >
+                                        iFood
+                                    </Button>
+                                </Box>
+                            </div>
                         </div>
                     </div>
 
+                    {/* Barra inferior de copyright */}
                     <Box
                         sx={{
                             backgroundColor: "#B71C1C",

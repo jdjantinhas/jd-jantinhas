@@ -1,9 +1,11 @@
-import React from 'react';
 import { Box, Typography, Button, Card, CardContent, CardMedia, useTheme, useMediaQuery } from '@mui/material';
+import { Tag } from "lucide-react";
+import { Store } from 'lucide-react';
 import AddIcon from '@mui/icons-material/Add';
 import EmblaCarousel from '../EmblaCarousel/EmblaCarousel';
 import { useProducts } from '../../hooks/useProducts';
 import { useCart } from '../../contexts/CartContext';
+import { motion } from "framer-motion";
 
 const MostOrdered = () => {
     const theme = useTheme();
@@ -73,23 +75,115 @@ const MostOrdered = () => {
         <Box sx={{
             width: '100%',
             mb: 6,
-            px: isMobile ? 2 : 2,
+            px: isMobile ? 2 : 6,
             backgroundColor: 'transparent'
         }}>
-            <Typography
-                variant={isMobile ? "h5" : "h4"}
-                sx={{
-                    mb: 4, mt: 2,
-                    fontWeight: 'bold',
-                    textAlign: 'left',
-                    color: '#FFFFFF',
-                    fontFamily: '"Libre Baskerville", serif',
-                    fontSize: isMobile ? '1.8rem' : '2.5rem',
-                    paddingLeft: isMobile ? 1 : 0
-                }}
-            >
-                Mais Pedidos
-            </Typography>
+            {/* Container flex para título e delivery apps (só aparece em desktop) */}
+            <Box sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                mb: 4,
+                mt: 2
+            }}>
+                <Typography
+                    variant={isMobile ? "h5" : "h4"}
+                    sx={{
+                        fontWeight: 'bold',
+                        color: '#FFFFFF',
+                        fontFamily: '"Libre Baskerville", serif',
+                        fontSize: isMobile ? '1.8rem' : '2.5rem',
+                    }}
+                >
+                    Mais Pedidos
+                </Typography>
+
+                {/* Delivery Apps - apenas para desktop */}
+                {!isMobile && (
+                    <Box
+                        component={motion.div}
+                        initial={{ backgroundPosition: "0% 50%" }}
+                        animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                        transition={{
+                            duration: 8,
+                            repeat: Infinity,
+                            ease: "linear"
+                        }}
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 1,
+                            padding: '8px 14px',
+                            borderRadius: '50px',
+                            background: 'linear-gradient(270deg, #2C0606, #110A09, #3A0B0B)',
+                            backgroundSize: '300% 300%'
+                        }}
+                    >
+                        <Tag
+                            sx={{
+                                fontSize: 18,
+                                color: '#fff'
+                            }}
+                        />
+
+                        <Typography
+                            variant="caption"
+                            sx={{
+                                color: '#fff',
+                                fontFamily: '"Inter", sans-serif',
+                                textTransform: 'uppercase',
+                                fontWeight: 600,
+                                letterSpacing: '1px',
+                                lineHeight: 1
+                            }}
+                        >
+                            Entrega Delivery
+                        </Typography>
+
+                        {/* 99 Food */}
+                        <Button
+                            variant="contained"
+                            startIcon={<Store size={16} />}
+                            sx={{
+                                backgroundColor: '#FFDD00',
+                                color: '#000',
+                                borderRadius: '50px',
+                                textTransform: 'none',
+                                fontWeight: 600,
+                                fontSize: '14px',
+                                px: 2,
+                                '&:hover': {
+                                    backgroundColor: '#e6c800',
+                                },
+                            }}
+                            onClick={() => window.open('https://www.99food.com.br/', '_blank')}
+                        >
+                            99Food
+                        </Button>
+
+                        {/* iFood */}
+                        <Button
+                            variant="contained"
+                            startIcon={<Store size={16} />}
+                            sx={{
+                                backgroundColor: '#EA1D2C',
+                                color: '#fff',
+                                borderRadius: '50px',
+                                textTransform: 'none',
+                                fontWeight: 600,
+                                fontSize: '14px',
+                                px: 2,
+                                '&:hover': {
+                                    backgroundColor: '#c41724',
+                                },
+                            }}
+                            onClick={() => window.open('https://www.ifood.com.br/', '_blank')}
+                        >
+                            iFood
+                        </Button>
+                    </Box>
+                )}
+            </Box>
 
             <Box sx={{
                 width: '100%',

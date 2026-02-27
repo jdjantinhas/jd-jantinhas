@@ -1,18 +1,12 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
     Container,
     Grid,
     Box,
     Typography,
-    Avatar,
-    Card,
-    CardContent,
-    Divider,
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { Target, Eye, HeartHandshake } from "lucide-react";
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
@@ -48,6 +42,20 @@ const teamMembers = [
 const SobreNos = () => {
     // Coordenadas do JD Jantinha's (aproximadas – ajuste se necessário)
     const position = [-16.6869, -49.2648];
+
+    const brinquedotecaImages = [
+        'src/assets/img/brinquedoteca.jpeg',
+        'src/assets/img/binquedotecapula.jpeg',
+    ];
+
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentImageIndex((prev) => (prev + 1) % brinquedotecaImages.length);
+        }, 4000);
+        return () => clearInterval(interval);
+    }, [brinquedotecaImages.length]);
 
     return (
         <Box sx={{ bgcolor: '#0A0A0A' }}>
@@ -203,11 +211,26 @@ const SobreNos = () => {
                             <Typography variant="h4" sx={{ fontFamily: '"Libre Baskerville", serif', fontWeight: 600, background: 'linear-gradient(130deg, #C32020 0%, #5D0F0F 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', mb: 3 }}>
                                 Nossa História
                             </Typography>
-                            <Typography variant="body1" paragraph sx={{ color: '#e0e0e0', lineHeight: 1.8 }}>
-                                O restaurante nasceu do sonho de dois amigos apaixonados por gastronomia. O que começou como uma pequena casa de almoço rapidamente se tornou referência na cidade, graças ao cuidado com os detalhes e à busca incessante pela excelência.
+                            <Typography
+                                variant="body1"
+                                paragraph
+                                sx={{ color: '#e0e0e0', lineHeight: 1.8 }}
+                            >
+                                JD Jantinha’s nasceu em setembro de 2020, idealizado por um casal
+                                apaixonado pela cultura da comida brasileira e pelas tradicionais
+                                jantinhas goianas — aquelas refeições saborosas de fim de noite
+                                que unem arroz, feijão tropeiro, mandioca, espetinhos e muito mais.
                             </Typography>
-                            <Typography variant="body1" sx={{ color: '#e0e0e0', lineHeight: 1.8 }}>
-                                Hoje, mantemos a mesma essência: um ambiente acolhedor, atendimento afetivo e pratos que surpreendem. Nossa cozinha é uma ponte entre o regional e o contemporâneo.
+
+                            <Typography
+                                variant="body1"
+                                sx={{ color: '#e0e0e0', lineHeight: 1.8 }}
+                            >
+                                O sonho começou em uma pequena cozinha caseira, com receitas
+                                tradicionais e aquele toque especial de acolhimento. Acreditamos
+                                que comida boa é aquela que une as pessoas à mesa — e foi assim
+                                que a JD Jantinha’s se tornou referência em sabor, atendimento
+                                caloroso e ambiente familiar.
                             </Typography>
                         </Grid>
                         <Grid size={{ xs: 12, md: 6 }}>
@@ -221,145 +244,31 @@ const SobreNos = () => {
 
             {/* ===== MISSÃO, VISÃO, VALORES ===== */}
             <Box sx={{ bgcolor: '#0A0A0A', py: 8 }}>
-                <Box
-                    component={motion.div}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.6 }}
-                    sx={{ textAlign: 'center', mb: 6, px: { xs: 2, md: 0 } }}
-                >
-                    <Typography
-                        variant="h4"
-                        sx={{
-                            fontFamily: '"Libre Baskerville", serif',
-                            fontWeight: 600,
-                            background: 'linear-gradient(130deg, #C32020 0%, #5D0F0F 100%)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            display: 'inline-block'
-                        }}
-                    >
+                <Box component={motion.div} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6 }} sx={{ textAlign: 'center', mb: 6, px: { xs: 2, md: 0 } }}>
+                    <Typography variant="h4" sx={{ fontFamily: '"Libre Baskerville", serif', fontWeight: 600, background: 'linear-gradient(130deg, #C32020 0%, #5D0F0F 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', display: 'inline-block' }}>
                         Missão, Visão e Valores
                     </Typography>
                 </Box>
-
-                <Box
-                    sx={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        flexWrap: 'wrap',
-                        justifyContent: 'center',
-                        alignItems: 'stretch',
-                        gap: { xs: 2, md: 4 },
-                        maxWidth: '1200px',
-                        mx: 'auto',
-                        px: { xs: 2, md: 0 }
-                    }}
-                >
+                <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'stretch', gap: { xs: 2, md: 4 }, maxWidth: '1200px', mx: 'auto', px: { xs: 2, md: 0 } }}>
                     {/* MISSÃO */}
-                    <Box
-                        component={motion.div}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.3 }}
-                        transition={{ duration: 0.5, delay: 0.1 }}
-                        whileHover={{ y: -8 }}
-                        sx={{
-                            flex: { xs: '1 1 280px', md: '1 1 0' },
-                            minWidth: '280px',
-                            textAlign: 'center',
-                            p: 3,
-                            borderRadius: '40px',
-                            bgcolor: '#121212',
-                            boxShadow: '0 4px 6px rgba(0,0,0,0.5)',
-                            '&:hover': {
-                                boxShadow: '0 8px 24px rgba(195,32,32,0.5)'
-                            }
-                        }}
-                    >
-                        <Box sx={{ mb: 2 }}>
-                            <Target size={60} color="#C32020" strokeWidth={1.5} />
-                        </Box>
-
-                        <Typography variant="h6" sx={{ fontWeight: 600, color: '#fff', mb: 1 }}>
-                            Missão
-                        </Typography>
-
-                        <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.9)' }}>
-                            Oferecer experiências gastronômicas memoráveis, combinando sabor,
-                            qualidade e acolhimento em cada jantinha servida.
-                        </Typography>
+                    <Box component={motion.div} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.5, delay: 0.1 }} whileHover={{ y: -8 }} sx={{ flex: { xs: '1 1 280px', md: '1 1 0' }, minWidth: '280px', textAlign: 'center', p: 3, borderRadius: '40px', bgcolor: '#121212', boxShadow: '0 4px 12px rgba(0,0,0,0.5)', transition: 'box-shadow 0.3s ease', '&:hover': { boxShadow: '0 8px 24px rgba(195,32,32,0.5)' } }}>
+                        <Box component="svg" sx={{ fontSize: 60, width: 60, height: 60, mb: 2, color: 'white' }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15 9H22L16 14L19 21L12 16.5L5 21L8 14L2 9H9L12 2Z" /></Box>
+                        <Typography variant="h6" sx={{ fontWeight: 600, color: '#fff', mb: 1 }}>Missão</Typography>
+                        <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.9)' }}>Oferecer experiências gastronômicas memoráveis, combinando sabor, qualidade e acolhimento em cada jantinha servida.</Typography>
                     </Box>
-
+                    
                     {/* VISÃO */}
-                    <Box
-                        component={motion.div}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.3 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        whileHover={{ y: -8 }}
-                        sx={{
-                            flex: { xs: '1 1 280px', md: '1 1 0' },
-                            minWidth: '280px',
-                            textAlign: 'center',
-                            p: 3,
-                            borderRadius: '40px',
-                            bgcolor: '#121212',
-                            boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
-                            '&:hover': {
-                                boxShadow: '0 8px 24px rgba(139,26,26,0.5)'
-                            }
-                        }}
-                    >
-                        <Box sx={{ mb: 2 }}>
-                            <Eye size={60} color="#C32020" strokeWidth={1.5} />
-                        </Box>
-
-                        <Typography variant="h6" sx={{ fontWeight: 600, color: '#fff', mb: 1 }}>
-                            Visão
-                        </Typography>
-
-                        <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.9)' }}>
-                            Ser referência em comida caseira e jantinhas na região, reconhecida
-                            pela excelência, inovação e pelo carinho no atendimento.
-                        </Typography>
+                    <Box component={motion.div} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.5, delay: 0.2 }} whileHover={{ y: -8 }} sx={{ flex: { xs: '1 1 280px', md: '1 1 0' }, minWidth: '280px', textAlign: 'center', p: 3, borderRadius: '40px', bgcolor: '#121212', boxShadow: '0 4px 12px rgba(0,0,0,0.5)', transition: 'box-shadow 0.3s ease', '&:hover': { boxShadow: '0 8px 24px rgba(139,26,26,0.5)' } }}>
+                        <Box component="svg" sx={{ fontSize: 60, width: 60, height: 60, mb: 2, color: 'white' }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19S21.27 15.89 23 11.5C21.27 7.11 17 4 12 4M12 16C9.24 16 7 13.76 7 11S9.24 6 12 6 17 8.24 17 11 14.76 16 12 16M12 8C10.34 8 9 9.34 9 11S10.34 14 12 14 15 12.66 15 11 13.66 8 12 8Z" /></Box>
+                        <Typography variant="h6" sx={{ fontWeight: 600, color: '#fff', mb: 1 }}>Visão</Typography>
+                        <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.9)' }}>Ser referência em comida caseira e jantinhas na região, reconhecida pela excelência, inovação e pelo carinho no atendimento.</Typography>
                     </Box>
 
                     {/* VALORES */}
-                    <Box
-                        component={motion.div}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.3 }}
-                        transition={{ duration: 0.5, delay: 0.3 }}
-                        whileHover={{ y: -8 }}
-                        sx={{
-                            flex: { xs: '1 1 280px', md: '1 1 0' },
-                            minWidth: '280px',
-                            textAlign: 'center',
-                            p: 3,
-                            borderRadius: '40px',
-                            bgcolor: '#121212',
-                            boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
-                            '&:hover': {
-                                boxShadow: '0 8px 24px rgba(165,42,42,0.5)'
-                            }
-                        }}
-                    >
-                        <Box sx={{ mb: 2 }}>
-                            <HeartHandshake size={60} color="#C32020" strokeWidth={1.5} />
-                        </Box>
-
-                        <Typography variant="h6" sx={{ fontWeight: 600, color: '#fff', mb: 1 }}>
-                            Valores
-                        </Typography>
-
-                        <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.9)' }}>
-                            Tradição, respeito aos ingredientes, hospitalidade genuína e
-                            compromisso inabalável com a satisfação de quem nos visita.
-                        </Typography>
+                    <Box component={motion.div} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.5, delay: 0.3 }} whileHover={{ y: -8 }} sx={{ flex: { xs: '1 1 280px', md: '1 1 0' }, minWidth: '280px', textAlign: 'center', p: 3, borderRadius: '40px', bgcolor: '#121212', boxShadow: '0 4px 12px rgba(0,0,0,0.5)', transition: 'box-shadow 0.3s ease', '&:hover': { boxShadow: '0 8px 24px rgba(165,42,42,0.5)' } }}>
+                        <Box component="svg" sx={{ fontSize: 60, width: 60, height: 60, mb: 2, color: 'white' }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7m0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5" /></Box>
+                        <Typography variant="h6" sx={{ fontWeight: 600, color: '#fff', mb: 1 }}>Valores</Typography>
+                        <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.9)' }}>Tradição, respeito aos ingredientes, hospitalidade genuína e compromisso inabalável com a satisfação de quem nos visita.</Typography>
                     </Box>
                 </Box>
             </Box>
@@ -486,15 +395,26 @@ const SobreNos = () => {
                             borderRadius: '30px',
                             overflow: 'hidden',
                             boxShadow: '0 8px 20px rgba(0,0,0,0.6)',
+                            position: 'relative',
                         }}
                     >
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1909.8611924117783!2d-49.365549767528556!3d-16.7904819820936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935ef90ae6862ced%3A0xbd8cddc0ac01c62d!2sJD%20JANTINHA&#39;S!5e0!3m2!1spt-BR!2sbr"
-                            width="100%"
-                            height="100%"
-                            style={{ border: 0 }}
+                        <motion.img
+                            key={currentImageIndex}
+                            src={brinquedotecaImages[currentImageIndex]}
+                            alt="Brinquedoteca do JD Jantinha's"
                             loading="lazy"
-                            title="JD Jantinha's"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.8 }}
+                            style={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'cover',
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                            }}
                         />
                     </Box>
                 </Grid>
