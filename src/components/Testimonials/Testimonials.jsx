@@ -22,67 +22,59 @@ const Testimonials = () => {
     const testimonials = [
         {
             id: 1,
-            name: "Maria Silva",
+            name: "Noeli Richter",
             rating: 5,
-            comment: "A melhor jantinha da região! O frango assado é simplesmente divino, sempre muito bem temperado e macio.",
-            date: "2 semanas atrás",
-            category: "Almoço"
+            comment: "Ambiente agradável e familiar. Comida boa, ótimo custo benefício. Recomendo! 😊",
+            date: "Um mês atrás",
+            category: "Jantinha"
         },
         {
             id: 2,
-            name: "Carlos Santos",
+            name: "Adna Nascimento",
             rating: 4,
-            comment: "Atendimento rápido e comida de qualidade. A feijoada de sábado é imperdível!",
+            comment: "Simplesmente espetacular! A jantinha é bem servida, com tudo muito saboroso, mas o destaque mesmo vai para o feijão tropeiro, que é de outro nível!",
             date: "1 mês atrás",
-            category: "Jantar"
+            category: "Jantinha"
         },
         {
             id: 3,
-            name: "Ana Oliveira",
+            name: "Darley Lima",
             rating: 5,
-            comment: "Sou cliente há anos e nunca me decepcionei. A lasanha é a melhor que já comi na vida!",
+            comment: "Tava procurando alguma coisa boa perto de casa achei eles no Google fiz pedido pra mim e pra minha família achei tudo muito gostoso rápido atendimento top virei cliente tudo delicioso quentinha e rápido",
             date: "3 dias atrás",
-            category: "Especialidades"
+            category: "Jantinha"
         },
         {
             id: 4,
-            name: "João Pereira",
+            name: "Cleumarcio Santos",
             rating: 5,
-            comment: "Ambiente familiar e comida caseira como a da vovó. O preço é justo e a qualidade é excepcional.",
+            comment: "Top demais, atendimento excelente, a comida nota 10, feita na hora.. muito bom...",
             date: "2 meses atrás",
-            category: "Almoço"
+            category: "Jantinha"
         },
         {
             id: 5,
             name: "Fernanda Costa",
             rating: 4,
-            comment: "Adorei as porções generosas! Levei para a família toda e todos aprovaram. Voltaremos mais vezes!",
-            date: "1 semana atrás",
-            category: "Família"
+            comment: "Muito bom o atendimento! E a comida top tem um torresmo espetacular eu e minha esposa quando pensamos em Jantinha é JD",
+            date: "5 anos atrás",
+            category: "Jantinha"
         },
         {
             id: 6,
-            name: "Ricardo Almeida",
+            name: "Lara Lopes",
             rating: 5,
-            comment: "Como aqui todas as semanas no almoço de trabalho. Pratos variados, sempre frescos e saborosos.",
-            date: "5 dias atrás",
-            category: "Executivo"
+            comment: "Ótimo atendimento! Excelente feijão tropeiro! Um dos melhores que já comi em Goiânia!",
+            date: "Um ano atrás",
+            category: "Jantinha"
         },
         {
             id: 7,
-            name: "Juliana Mendes",
+            name: "Claúdia Isabella",
             rating: 5,
-            comment: "A entrega sempre chega no horário e quentinha. Meu almoço favorito durante a semana!",
-            date: "3 semanas atrás",
-            category: "Entrega"
-        },
-        {
-            id: 8,
-            name: "Roberto Lima",
-            rating: 5,
-            comment: "Qualidade excelente e preço justo. Já recomendei para todos os meus colegas de trabalho.",
-            date: "1 mês atrás",
-            category: "Executivo"
+            comment: "Eu amei tudo, jatinha gostosa, espetinhos quietinhos, atendimento excelente!!! Local limpo. Parabéns!!!",
+            date: "2 semanas atrás",
+            category: "Jantinha"
         }
     ];
 
@@ -465,7 +457,7 @@ const Testimonials = () => {
                         {[
                             { value: '500+', label: 'Clientes Satisfeitos' },
                             { value: '98%', label: 'Recomendação' },
-                            { value: '4.8', label: 'Média de Avaliação' },
+                            { value: '4.5', label: 'Média de Avaliação' },
                             { value: '5 Anos', label: 'de Experiência' }
                         ].map((stat, index) => (
                             <motion.div

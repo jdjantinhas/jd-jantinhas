@@ -944,7 +944,7 @@
         {
             "id": 100,
             "nome": "1 Jantinha Completa + Refri Lata",
-            "descricao": "Porção de mandioca hamburgueria tamanho P",
+            "descricao": "",
             "preco": 36.99,
             "categoria": "combos",
             "imagem": "src/assets/img/imageproducts/combo1jantinhaerefrilata.png",
@@ -956,7 +956,7 @@
             "descricao": "",
             "preco": 56.98,
             "categoria": "combos",
-            "imagem": "",
+            "imagem": "src/assets/img/imageproducts/combo1jantinha2espetinhos1coca600ml.png",
             "orderCount": 0
         },
         {
@@ -965,7 +965,7 @@
             "descricao": "",
             "preco": 66.99,
             "categoria": "combos",
-            "imagem": "",
+            "imagem": "src/assets/img/imageproducts/combo1jantinha1macarrao1coca600ml.png",
             "orderCount": 0
         },
         {
@@ -983,7 +983,7 @@
             "descricao": "",
             "preco": 64.00,
             "categoria": "combos",
-            "imagem": "",
+            "imagem": "src/assets/img/imageproducts/combostrogonoffecoca600ml.png",
             "orderCount": 0
         },
         {
@@ -992,7 +992,7 @@
             "descricao": "",
             "preco": 96.98,
             "categoria": "combos",
-            "imagem": "",
+            "imagem": "src/assets/img/imageproducts/combo3jantinhascoca2lt.png",
             "orderCount": 0
         }
     ]
