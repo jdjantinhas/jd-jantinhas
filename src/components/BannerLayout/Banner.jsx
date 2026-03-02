@@ -5,9 +5,9 @@ import BannerSlide from './BannerSlide';
 
 import bannerComida from '../../assets/img/frangopassarinhobanner.png';
 import bannerBatata from '../../assets/img/bebidas.png';
-import bannerSobremesa from '../../assets/img/sorvetes.png';
+import bannerEspetinhos from '../../assets/img/bannerespetinhos.png';
 
-const Banner = () => {
+const Banner = ({ onNavigate }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm')); // Apenas mobile
     const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md')); // Apenas tablet
@@ -22,6 +22,7 @@ const Banner = () => {
             description: 'Porção irresistível de frango a passarinho, crocante por fora e suculento por dentro. Perfeita para compartilhar ou saborear sozinho. Venha experimentar essa delícia que conquistou o paladar de todos!',
             buttonText: 'Ver Cardápio',
             imageUrl: bannerComida,
+            categoryId: 'combos'
         },
         {
             id: 2,
@@ -29,19 +30,21 @@ const Banner = () => {
             subDot: 'Sugestão do Chef',
             title: 'Bebidas',
             subtitle: 'Refrescantes',
-            description: 'Explore nosso cardápio de bebidas refrescantes, perfeitas para acompanhar suas refeições. De sucos naturais a refrigerantes gelados, temos opções para todos os gostos. Venha se refrescar conosco e completar sua experiência gastronômica!',
+            description: 'Veja nosso cardápio de bebidas refrescantes, perfeitas para acompanhar suas refeições. De sucos naturais a refrigerantes gelados, temos opções para todos os gostos. Venha se refrescar conosco e completar sua experiência gastronômica!',
             buttonText: 'Ver Cardápio',
             imageUrl: bannerBatata,
+            categoryId: 'cervejas'
         },
         {
             id: 3,
             dot: 'Especial',
-            subDot: 'Sobremesa da Casa',
-            title: 'Sobremesas',
+            subDot: 'Espetinhos',
+            title: 'Espetinhos',
             subtitle: 'Irresistíveis',
-            description: 'Explore nosso cardápio repleto de pratos irresistíveis, preparados com ingredientes frescos e sabores autênticos. De clássicos a criações exclusivas, cada mordida é uma experiência gastronômica única. Venha saborear o melhor da culinária conosco!',
-            buttonText: 'Ver Opções',
-            imageUrl: bannerSobremesa,
+            description: 'Deliciosos espetinhos! Venha experimentar essa delícia que conquistou o paladar de todos!',
+            buttonText: 'Ver Cardápio',
+            imageUrl: bannerEspetinhos,
+            categoryId: 'espetinhos'
         }
     ];
 
@@ -82,7 +85,11 @@ const Banner = () => {
                             position: 'relative'
                         }}
                     >
-                        <BannerSlide item={item} />
+                        <BannerSlide 
+                            item={item} 
+                            key={item}
+                            onNavigate={item.categoryId ? () => onNavigate(item.categoryId) : null}
+                        />
                     </Box>
                 ))}
             </EmblaCarousel>

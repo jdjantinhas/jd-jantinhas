@@ -1,7 +1,7 @@
 import { Box, Typography, Button, useTheme, useMediaQuery } from '@mui/material';
 import { ArrowForward } from '@mui/icons-material';
 
-const BannerSlide = ({ item }) => {
+const BannerSlide = ({ item, onNavigate  }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('md')); // Tablet e mobile
 
@@ -194,6 +194,7 @@ const BannerSlide = ({ item }) => {
                         variant="outlined"
                         size={isMobile ? "medium" : "large"}
                         endIcon={<ArrowForward />}
+                        onClick={onNavigate}
                         sx={{
                             fontFamily: '"Inter", serif',
                             fontSize: { xs: '0.9rem', md: '1rem' },

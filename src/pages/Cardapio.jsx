@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useRef, useState, useEffect, useMemo, useCallback, useImperativeHandle } from 'react';
 import {
     Box,
     Typography,
@@ -23,6 +23,7 @@ import ModalVariants from '../components/Modals/ModalVariants';
 import ModalDetails from '../components/Modals/ModalDetails'; // <-- Importe o ModalDetails
 import { useCart } from '../contexts/CartContext';
 import { useProducts } from '../hooks/useProducts';
+import { useLocation } from 'react-router-dom';
 
 // Animação de borda pulsante para destacar a categoria Combos
 const pulseBorder = keyframes`
@@ -240,6 +241,7 @@ const ScrollToTopButton = ({ show }) => {
 };
 
 const Cardapio = () => {
+    const location = useLocation();
     const { addToCart } = useCart();
     const { categories, getProductsByCategory, isLoading } = useProducts();
 
@@ -322,6 +324,17 @@ const Cardapio = () => {
             setActiveSection(categoryId);
         }
     }, []);
+
+    useEffect(() => {
+        const scrollToCategory = location.state?.scrollToCategory;
+        if (scrollToCategory && categoriesWithIcons.length > 0) {
+            // Pequeno delay para garantir que as seções foram renderizadas
+            const timer = setTimeout(() => {
+                scrollToSection(scrollToCategory);
+            }, 300);
+            return () => clearTimeout(timer);
+        }
+    }, [categoriesWithIcons, location.state, scrollToSection]);
 
     // Função para abrir modal de detalhes
     const handleOpenDetalhes = useCallback((item) => {
@@ -488,7 +501,7 @@ const Cardapio = () => {
                         Cardápio
                     </Typography>
                     <Typography variant="subtitle1" sx={{ color: 'rgba(255,255,255,0.8)', fontSize: { xs: '0.95rem', md: '1.1rem' }, maxWidth: '600px' }}>
-                        Explore nosso menu completo. Clique nas categorias para navegar rapidamente.
+                        Confira nosso menu completo. Clique nas categorias para navegar rapidamente.
                     </Typography>
                 </Box>
 

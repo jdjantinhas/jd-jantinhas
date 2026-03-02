@@ -223,7 +223,70 @@
             "preco": 26.99,
             "categoria": "jantinhas",
             "imagem": "src/assets/img/imageproducts/jantinhacompleta.png",
-            "orderCount": 0
+            "orderCount": 0,
+            "variantType": "single",
+            "variantes": [
+                {
+                    "id": "asinha",
+                    "nome": "Asinha",
+                    "preco": 0
+                },
+                {
+                    "id": "frango",
+                    "nome": "Frango com Bacon",
+                    "preco": 0
+                },
+                {
+                    "id": "cupim",
+                    "nome": "Cupim Grill",
+                    "preco": 0
+                },
+                {
+                    "id": "picanha",
+                    "nome": "Picanha Montada",
+                    "preco": 0
+                },
+                {
+                    "id": "linguicafrango",
+                    "nome": "Linguiça de Frango",
+                    "preco": 0
+                },
+                {
+                    "id": "linguicaapimentada",
+                    "nome": "Linguiça Apimentada",
+                    "preco": 0
+                },
+                {
+                    "id": "linguicasuina",
+                    "nome": "Linguiça Suína",
+                    "preco": 0
+                },
+                {
+                    "id": "contrafilegrill",
+                    "nome": "Contra Filé Grill",
+                    "preco": 0
+                },
+                {
+                    "id": "kaftacarne",
+                    "nome": "Kafta de Carne",
+                    "preco": 0
+                },
+                {
+                    "id": "coracao",
+                    "nome": "Coração",
+                    "preco": 0
+                },
+                {
+                    "id": "queijoprovolone",
+                    "nome": "Queijo Provolone",
+                    "preco": 0
+                },
+                {
+                    "id": "queijocoalho",
+                    "nome": "Queijo Coalho",
+                    "preco": 0
+                }
+            ]
         },
         {
             "id": 14,
