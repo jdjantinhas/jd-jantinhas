@@ -3,9 +3,9 @@ import { Box, useTheme, useMediaQuery } from '@mui/material';
 import EmblaCarousel from '../EmblaCarousel/EmblaCarousel';
 import BannerSlide from './BannerSlide';
 
-import bannerComida from '../../assets/img/Banner1.png';
-import bannerBatata from '../../assets/img/Banner2.png';
-import bannerSobremesa from '../../assets/img/Banner3.png';
+import bannerComida from '../../assets/img/frangopassarinhobanner.png';
+import bannerBatata from '../../assets/img/bebidas.png';
+import bannerSobremesa from '../../assets/img/sorvetes.png';
 
 const Banner = () => {
     const theme = useTheme();
@@ -17,9 +17,9 @@ const Banner = () => {
             id: 1,
             dot: 'Novo',
             subDot: 'No Cardápio',
-            title: 'Deliciosas Comidas',
-            subtitle: 'Foods Place',
-            description: 'Explore nosso cardápio repleto de pratos irresistíveis, preparados com ingredientes frescos e sabores autênticos. De clássicos a criações exclusivas, cada mordida é uma experiência gastronômica única. Venha saborear o melhor da culinária conosco!',
+            title: 'Frango a Passarinho',
+            subtitle: 'Peça agora mesmo',
+            description: 'Porção irresistível de frango a passarinho, crocante por fora e suculento por dentro. Perfeita para compartilhar ou saborear sozinho. Venha experimentar essa delícia que conquistou o paladar de todos!',
             buttonText: 'Ver Cardápio',
             imageUrl: bannerComida,
         },
@@ -29,7 +29,7 @@ const Banner = () => {
             subDot: 'Sugestão do Chef',
             title: 'Bebidas',
             subtitle: 'Refrescantes',
-            description: 'Explore nosso cardápio repleto de pratos irresistíveis, preparados com ingredientes frescos e sabores autênticos. De clássicos a criações exclusivas, cada mordida é uma experiência gastronômica única. Venha saborear o melhor da culinária conosco!',
+            description: 'Explore nosso cardápio de bebidas refrescantes, perfeitas para acompanhar suas refeições. De sucos naturais a refrigerantes gelados, temos opções para todos os gostos. Venha se refrescar conosco e completar sua experiência gastronômica!',
             buttonText: 'Ver Cardápio',
             imageUrl: bannerBatata,
         },
@@ -65,7 +65,7 @@ const Banner = () => {
                 autoPlayDelay={5000}
                 controlOffset={getControlOffset()}
                 controlColor="#C32020"
-                controlBgColor="rgba(22, 10, 10, 0.9)"
+                controlBgColor="rgba(22, 10, 10, 1)"
                 useAutoplayPlugin={true}
                 options={{
                     loop: true,
@@ -78,7 +78,7 @@ const Banner = () => {
                         sx={{
                             flex: '0 0 100%',
                             minWidth: 0,
-                            height: '500px',
+                            height: '550px',
                             position: 'relative'
                         }}
                     >

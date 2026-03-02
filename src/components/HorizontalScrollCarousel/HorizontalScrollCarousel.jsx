@@ -8,30 +8,30 @@ const HorizontalScrollCarousel = () => {
     const slides = [
         {
             id: 1,
-            title: 'O Combo Perfeito',
-            subtitle: 'Jantinha + Espetinho',
-            description: 'Jantinha completa acompanhada de um espetinho suculento, feita na hora e no ponto certo. Sabor caseiro, porção caprichada e aquele gostinho que dá vontade de repetir.',
-            extraInfo: 'Variadas opções de espetinhos!',
+            title: 'Feijão Tropeiro em Dobro',
+            subtitle: 'Compre 1, Leve outro por + R$3,00',
+            description: 'Compre um delicioso feijão tropeiro e leve outro por apenas R$3,00. Aproveite essa oferta incrível para saborear ainda mais o sabor autêntico do nosso feijão tropeiro.',
+            extraInfo: '',
             buttonText: 'Peça agora',
-            img: 'https://images.unsplash.com/photo-1600891964092-4316c288032e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=80'
+            img: 'src/assets/img/promocaotropeiro.png'
         },
         {
             id: 2,
-            title: 'Sobremesa Especial',
-            subtitle: 'Sorvete Artesanal',
-            description: 'Sorvete cremoso feito com ingredientes selecionados, perfeito para finalizar sua refeição. Diversos sabores exclusivos para você escolher.',
-            extraInfo: 'Novos sabores toda semana!',
+            title: 'Jantinha Completa',
+            subtitle: 'Jantinha Completa com Espetinho',
+            description: 'Jantinha completa com espetinho de sua preferência. Um prato completo e saboroso para você aproveitar ao máximo.',
+            extraInfo: '',
             buttonText: 'Experimente',
-            img: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=80'
+            img: 'src/assets/img/promocaojantinhas.png'
         },
         {
             id: 3,
-            title: 'Promoção do Dia',
-            subtitle: '2 por 1',
-            description: 'Aproveite nossa promoção especial: leve dois pratos pelo preço de um. Todas as sextas-feiras, das 18h às 22h.',
-            extraInfo: 'Válido apenas para delivery!',
+            title: 'Delicioso Macarrão',
+            subtitle: 'Macarrão com Molho Vermelho e mais...',
+            description: 'Delicioso macarrão com molhos. Perfeito para uma refeição rápida e saborosa.',
+            extraInfo: '',
             buttonText: 'Aproveitar',
-            img: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=80'
+            img: 'src/assets/img/promocaomacarrao.png'
         }
     ];
 
@@ -43,7 +43,6 @@ const HorizontalScrollCarousel = () => {
             overflow: 'hidden',
             position: 'relative',
             borderRadius: isMobile ? '20px' : '0px',
-            boxShadow: 3,
             mb: 3,
         }}>
             <EmblaCarousel
@@ -56,25 +55,25 @@ const HorizontalScrollCarousel = () => {
                     <Box key={slide.id} sx={{
                         flex: '0 0 100%',
                         minWidth: 0,
-                        height: 'auto', // Altura automática
+                        height: 'auto',
                         position: 'relative'
                     }}>
                         <Box sx={{
                             display: 'flex',
                             flexDirection: isMobile ? 'column' : 'row',
-                            height: isMobile ? 'auto' : '520px', // Altura automática no mobile
+                            height: isMobile ? 'auto' : '540px',
                             alignItems: 'center',
                             justifyContent: 'space-between',
                             gap: isMobile ? 2 : 4,
                             padding: isMobile ? 3 : 5,
-                            background: 'linear-gradient(30deg, #461220 0%, #220901)',
+                            backgroundColor: '#220901',
                         }}>
                             {/* Conteúdo de texto */}
                             <Box sx={{
                                 display: 'flex',
                                 flexDirection: 'column',
                                 justifyContent: 'center',
-                                width: isMobile ? '100%' : '35%',
+                                width: isMobile ? '100%' : '55%',
                                 height: isMobile ? 'auto' : '100%', // Altura automática no mobile
                                 minHeight: isMobile ? '300px' : 'auto', // Altura mínima para o texto
                                 zIndex: 2,
@@ -181,7 +180,6 @@ const HorizontalScrollCarousel = () => {
                                         maxHeight: isMobile ? '250px' : '480px', // Altura máxima no mobile
                                         objectFit: 'cover',
                                         borderRadius: isMobile ? '20px' : '30px',
-                                        boxShadow: '0 10px 30px rgba(0,0,0,0.2)'
                                     }}
                                     onError={(e) => {
                                         e.target.src = `https://via.placeholder.com/900x600/FF6B35/FFFFFF?text=${encodeURIComponent(slide.title)}`;

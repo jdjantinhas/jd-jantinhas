@@ -32,11 +32,11 @@ const BannerSlide = ({ item }) => {
                 display: 'flex',
                 flexDirection: { xs: 'column', md: 'row' },
                 alignItems: 'center',
-                minHeight: { xs: '350px', md: '400px' },
+                minHeight: { xs: '350px', md: '400px', lg: '500px' },
                 padding: { xs: 0, md: 8 },
                 margin: { xs: '10px', md: '20px' },
                 borderRadius: { xs: '50px', md: '60px' },
-                backgroundImage: `linear-gradient(to right, rgba(108, 22, 22, 0.1) 0%, rgba(108, 22, 22, 0.1) 50%, rgba(108, 22, 22, 0.1) 100%), url(${item.imageUrl})`,
+                backgroundImage: `linear-gradient(to right, rgba(108, 22, 22, 0.1) 0%, rgba(108, 22, 22, 0.1) 20%), url(${item.imageUrl})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
@@ -78,7 +78,7 @@ const BannerSlide = ({ item }) => {
                             display: 'flex',
                             alignItems: 'center',
                             borderRadius: { xs: '18px 0', md: '20px 0' },
-                            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+                            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.9)',
                         }}
                     >
                         <Typography
