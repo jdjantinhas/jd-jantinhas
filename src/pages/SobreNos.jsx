@@ -18,34 +18,13 @@ L.Icon.Default.mergeOptions({
     shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
 });
 
-const teamMembers = [
-    {
-        name: 'Ana Clara Souza',
-        role: 'Chef Executiva',
-        image: 'https://images.unsplash.com/photo-1583394293214-28ded15ee548?w=150&auto=format&fit=crop',
-        bio: 'Especialista em gastronomia contemporânea com 15 anos de experiência.',
-    },
-    {
-        name: 'Carlos Mendes',
-        role: 'Sommelier',
-        image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&auto=format&fit=crop',
-        bio: 'Paixão por vinhos e harmonizações, certificado pela WSET.',
-    },
-    {
-        name: 'Fernanda Lima',
-        role: 'Maitre',
-        image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop',
-        bio: 'Acolhimento e excelência em serviço há mais de uma década.',
-    },
-];
-
 const SobreNos = () => {
     // Coordenadas do JD Jantinha's (aproximadas – ajuste se necessário)
     const position = [-16.6869, -49.2648];
 
     const brinquedotecaImages = [
-        'src/assets/img/brinquedoteca.jpeg',
-        'src/assets/img/binquedotecapula.jpeg',
+        '/assets/img/brinquedoteca.jpeg',
+        '/assets/img/binquedotecapula.jpeg',
     ];
 
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -296,7 +275,7 @@ const SobreNos = () => {
                         >
                             <Box
                                 component="img"
-                                src="src/assets/img/fachada.webp"
+                                src="/assets/img/fachada.webp"
                                 alt="Fachada do restaurante"
                                 sx={{
                                     width: '100%',

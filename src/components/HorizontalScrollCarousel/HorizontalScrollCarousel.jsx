@@ -13,7 +13,7 @@ const HorizontalScrollCarousel = () => {
             description: 'Compre um delicioso feijão tropeiro e leve outro por apenas R$3,00. Aproveite essa oferta incrível para saborear ainda mais o sabor autêntico do nosso feijão tropeiro.',
             extraInfo: '',
             buttonText: 'Peça agora',
-            img: 'src/assets/img/promocaotropeiro.png'
+            img: '/assets/img/promocaotropeiro.png'
         },
         {
             id: 2,
@@ -22,7 +22,7 @@ const HorizontalScrollCarousel = () => {
             description: 'Jantinha completa com espetinho de sua preferência. Um prato completo e saboroso para você aproveitar ao máximo.',
             extraInfo: '',
             buttonText: 'Experimente',
-            img: 'src/assets/img/promocaojantinhas.png'
+            img: '/assets/img/promocaojantinhas.png'
         },
         {
             id: 3,
@@ -31,7 +31,7 @@ const HorizontalScrollCarousel = () => {
             description: 'Delicioso macarrão com molhos. Perfeito para uma refeição rápida e saborosa.',
             extraInfo: '',
             buttonText: 'Aproveitar',
-            img: 'src/assets/img/promocaomacarrao.png'
+            img: '/assets/img/promocaomacarrao.png'
         }
     ];
 
