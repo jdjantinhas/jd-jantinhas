@@ -237,6 +237,7 @@ const CardItem = ({ item, onAddToCart, onOpenDetalhes }) => {
 
                     {/* Botão */}
                     <Button
+                        aria-label={hasVariants ? 'Escolher Sabor' : 'Adicionar'}
                         variant="contained"
                         fullWidth
                         startIcon={<AddShoppingCartIcon />}
@@ -401,6 +402,7 @@ const CardItem = ({ item, onAddToCart, onOpenDetalhes }) => {
 
                     {/* Botão */}
                     <Button
+                        aria-label={hasVariants ? 'Escolher Sabor' : 'Adicionar'}
                         variant="contained"
                         startIcon={<AddIcon />}
                         onClick={handleAddClick}
@@ -565,6 +567,7 @@ const CardItem = ({ item, onAddToCart, onOpenDetalhes }) => {
 
                 {/* Botão */}
                 <Button
+                    aria-label={hasVariants ? 'Escolher Sabor' : 'Adicionar ao Carrinho'}
                     variant="contained"
                     startIcon={<AddIcon />}
                     onClick={handleAddClick}

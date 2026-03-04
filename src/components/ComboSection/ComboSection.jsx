@@ -345,6 +345,7 @@ const ComboSection = () => {
 
                                                 {/* Botão CTA */}
                                                 <Button
+                                                    aria-label={`Ver mais sobre ${slide.title}`}
                                                     variant="contained"
                                                     href={slide.buttonLink}
                                                     sx={{

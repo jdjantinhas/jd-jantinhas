@@ -499,6 +499,7 @@ const Carrinho = () => {
                 zIndex: 1
             }}>
                 <Button
+                    aria-label='Cancelar'
                     onClick={() => setShowWhatsAppModal(false)}
                     variant="outlined"
                     sx={{
@@ -519,7 +520,9 @@ const Carrinho = () => {
                 >
                     Cancelar
                 </Button>
+
                 <Button
+                    aria-label='Enviar via WhatsApp'
                     variant="contained"
                     startIcon={<WhatsAppIcon sx={{ fontSize: { xs: '1rem', sm: '1.1rem' } }} />}
                     onClick={sendOrderToWhatsApp}
@@ -743,6 +746,8 @@ const Carrinho = () => {
                 right: 16
             }}>
                 <Button
+                    aria-label="Excluir item do carrinho"
+                    variant="text"
                     startIcon={<DeleteIcon />}
                     onClick={() => removeFromCart(item.id)}
                     sx={{
@@ -938,6 +943,7 @@ const Carrinho = () => {
                     </Typography>
 
                     <Button
+                        aria-label="Voltar ao cardápio"
                         variant="contained"
                         onClick={handleBackToMenu}
                         startIcon={<ArrowBackIcon />}
@@ -982,6 +988,7 @@ const Carrinho = () => {
                 }}
             >
                 <Button
+                    aria-label="Voltar"
                     onClick={handleBackToMenu}
                     startIcon={<ArrowBackIcon />}
                     sx={{
@@ -1135,6 +1142,7 @@ const Carrinho = () => {
                     alignItems="center"
                 >
                     <Button
+                        aria-label="Limpar Carrinho"
                         variant="outlined"
                         onClick={clearCart}
                         sx={{
@@ -1156,6 +1164,7 @@ const Carrinho = () => {
                     </Button>
 
                     <Button
+                        aria-label="Finalizar pedido no WhatsApp"
                         variant="contained"
                         onClick={handleFinalizeOrder}
                         startIcon={<WhatsAppIcon sx={{ fontSize: { xs: '2rem', sm: '2rem', md: '2.2rem' } }} />}

@@ -66,6 +66,7 @@ const FixedNavigation = ({ categories, activeSection, scrollToSection, showFixed
                     }}>
                         {categories.map((categoria) => (
                             <Button
+                                aria-label={`Navegar para a categoria de ${categoria.nome}`}
                                 key={categoria.id}
                                 onClick={() => scrollToSection(categoria.id)}
                                 variant="text"

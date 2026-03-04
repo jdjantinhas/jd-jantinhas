@@ -86,6 +86,7 @@ const Mesa = () => {
             <CircularProgress sx={{ color: '#AF1D1D', mb: 4 }} />
 
             <Button
+                aria-label="Ir para o Cardápio"
                 variant="contained"
                 onClick={() => {
                     console.log('Mesa.jsx: Clique no botão, navegando para /cardapio');
@@ -102,7 +103,7 @@ const Mesa = () => {
                     }
                 }}
             >
-                Ir para o Cardápio Agora
+                Ir para o Cardápio
             </Button>
         </Container>
     );

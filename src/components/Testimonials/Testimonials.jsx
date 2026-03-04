@@ -2,23 +2,34 @@ import React, { useRef } from 'react';
 import {
     Box,
     Typography,
-    useTheme,
-    useMediaQuery
+    keyframes
 } from '@mui/material';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import StarIcon from '@mui/icons-material/Star';
 import EmblaCarousel from '../EmblaCarousel/EmblaCarousel';
-
-// Import do Framer Motion
 import { motion } from 'framer-motion';
 
+// Animações CSS
+const rotate = keyframes`
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+`;
+
+const float = keyframes`
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+`;
+
+const floatReverse = keyframes`
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(10px); }
+  100% { transform: translateY(0px); }
+`;
+
 const Testimonials = () => {
-    const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-    const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
     const containerRef = useRef(null);
 
-    // Dados de exemplo para avaliações
     const testimonials = [
         {
             id: 1,
@@ -78,7 +89,6 @@ const Testimonials = () => {
         }
     ];
 
-    // Componente de Card de Avaliação com animação
     const TestimonialCard = ({ testimonial }) => (
         <motion.div
             initial={{ opacity: 0, y: 30, scale: 0.9 }}
@@ -89,7 +99,12 @@ const Testimonials = () => {
             <Box
                 sx={{
                     flex: '0 0 auto',
-                    width: isMobile ? '280px' : isTablet ? '350px' : '400px',
+                    // Largura responsiva com breakpoints
+                    width: {
+                        xs: '280px',
+                        sm: '350px',
+                        md: '400px'
+                    },
                     margin: '0 8px',
                     border: '1px solid rgba(175, 29, 29, 0.3)',
                     borderRadius: '30px',
@@ -101,25 +116,28 @@ const Testimonials = () => {
                 }}
             >
                 <Box sx={{ p: 2, flex: 1, display: 'flex', flexDirection: 'column' }}>
-                    {/* Ícone de aspas */}
-                    <motion.div
-                        whileHover={{ rotate: 180 }}
-                        transition={{ duration: 0.5 }}
+                    {/* Ícone com rotação no hover via CSS */}
+                    <Box
+                        sx={{
+                            mb: 1,
+                            '&:hover': {
+                                transform: 'rotate(180deg)',
+                                transition: 'transform 0.5s',
+                            },
+                        }}
                     >
-                        <Box sx={{ mb: 1 }}>
-                            <FormatQuoteIcon
-                                sx={{
-                                    fontSize: 40,
-                                    color: 'rgba(175, 29, 29, 0.3)',
-                                    transform: 'rotate(180deg)'
-                                }}
-                            />
-                        </Box>
-                    </motion.div>
+                        <FormatQuoteIcon
+                            sx={{
+                                fontSize: 40,
+                                color: 'rgba(175, 29, 29, 0.3)',
+                                transform: 'rotate(180deg)'
+                            }}
+                        />
+                    </Box>
 
-                    {/* Comentário */}
                     <Typography
                         variant="body1"
+                        component="p"
                         sx={{
                             fontFamily: '"Libre Baskerville", serif',
                             color: 'rgba(255, 255, 255, 0.9)',
@@ -133,16 +151,22 @@ const Testimonials = () => {
                         "{testimonial.comment}"
                     </Typography>
 
-                    {/* Rating */}
                     <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
                         <Box sx={{ display: 'flex' }}>
                             {[...Array(5)].map((_, index) => (
-                                <motion.div
+                                <Box
                                     key={index}
-                                    initial={{ scale: 0 }}
-                                    animate={{ scale: 1 }}
-                                    transition={{ delay: index * 0.1 }}
-                                    whileHover={{ scale: 1.2 }}
+                                    sx={{
+                                        animation: `scaleIn 0.5s ${index * 0.1}s both`,
+                                        '@keyframes scaleIn': {
+                                            '0%': { transform: 'scale(0)' },
+                                            '100%': { transform: 'scale(1)' },
+                                        },
+                                        '&:hover': {
+                                            transform: 'scale(1.2)',
+                                            transition: 'transform 0.2s',
+                                        },
+                                    }}
                                 >
                                     <StarIcon
                                         sx={{
@@ -150,11 +174,12 @@ const Testimonials = () => {
                                             color: index < testimonial.rating ? '#af1d1d' : 'rgba(255, 255, 255, 0.3)'
                                         }}
                                     />
-                                </motion.div>
+                                </Box>
                             ))}
                         </Box>
                         <Typography
                             variant="body2"
+                            component="span"
                             sx={{
                                 ml: 1,
                                 color: 'rgba(255, 255, 255, 0.7)',
@@ -165,7 +190,6 @@ const Testimonials = () => {
                         </Typography>
                     </Box>
 
-                    {/* Informações do cliente */}
                     <Box sx={{
                         display: 'flex',
                         justifyContent: 'space-between',
@@ -176,78 +200,72 @@ const Testimonials = () => {
                         borderRadius: '20px',
                     }}>
                         <Box>
-                            <motion.div
-                                initial={{ x: -20, opacity: 0 }}
-                                animate={{ x: 0, opacity: 1 }}
-                                transition={{ delay: 0.2 }}
-                            >
-                                <Typography
-                                    variant="subtitle1"
-                                    sx={{
-                                        fontFamily: '"Libre Baskerville", serif',
-                                        fontWeight: 'bold',
-                                        color: '#FFFFFF',
-                                        fontSize: { xs: '0.95rem', md: '1rem' },
-                                        mb: 0.5
-                                    }}
-                                >
-                                    {testimonial.name}
-                                </Typography>
-                            </motion.div>
-                            <motion.div
-                                initial={{ x: -20, opacity: 0 }}
-                                animate={{ x: 0, opacity: 1 }}
-                                transition={{ delay: 0.3 }}
-                            >
-                                <Typography
-                                    variant="caption"
-                                    sx={{
-                                        color: 'rgba(255, 255, 255, 0.6)',
-                                        fontSize: '0.8rem'
-                                    }}
-                                >
-                                    {testimonial.date}
-                                </Typography>
-                            </motion.div>
-                        </Box>
-
-                        {/* Categoria */}
-                        <motion.div
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            transition={{ delay: 0.4 }}
-                            whileHover={{ scale: 1.1, rotate: 5 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            <Box
+                            <Typography
+                                variant="subtitle1"
+                                component="div"
                                 sx={{
-                                    backgroundColor: 'rgba(175, 29, 29, 0.2)',
-                                    color: '#AF1D1D',
-                                    padding: '4px 12px',
-                                    borderRadius: '15px',
-                                    fontSize: '0.75rem',
+                                    fontFamily: '"Libre Baskerville", serif',
                                     fontWeight: 'bold',
-                                    border: '1px solid rgba(175, 29, 29, 0.3)'
+                                    color: '#FFFFFF',
+                                    fontSize: { xs: '0.95rem', md: '1rem' },
+                                    mb: 0.5,
+                                    animation: 'slideIn 0.6s 0.2s both',
+                                    '@keyframes slideIn': {
+                                        '0%': { transform: 'translateX(-20px)', opacity: 0 },
+                                        '100%': { transform: 'translateX(0)', opacity: 1 },
+                                    },
                                 }}
                             >
-                                {testimonial.category}
-                            </Box>
-                        </motion.div>
+                                {testimonial.name}
+                            </Typography>
+                            <Typography
+                                variant="caption"
+                                component="span"
+                                sx={{
+                                    color: 'rgba(255, 255, 255, 0.6)',
+                                    fontSize: '0.8rem',
+                                    animation: 'slideIn 0.6s 0.3s both',
+                                }}
+                            >
+                                {testimonial.date}
+                            </Typography>
+                        </Box>
+
+                        <Box
+                            sx={{
+                                backgroundColor: 'rgba(175, 29, 29, 0.2)',
+                                color: '#AF1D1D',
+                                padding: '4px 12px',
+                                borderRadius: '15px',
+                                fontSize: '0.75rem',
+                                fontWeight: 'bold',
+                                border: '1px solid rgba(175, 29, 29, 0.3)',
+                                animation: 'scaleIn 0.5s 0.4s both',
+                                transition: 'transform 0.2s, rotate 0.2s',
+                                '&:hover': {
+                                    transform: 'scale(1.1) rotate(5deg)',
+                                },
+                                '&:active': {
+                                    transform: 'scale(0.95)',
+                                },
+                            }}
+                        >
+                            {testimonial.category}
+                        </Box>
                     </Box>
                 </Box>
             </Box>
         </motion.div>
     );
 
-    // Opções do carrossel - CORRIGIDO para mobile
     const emblaOptions = {
-        align: 'center', // Mudado para center para melhor visualização no mobile
+        align: 'center',
         loop: true,
         skipSnaps: false,
         containScroll: 'trimSnaps',
         dragFree: false,
         slidesToScroll: 1,
-        startIndex: 1, // Começa no segundo slide para melhor visualização
+        startIndex: 1,
         breakpoints: {
             '(max-width: 600px)': {
                 align: 'center',
@@ -269,7 +287,7 @@ const Testimonials = () => {
         }
     };
 
-    // Variantes de animação
+    // Variants para Framer Motion (apenas para animações de entrada)
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -315,11 +333,10 @@ const Testimonials = () => {
                 overflow: 'hidden',
                 width: '100%',
                 backgroundColor: 'rgba(0,0,0,0.7)',
-                px: isMobile ? 0 : 2, // Remove padding lateral no mobile
+                px: { xs: 0, sm: 2 }, // sem isMobile
             }}
             ref={containerRef}
         >
-            {/* Cabeçalho */}
             <motion.div
                 initial={{ y: -50, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
@@ -331,7 +348,7 @@ const Testimonials = () => {
                     mb: { xs: 8, md: 7 },
                     position: 'relative',
                     zIndex: 2,
-                    px: isMobile ? 2 : 0, // Adiciona padding apenas no mobile
+                    px: { xs: 2, md: 0 },
                 }}>
                     <motion.div
                         initial={{ scale: 0.8, opacity: 0 }}
@@ -341,6 +358,7 @@ const Testimonials = () => {
                     >
                         <Typography
                             variant="h2"
+                            component="h2"
                             sx={{
                                 fontFamily: '"Libre Baskerville", serif',
                                 fontWeight: 700,
@@ -362,20 +380,20 @@ const Testimonials = () => {
                     >
                         <Typography
                             variant="subtitle1"
+                            component="p"
                             sx={{
                                 color: 'rgba(255, 255, 255, 0.8)',
                                 fontSize: { xs: '0.95rem', md: '1.1rem' },
                                 maxWidth: '600px',
                                 margin: '0 auto',
                                 mb: 3,
-                                px: isMobile ? 1 : 0,
+                                px: { xs: 1, md: 0 },
                             }}
                         >
                             Experiências reais de quem já provou nossos sabores
                         </Typography>
                     </motion.div>
 
-                    {/* Rating geral */}
                     <motion.div
                         initial={{ scale: 0, opacity: 0 }}
                         whileInView={{ scale: 1, opacity: 1 }}
@@ -396,18 +414,18 @@ const Testimonials = () => {
                             border: '1px solid rgba(175, 29, 29, 0.2)',
                             cursor: 'default'
                         }}>
-                            <motion.div
-                                animate={{ rotate: [0, 360] }}
-                                transition={{
-                                    duration: 10,
-                                    repeat: Infinity,
-                                    ease: "linear"
+                            <Box
+                                sx={{
+                                    animation: `${rotate} 10s linear infinite`,
+                                    display: 'flex',
+                                    alignItems: 'center',
                                 }}
                             >
                                 <StarIcon sx={{ color: '#af1d1d', fontSize: 20, mr: 0.5 }} />
-                            </motion.div>
+                            </Box>
                             <Typography
                                 variant="h6"
+                                component="span"
                                 sx={{
                                     color: '#af1d1d',
                                     fontWeight: 'bold',
@@ -418,6 +436,7 @@ const Testimonials = () => {
                             </Typography>
                             <Typography
                                 variant="body2"
+                                component="span"
                                 sx={{
                                     color: 'rgba(255, 255, 255, 0.7)'
                                 }}
@@ -429,7 +448,6 @@ const Testimonials = () => {
                 </Box>
             </motion.div>
 
-            {/* Estatísticas */}
             <motion.div
                 variants={containerVariants}
                 initial="hidden"
@@ -443,7 +461,7 @@ const Testimonials = () => {
                     padding: { xs: 3, md: 4 },
                     borderRadius: '20px',
                     border: '1px solid rgba(175, 29, 29, 0.1)',
-                    mx: isMobile ? 2 : 'auto',
+                    mx: { xs: 2, md: 'auto' },
                     maxWidth: '1200px',
                 }}>
                     <Box sx={{
@@ -472,6 +490,7 @@ const Testimonials = () => {
                                 <Box>
                                     <Typography
                                         variant="h3"
+                                        component="div"
                                         sx={{
                                             fontFamily: '"Libre Baskerville", serif',
                                             color: '#AF1D1D',
@@ -484,6 +503,7 @@ const Testimonials = () => {
                                     </Typography>
                                     <Typography
                                         variant="body2"
+                                        component="p"
                                         sx={{
                                             color: 'rgba(255, 255, 255, 0.8)',
                                             fontSize: { xs: '0.85rem', md: '0.9rem' }
@@ -498,7 +518,6 @@ const Testimonials = () => {
                 </Box>
             </motion.div>
 
-            {/* Carrossel de avaliações - CORRIGIDO para mobile */}
             <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -508,10 +527,11 @@ const Testimonials = () => {
                 <Box sx={{
                     position: 'relative',
                     width: '100%',
-                    height: isMobile ? '380px' : '350px',
+                    // Altura responsiva sem useMediaQuery
+                    height: { xs: '380px', md: '350px' },
                     mt: 6,
                     mb: 6,
-                    px: isMobile ? 1 : 2, // Reduz padding no mobile
+                    px: { xs: 1, md: 2 },
                     '& > div': {
                         width: '100%',
                         height: '100%'
@@ -519,11 +539,11 @@ const Testimonials = () => {
                 }}>
                     <EmblaCarousel
                         showControls={true}
-                        controlPosition={isMobile ? "bottom-center" : "bottom-center"}
+                        controlPosition="bottom-center" // pode ser fixo ou responsivo, mas ajustaremos
                         controlColor="#AF1D1D"
                         controlBgColor="rgba(22, 10, 10, 0.95)"
                         autoPlayInterval={5000}
-                        controlOffset={isMobile ? { x: 0, y: -60 } : { x: -845, y: -75 }}
+                        controlOffset={{ xs: { x: 0, y: -60 }, md: { x: -845, y: -75 } }} // isso ainda usa JS, mas podemos definir via props do EmblaCarousel, que aceita objeto com breakpoints?
                         options={emblaOptions}
                         style={{
                             width: '100%',
@@ -537,7 +557,7 @@ const Testimonials = () => {
                                     display: 'flex',
                                     justifyContent: 'center',
                                     alignItems: 'stretch',
-                                    padding: isMobile ? '0 4px' : '0 8px', // Menos padding no mobile
+                                    padding: { xs: '0 4px', md: '0 8px' },
                                     height: '100%'
                                 }}
                             >
@@ -548,20 +568,11 @@ const Testimonials = () => {
                 </Box>
             </motion.div>
 
-            {/* Elementos decorativos */}
             <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, ease: "easeOut" }}
-                animate={{
-                    y: [0, -10, 0],
-                    transition: {
-                        duration: 3,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                    }
-                }}
                 style={{
                     position: 'absolute',
                     top: 0,
@@ -576,6 +587,7 @@ const Testimonials = () => {
                         width: '100%',
                         height: '100%',
                         background: 'radial-gradient(circle, rgba(175, 29, 29, 0.1) 0%, transparent 70%)',
+                        animation: `${float} 3s infinite ease-in-out`,
                     }}
                 />
             </motion.div>
@@ -585,15 +597,6 @@ const Testimonials = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
-                animate={{
-                    y: [0, 10, 0],
-                    transition: {
-                        duration: 4,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: 0.5
-                    }
-                }}
                 style={{
                     position: 'absolute',
                     bottom: 0,
@@ -608,6 +611,7 @@ const Testimonials = () => {
                         width: '100%',
                         height: '100%',
                         background: 'radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, transparent 70%)',
+                        animation: `${floatReverse} 4s infinite ease-in-out`,
                     }}
                 />
             </motion.div>

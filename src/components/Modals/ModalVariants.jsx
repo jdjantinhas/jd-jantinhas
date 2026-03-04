@@ -834,14 +834,26 @@ const ModalVariants = ({ open, onClose, produto, onConfirm }) => {
 
             {/* Rodapé com botões */}
             <DialogActions sx={{ backgroundColor: '#1A1A1A', py: 2, px: 3, borderTop: '1px solid #2A2A2A', gap: 1.5, position: 'sticky', bottom: 0, zIndex: 1 }}>
-                <Button onClick={onClose} variant="outlined" sx={{
-                    color: '#888', borderColor: '#444', borderRadius: '8px', textTransform: 'none',
-                    px: { xs: 2, sm: 3 }, py: 1, fontSize: '0.9rem', flex: 1,
+                <Button 
+                    aria-label="Cancelar"
+                    onClick={onClose} 
+                    variant="outlined" 
+                    sx={{
+                        color: '#888', 
+                        borderColor: '#444', 
+                        borderRadius: '8px', 
+                        textTransform: 'none',
+                        px: { xs: 2, sm: 3 }, 
+                        py: 1, 
+                        fontSize: '0.9rem', 
+                        flex: 1,
                     '&:hover': { backgroundColor: '#252525', borderColor: '#666', color: 'white' }
                 }}>
                     Cancelar
                 </Button>
+
                 <Button
+                    aria-label="Adicionar ao Carrinho"
                     variant="contained"
                     startIcon={<AddShoppingCartIcon sx={{ fontSize: '1.1rem' }} />}
                     onClick={handleConfirmar}

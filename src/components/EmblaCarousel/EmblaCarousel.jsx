@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useMemo } from 'react';
 import { Box, Button } from '@mui/material';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
@@ -14,19 +14,21 @@ const EmblaCarousel = ({
     options = {},
     style = {}
 }) => {
-    const [emblaRef, emblaApi] = useEmblaCarousel({
+    // Estabiliza as opções para evitar re-inicializações desnecessárias (causa de Reflow)
+    const emblaOptions = useMemo(() => ({
         align: 'start',
         loop: true,
         skipSnaps: false,
         duration: 20,
         ...options
-    });
+    }), [options]);
 
+    const [emblaRef, emblaApi] = useEmblaCarousel(emblaOptions);
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [scrollSnaps, setScrollSnaps] = useState([]);
 
-    // Função de posicionamento simplificada e direta
-    const getControlPositionStyles = () => {
+    // Memoriza os estilos de controle para evitar cálculos geométricos no render
+    const controlPositionStyles = useMemo(() => {
         const baseStyles = {
             position: 'absolute',
             display: 'flex',
@@ -36,85 +38,74 @@ const EmblaCarousel = ({
             backgroundColor: controlBgColor,
             borderRadius: '50px',
             padding: '8px 16px',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.3)'
+            boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+            // Otimização de renderização
+            willChange: 'transform',
+            contain: 'layout style'
         };
 
-        // Define posições base
         let styles = { ...baseStyles };
 
         // Posição vertical
         if (controlPosition.includes('top')) {
             styles.top = `${controlOffset.y}px`;
-            delete styles.bottom;
-        }
-        if (controlPosition.includes('bottom')) {
+        } else if (controlPosition.includes('bottom')) {
             styles.bottom = `${controlOffset.y}px`;
-            delete styles.top;
         }
 
         // Posição horizontal
         if (controlPosition.includes('left')) {
             styles.left = `${controlOffset.x}px`;
-            delete styles.right;
-            delete styles.transform;
-        }
-        if (controlPosition.includes('right')) {
+        } else if (controlPosition.includes('right')) {
             styles.right = `${controlOffset.x}px`;
-            delete styles.left;
-            delete styles.transform;
-        }
-        if (controlPosition.includes('center')) {
+        } else if (controlPosition.includes('center')) {
             styles.left = '50%';
-            // Para center, aplica o offset no transform
-            if (controlOffset.x !== 0 || controlOffset.y !== 0) {
-                styles.transform = `translate(calc(-50% + ${controlOffset.x}px), 0)`;
-            } else {
-                styles.transform = 'translateX(-50%)';
-            }
+            styles.transform = `translateX(calc(-50% + ${controlOffset.x}px))`;
         }
 
         return styles;
-    };
-
-    const updateScrollSnaps = useCallback(() => {
-        if (!emblaApi) return;
-        setScrollSnaps(emblaApi.scrollSnapList());
-    }, [emblaApi]);
+    }, [controlPosition, controlOffset, controlBgColor]);
 
     const onSelect = useCallback(() => {
         if (!emblaApi) return;
         setSelectedIndex(emblaApi.selectedScrollSnap());
     }, [emblaApi]);
 
-    // Scroll automático
+    const onInit = useCallback(() => {
+        if (!emblaApi) return;
+        setScrollSnaps(emblaApi.scrollSnapList());
+    }, [emblaApi]);
+
     useEffect(() => {
         if (!emblaApi) return;
 
+        onInit();
         onSelect();
-        updateScrollSnaps();
 
         emblaApi.on('select', onSelect);
-        emblaApi.on('reInit', updateScrollSnaps);
+        emblaApi.on('reInit', onInit);
 
         let intervalId;
         if (autoPlayInterval) {
             intervalId = setInterval(() => {
-                if (emblaApi) {
+                if (emblaApi && emblaApi.canScrollNext()) {
                     emblaApi.scrollNext();
+                } else if (emblaApi) {
+                    emblaApi.scrollTo(0);
                 }
             }, autoPlayInterval);
         }
 
         return () => {
             emblaApi.off('select', onSelect);
-            emblaApi.off('reInit', updateScrollSnaps);
+            emblaApi.off('reInit', onInit);
             if (intervalId) clearInterval(intervalId);
         };
-    }, [emblaApi, onSelect, updateScrollSnaps, autoPlayInterval]);
+    }, [emblaApi, onSelect, onInit, autoPlayInterval]);
 
-    const scrollTo = (index) => {
+    const scrollTo = useCallback((index) => {
         if (emblaApi) emblaApi.scrollTo(index);
-    };
+    }, [emblaApi]);
 
     const scrollPrev = useCallback(() => {
         if (emblaApi) emblaApi.scrollPrev();
@@ -129,9 +120,9 @@ const EmblaCarousel = ({
             position: 'relative',
             width: '100%',
             height: '100%',
+            contain: 'layout paint', // Otimização crítica para evitar reflows globais
             ...style
         }}>
-            {/* Carousel container - OCUPA 100% */}
             <Box
                 ref={emblaRef}
                 sx={{
@@ -139,17 +130,15 @@ const EmblaCarousel = ({
                     width: '100%',
                     height: '100%',
                     position: 'relative',
-                    marginLeft: 'auto',
-                    marginRight: 'auto'
+                    touchAction: 'pan-y pinch-zoom'
                 }}
             >
                 <Box sx={{
                     display: 'flex',
                     height: '100%',
                     backfaceVisibility: 'hidden',
-                    touchAction: 'pan-y pinch-zoom',
                     willChange: 'transform',
-                    marginLeft: 'calc(8px * -1)', // Compensa padding
+                    marginLeft: 'calc(8px * -1)',
                     marginRight: 'calc(8px * -1)'
                 }}>
                     {children}
@@ -157,34 +146,59 @@ const EmblaCarousel = ({
             </Box>
 
             {showControls && (
-                <Box sx={getControlPositionStyles()}>
-                    {/* Indicadores */}
-                    <Box sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 1,
-                        mr: 1
-                    }}>
+                <Box
+                    component="nav"
+                    aria-label="Controles do carrossel"
+                    sx={controlPositionStyles}
+                >
+                    {/* Indicadores (Dots) */}
+                    <Box
+                        role="tablist"
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 1,
+                            mr: 1
+                        }}
+                    >
                         {scrollSnaps.map((_, index) => (
                             <Box
                                 key={index}
+                                component="button"
+                                role="tab"
+                                aria-selected={selectedIndex === index}
+                                aria-label={`Ir para o slide ${index + 1}`}
+                                title={`Ir para o slide ${index + 1}`}
                                 onClick={() => scrollTo(index)}
                                 sx={{
-                                    width: selectedIndex === index ? '24px' : '8px',
-                                    height: '8px',
-                                    borderRadius: '4px',
-                                    bgcolor: selectedIndex === index ? controlColor : '#7a6565',
+                                    width: 44,
+                                    height: 44,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    border: 'none',
+                                    background: 'transparent',
                                     cursor: 'pointer',
-                                    transition: 'all 0.3s ease',
-                                    '&:hover': {
-                                        bgcolor: selectedIndex === index ? '#E55A2B' : 'rgba(192, 179, 179, 0.5)'
+                                    padding: 0,
+                                    '&:focus-visible': {
+                                        outline: `2px solid ${controlColor}`,
+                                        outlineOffset: '2px'
                                     }
                                 }}
-                            />
+                            >
+                                <Box
+                                    sx={{
+                                        width: selectedIndex === index ? '24px' : '8px',
+                                        height: '8px',
+                                        borderRadius: '4px',
+                                        bgcolor: selectedIndex === index ? controlColor : '#7a6565',
+                                        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                                    }}
+                                />
+                            </Box>
                         ))}
                     </Box>
 
-                    {/* Divisor */}
                     <Box sx={{
                         width: '1px',
                         height: '20px',
@@ -192,41 +206,53 @@ const EmblaCarousel = ({
                         mx: 1
                     }} />
 
-                    {/* Botões */}
+                    {/* Botões de Navegação */}
                     <Box sx={{
                         display: 'flex',
                         alignItems: 'center',
                         gap: 0.5
                     }}>
                         <Button
+                            aria-label="Slide anterior"
+                            title="Slide anterior"
                             onClick={scrollPrev}
                             sx={{
-                                minWidth: '32px',
-                                width: '32px',
-                                height: '32px',
+                                minWidth: 44,
+                                width: 44,
+                                height: 44,
                                 borderRadius: '50%',
                                 backgroundColor: 'rgba(175, 29, 29, 0.2)',
                                 color: '#fff',
                                 padding: 0,
                                 '&:hover': {
                                     backgroundColor: controlColor
+                                },
+                                '&:focus-visible': {
+                                    outline: `2px solid ${controlColor}`,
+                                    outlineOffset: '2px'
                                 }
                             }}
                         >
                             <ChevronLeft />
                         </Button>
                         <Button
+                            aria-label="Próximo slide"
+                            title="Próximo slide"
                             onClick={scrollNext}
                             sx={{
-                                minWidth: '32px',
-                                width: '32px',
-                                height: '32px',
+                                minWidth: 44,
+                                width: 44,
+                                height: 44,
                                 borderRadius: '50%',
                                 backgroundColor: 'rgba(175, 29, 29, 0.2)',
                                 color: '#fff',
                                 padding: 0,
                                 '&:hover': {
                                     backgroundColor: controlColor
+                                },
+                                '&:focus-visible': {
+                                    outline: `2px solid ${controlColor}`,
+                                    outlineOffset: '2px'
                                 }
                             }}
                         >
@@ -239,4 +265,4 @@ const EmblaCarousel = ({
     );
 };
 
-export default EmblaCarousel;
+export default React.memo(EmblaCarousel);

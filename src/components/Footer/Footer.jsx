@@ -98,38 +98,41 @@ const Footer = () => {
                             {/* Redes Sociais - alinhadas horizontalmente à esquerda */}
                             <div className="footer-section">
                                 <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', gap: 1, mt: 1 }}>
-                                    <button
-                                        className="social-btn facebook-btn"
-                                        onClick={() => handleSocialClick('facebook')}
+                                    <Button
                                         aria-label="Facebook"
                                         title="Facebook"
+                                        className="social-btn facebook-btn"
+                                        onClick={() => handleSocialClick('facebook')}
                                     >
                                         <Facebook />
-                                    </button>
-                                    <button
-                                        className="social-btn instagram-btn"
-                                        onClick={() => handleSocialClick('instagram')}
+                                    </Button>
+
+                                    <Button
                                         aria-label="Instagram"
                                         title="Instagram"
+                                        className="social-btn instagram-btn"
+                                        onClick={() => handleSocialClick('instagram')}
                                     >
                                         <Instagram />
-                                    </button>
-                                    <button
-                                        className="social-btn whatsapp-btn"
-                                        onClick={() => handleSocialClick('whatsapp')}
+                                    </Button>
+
+                                    <Button
                                         aria-label="WhatsApp"
                                         title="WhatsApp"
+                                        className="social-btn whatsapp-btn"
+                                        onClick={() => handleSocialClick('whatsapp')}
                                     >
                                         <WhatsApp />
-                                    </button>
-                                    <button
-                                        className="social-btn email-btn"
-                                        onClick={() => handleSocialClick('email')}
+                                    </Button>
+
+                                    <Button
                                         aria-label="Email"
                                         title="Email"
+                                        className="social-btn email-btn"
+                                        onClick={() => handleSocialClick('email')}
                                     >
                                         <Email />
-                                    </button>
+                                    </Button>
                                 </Box>
                             </div>
                         </div>
@@ -194,12 +197,13 @@ const Footer = () => {
                                     >
                                         99Food
                                     </Button>
+                                    
                                     <Button
                                         variant="contained"
                                         startIcon={<Store size={18} />}
                                         onClick={() => handleDeliveryClick('ifood')}
                                         sx={{
-                                            backgroundColor: '#EA1D2C',
+                                            backgroundColor: '#AA101A',
                                             color: '#fff',
                                             borderRadius: '30px',
                                             textTransform: 'none',
@@ -208,9 +212,6 @@ const Footer = () => {
                                             py: 1,
                                             px: 2,
                                             flex: { xs: '1 1 auto', sm: '0 1 auto' },
-                                            '&:hover': {
-                                                backgroundColor: '#c41724',
-                                            },
                                         }}
                                     >
                                         iFood

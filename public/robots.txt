@@ -1,0 +1,12 @@
+# https://www.robotstxt.org/robotstxt.html
+
+# Permitir que todos os buscadores (Google, Bing, etc.) indexem o site
+User-agent: *
+Allow: /
+
+# Bloquear apenas pastas de sistema ou temporárias (se existirem)
+Disallow: /cgi-bin/
+Disallow: /tmp/
+
+# Caminho direto para o seu Sitemap (ajuda o Google a encontrar suas páginas)
+Sitemap: https://jdjantinhas.com/sitemap.xml

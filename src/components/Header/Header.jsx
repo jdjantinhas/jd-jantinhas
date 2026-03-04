@@ -348,6 +348,7 @@ export default function Header() {
                         </Typography>
                         <Box sx={{ display: 'flex', gap: 1, justifyContent: 'space-between' }}>
                             <Button
+                                aria-label='99Food'
                                 variant="contained"
                                 startIcon={<Store size={16} />}
                                 fullWidth
@@ -360,28 +361,27 @@ export default function Header() {
                                     fontSize: '12px',
                                     py: 1,
                                     '&:hover': {
-                                        backgroundColor: '#e6c800',
+                                        backgroundColor: '#ff1743',
                                     },
                                 }}
                                 onClick={() => window.open('https://www.99food.com.br/', '_blank')}
                             >
                                 99Food
                             </Button>
+
                             <Button
+                                aria-label='iFood'  
                                 variant="contained"
                                 startIcon={<Store size={16} />}
                                 fullWidth
                                 sx={{
-                                    backgroundColor: '#EA1D2C',
-                                    color: '#fff',
+                                    backgroundColor: '#AA101A',
+                                    color: '#ffffff',
                                     borderRadius: '30px',
                                     textTransform: 'none',
                                     fontWeight: 600,
                                     fontSize: '12px',
                                     py: 1,
-                                    '&:hover': {
-                                        backgroundColor: '#c41724',
-                                    },
                                 }}
                                 onClick={() => window.open('https://www.ifood.com.br/', '_blank')}
                             >
@@ -399,6 +399,7 @@ export default function Header() {
                 >
                     <Box sx={{ p: 3 }}>
                         <Button
+                            aria-label='Carrinho de Compras'
                             fullWidth
                             variant="contained"
                             startIcon={<ShoppingCartIcon />}
@@ -535,6 +536,7 @@ export default function Header() {
                                         whileTap="tap"
                                     >
                                         <Button
+                                            aria-label={item.label}
                                             onClick={() => handleItemClick(item.id, item.path)}
                                             sx={{
                                                 fontFamily: '"Libre Baskerville", serif',
@@ -766,6 +768,8 @@ export default function Header() {
                                     whileTap={{ scale: 0.95 }}
                                 >
                                     <Button
+                                        aria-label="Cancelar"
+                                        title="Cancelar"
                                         onClick={handleCloseQrModal}
                                         sx={{
                                             color: 'rgba(255, 255, 255, 0.7)',
@@ -786,6 +790,7 @@ export default function Header() {
                                     whileTap={{ scale: 0.95 }}
                                 >
                                     <Button
+                                        aria-label='Escanear QR Code'
                                         onClick={handleScanQRCode}
                                         variant="contained"
                                         startIcon={<QrCodeScannerIcon />}

@@ -1,10 +1,8 @@
 #root {
   width: 100%;
-  /* Alterado de max-width para width */
   margin: 0;
   padding: 0;
   text-align: left;
-  /* Ou center, dependendo do seu layout */
 }
 
 /* Se você quiser manter um container para o conteúdo, mas não para o header */
@@ -14,7 +12,6 @@
   padding: 2rem;
 }
 
-/* Reset básico para o body */
 body {
   margin: 0;
   padding: 0;

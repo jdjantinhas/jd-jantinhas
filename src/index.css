@@ -1,6 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Leckerli+One:wght@400;700&display=swap');
+/* ========================= */
+/* 🔥 FONTES LOCAIS */
+/* ========================= */
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-v20-latin-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-v20-latin-500.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-v20-latin-700.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('/fonts/libre-baskerville-v24-latin-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('/fonts/libre-baskerville-v24-latin-500.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('/fonts/libre-baskerville-v24-latin-600.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Leckerli One';
+  src: url('/fonts/leckerli-one-v22-latin-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
 
 :root {
   --bg-dark: #110A09;
@@ -8,7 +57,7 @@
   --primary: #d4a373;
   --secondary: #8d6e63;
 
-  font-family: 'Playfair Display', serif;
+  font-family: 'Inter', sans-serif;
   line-height: 1.6;
   font-weight: 400;
 
@@ -33,6 +82,7 @@
 body {
   min-height: 100vh;
   background: linear-gradient(to bottom, #6C1616 0%, #0A0403 40%);
+  font-family: 'Inter', sans-serif;
 }
 
 /* LINKS */

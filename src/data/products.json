@@ -48,7 +48,7 @@
             "descricao": "Porção de feijão tropeiro",
             "preco": 24.99,
             "categoria": "porcoes",
-            "imagem": "/assets/img/imageproducts/feijaotropeiro.png",
+            "imagem": "/img/imageproducts/feijaotropeiro.webp",
             "orderCount": 0
         },
         {
@@ -57,7 +57,7 @@
             "descricao": "Porção de mandioca com torresmo marmitex G",
             "preco": 18,
             "categoria": "porcoes",
-            "imagem": "/assets/img/imageproducts/feijaotropeiro.png",
+            "imagem": "/img/imageproducts/feijaotropeiro.webp",
             "orderCount": 0
         },
         {
@@ -66,7 +66,7 @@
             "descricao": "Arroz, Feijão, Salada, Vinagrete e Espetinho a sua Escolha.",
             "preco": 23,
             "categoria": "jantinhas",
-            "imagem": "/assets/img/imageproducts/jantinhacompleta.png",
+            "imagem": "/img/imageproducts/jantinhacompleta.webp",
             "variantType": "multiple",
             "variantes": [
                 {
@@ -97,7 +97,7 @@
             "descricao": "Jantinha sem Espetinho",
             "preco": 23,
             "categoria": "jantinhas",
-            "imagem": "/assets/img/imageproducts/jantinhasemespetinho.png",
+            "imagem": "/img/imageproducts/jantinhasemespetinho.webp",
             "orderCount": 0
         },
         {
@@ -106,7 +106,7 @@
             "descricao": "Caldo de Feijão 500ml",
             "preco": 15,
             "categoria": "caldos",
-            "imagem": "/assets/img/imageproducts/caldofeijao.png",
+            "imagem": "/img/imageproducts/caldofeijao.webp",
             "orderCount": 0
         },
         {
@@ -115,7 +115,7 @@
             "descricao": "Macarrão com molho vermelho, Catupiry e Cheddar",
             "preco": 24.98,
             "categoria": "jantinhas",
-            "imagem": "/assets/img/imageproducts/macarraomolhovermelho.png",
+            "imagem": "/img/imageproducts/macarraomolhovermelho.webp",
             "orderCount": 0
         },
         {
@@ -124,7 +124,7 @@
             "descricao": "Strogonoff de frango",
             "preco": 23.99,
             "categoria": "jantinhas",
-            "imagem": "/assets/img/imageproducts/strogonofffrango.png",
+            "imagem": "/img/imageproducts/strogonofffrango.webp",
             "orderCount": 0
         },
         {
@@ -133,7 +133,7 @@
             "descricao": "Porção de Feijão Hamburgueria Tamanho P",
             "preco": 12,
             "categoria": "porcoes",
-            "imagem": "/assets/img/imageproducts/porcaoptropeiroemandioca.png",
+            "imagem": "/img/imageproducts/porcaoptropeiroemandioca.webp",
             "orderCount": 0
         },
         {
@@ -142,7 +142,7 @@
             "descricao": "Espetinho com Porção de Mandioca",
             "preco": 15.99,
             "categoria": "espetinhos",
-            "imagem": "/assets/img/imageproducts/espetinhofrango.png",
+            "imagem": "/img/imageproducts/espetinhofrango.webp",
             "orderCount": 0
         },
         {
@@ -151,7 +151,7 @@
             "descricao": "Escolha os sabores que deseja",
             "preco": 0,
             "categoria": "espetinhos",
-            "imagem": "/assets/img/imageproducts/espetinhosvariados.png",
+            "imagem": "/img/imageproducts/espetinhosvariados.webp",
             "variantType": "multiple",
             "variantes": [
                 {
@@ -222,7 +222,7 @@
             "descricao": "Jantinha com adicional de strogonoff e espetinho",
             "preco": 26.99,
             "categoria": "jantinhas",
-            "imagem": "/assets/img/imageproducts/jantinhacompleta.png",
+            "imagem": "/img/imageproducts/jantinhacompleta.webp",
             "orderCount": 0,
             "variantType": "single",
             "variantes": [
@@ -294,7 +294,7 @@
             "descricao": "Porção de frango a passarinho e batata frita",
             "preco": 34.99,
             "categoria": "porcoes",
-            "imagem": "/assets/img/imageproducts/frangopassarinho.png",
+            "imagem": "/img/imageproducts/frangopassarinho.webp",
             "orderCount": 0
         },
         {
@@ -303,7 +303,7 @@
             "descricao": "Porção de Mandioca Tamanho P",
             "preco": 5,
             "categoria": "porcoes",
-            "imagem": "/assets/img/imageproducts/porcaomandioca.png",
+            "imagem": "/img/imageproducts/porcaomandioca.webp",
             "orderCount": 0
         },
         {
@@ -312,7 +312,7 @@
             "descricao": "Porção de Mandioca Tamanho M",
             "preco": 7,
             "categoria": "porcoes",
-            "imagem": "/assets/img/imageproducts/porcaomandioca.png",
+            "imagem": "/img/imageproducts/porcaomandioca.webp",
             "orderCount": 0
         },
         {
@@ -321,7 +321,7 @@
             "descricao": "Porção de Mandioca Tamanho G",
             "preco": 10,
             "categoria": "porcoes",
-            "imagem": "/assets/img/imageproducts/porcaomandioca.png",
+            "imagem": "/img/imageproducts/porcaomandioca.webp",
             "orderCount": 0
         },
         {
@@ -330,7 +330,7 @@
             "descricao": "Caldo de Frango 500ml",
             "preco": 15,
             "categoria": "caldos",
-            "imagem": "/assets/img/imageproducts/caldofrango.png",
+            "imagem": "/img/imageproducts/caldofrango.webp",
             "orderCount": 0
         },
         {
@@ -339,7 +339,7 @@
             "descricao": "Sorvetes 1,5L",
             "preco": 21,
             "categoria": "sorvetes",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -348,7 +348,7 @@
             "descricao": "Sorvetes copão",
             "preco": 7,
             "categoria": "sorvetes",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -357,7 +357,7 @@
             "descricao": "Sorvetes copito",
             "preco": 4,
             "categoria": "sorvetes",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -366,7 +366,7 @@
             "descricao": "Sorvetes 1,8L",
             "preco": 25,
             "categoria": "sorvetes",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -375,7 +375,7 @@
             "descricao": "Sundae",
             "preco": 6,
             "categoria": "sorvetes",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -384,7 +384,7 @@
             "descricao": "Picolé skimo",
             "preco": 6,
             "categoria": "sorvetes",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -393,7 +393,7 @@
             "descricao": "Picolé brigadeiro",
             "preco": 6,
             "categoria": "sorvetes",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -402,7 +402,7 @@
             "descricao": "Picolés diversos",
             "preco": 9.6,
             "categoria": "sorvetes",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -411,7 +411,7 @@
             "descricao": "Picolés recheados",
             "preco": 4,
             "categoria": "sorvetes",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -420,7 +420,7 @@
             "descricao": "Picolés tropinho, groselha, leite condensado e blue ice",
             "preco": 1,
             "categoria": "sorvetes",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -429,7 +429,7 @@
             "descricao": "Picolés de creme",
             "preco": 2.5,
             "categoria": "sorvetes",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -438,7 +438,7 @@
             "descricao": "Picolés de fruta",
             "preco": 2,
             "categoria": "sorvetes",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -447,7 +447,7 @@
             "descricao": "Açaí com granola 250ml",
             "preco": 12,
             "categoria": "sorvetes",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -456,7 +456,7 @@
             "descricao": "Sorvetes casquinha",
             "preco": 5,
             "categoria": "sorvetes",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -465,7 +465,7 @@
             "descricao": "Cremosinho",
             "preco": 1.25,
             "categoria": "sorvetes",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -474,7 +474,7 @@
             "descricao": "Guaraná 350ml",
             "preco": 5.99,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/guaranaantarctica350ml.png",
+            "imagem": "/img/imageproducts/guaranaantarctica350ml.webp",
             "orderCount": 0
         },
         {
@@ -483,7 +483,7 @@
             "descricao": "Soda 350ml",
             "preco": 5.99,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/soda350ml.png",
+            "imagem": "/img/imageproducts/soda350ml.webp",
             "orderCount": 0
         },
         {
@@ -492,7 +492,7 @@
             "descricao": "Mineiro 350ml",
             "preco": 4.99,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/mineiro350ml.png",
+            "imagem": "/img/imageproducts/mineiro350ml.webp",
             "orderCount": 0
         },
         {
@@ -501,7 +501,7 @@
             "descricao": "Fanta 350ml",
             "preco": 5.99,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/fanta350ml.png",
+            "imagem": "/img/imageproducts/fanta350ml.webp",
             "orderCount": 0
         },
         {
@@ -510,7 +510,7 @@
             "descricao": "Coca Cola zero 350ml",
             "preco": 7.99,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/cocazero350ml.png",
+            "imagem": "/img/imageproducts/cocazero350ml.webp",
             "orderCount": 0
         },
         {
@@ -519,7 +519,7 @@
             "descricao": "Coca Cola 350ml",
             "preco": 7.99,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/coca350ml.png",
+            "imagem": "/img/imageproducts/coca350ml.webp",
             "orderCount": 0
         },
         {
@@ -528,7 +528,7 @@
             "descricao": "Coca Cola zero 600ml",
             "preco": 7.99,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/coca600ml.png",
+            "imagem": "/img/imageproducts/coca600ml.webp",
             "orderCount": 0
         },
         {
@@ -537,7 +537,7 @@
             "descricao": "Guaraná Antarctica 2L",
             "preco": 12,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/guaranaantarctica2l.png",
+            "imagem": "/img/imageproducts/guaranaantarctica2l.webp",
             "orderCount": 0
         },
         {
@@ -546,7 +546,7 @@
             "descricao": "Fanta 600ml",
             "preco": 7.99,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/fanta600ml.png",
+            "imagem": "/img/imageproducts/fanta600ml.webp",
             "orderCount": 0
         },
         {
@@ -555,7 +555,7 @@
             "descricao": "Soda 600ml",
             "preco": 7.99,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/soda600ml.png",
+            "imagem": "/img/imageproducts/soda600ml.webp",
             "orderCount": 0
         },
         {
@@ -564,7 +564,7 @@
             "descricao": "Mineiro 600ml",
             "preco": 6.49,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/mineiro600ml.png",
+            "imagem": "/img/imageproducts/mineiro600ml.webp",
             "orderCount": 0
         },
         {
@@ -573,7 +573,7 @@
             "descricao": "Coca Cola 1L",
             "preco": 9.99,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/coca1lt.png",
+            "imagem": "/img/imageproducts/coca1lt.webp",
             "orderCount": 0
         },
         {
@@ -582,7 +582,7 @@
             "descricao": "Coca Cola zero 1L",
             "preco": 9.99,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/cocazero1lt.png",
+            "imagem": "/img/imageproducts/cocazero1lt.webp",
             "orderCount": 0
         },
         {
@@ -591,7 +591,7 @@
             "descricao": "Fanta 1L",
             "preco": 9,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/fanta1lt.png",
+            "imagem": "/img/imageproducts/fanta1lt.webp",
             "orderCount": 0
         },
         {
@@ -600,7 +600,7 @@
             "descricao": "Guaraná 1L",
             "preco": 7.99,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/guaranaantarctica1lt.png",
+            "imagem": "/img/imageproducts/guaranaantarctica1lt.webp",
             "orderCount": 0
         },
         {
@@ -609,7 +609,7 @@
             "descricao": "Pepsi 1L",
             "preco": 7.99,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/pepsi1lt.png",
+            "imagem": "/img/imageproducts/pepsi1lt.webp",
             "orderCount": 0
         },
         {
@@ -618,7 +618,7 @@
             "descricao": "Coca Cola 2L",
             "preco": 14,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/coca2lt.png",
+            "imagem": "/img/imageproducts/coca2lt.webp",
             "orderCount": 0
         },
         {
@@ -627,7 +627,7 @@
             "descricao": "Coca Cola zero 2L",
             "preco": 14,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/cocazero2lt.png",
+            "imagem": "/img/imageproducts/cocazero2lt.webp",
             "orderCount": 0
         },
         {
@@ -636,7 +636,7 @@
             "descricao": "Fanta 2L",
             "preco": 12,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/fanta2lt.png",
+            "imagem": "/img/imageproducts/fanta2lt.webp",
             "orderCount": 0
         },
         {
@@ -645,7 +645,7 @@
             "descricao": "Soda 2L",
             "preco": 11,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/soda2lt.png",
+            "imagem": "/img/imageproducts/soda2lt.webp",
             "orderCount": 0
         },
         {
@@ -654,7 +654,7 @@
             "descricao": "Mineiro 2L",
             "preco": 9,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/mineiro2lt.png",
+            "imagem": "/img/imageproducts/mineiro2lt.webp",
             "orderCount": 0
         },
         {
@@ -663,7 +663,7 @@
             "descricao": "H2OH! 1L",
             "preco": 11,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/h2o1lt.png",
+            "imagem": "/img/imageproducts/h2o1lt.webp",
             "orderCount": 0
         },
         {
@@ -672,7 +672,7 @@
             "descricao": "Tampico 2L",
             "preco": 11,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/tampico2l.png",
+            "imagem": "/img/imageproducts/tampico2l.webp",
             "orderCount": 0
         },
         {
@@ -681,7 +681,7 @@
             "descricao": "Pepsi 2L",
             "preco": 11,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -690,7 +690,7 @@
             "descricao": "Pepsi black 2L",
             "preco": 11,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -699,7 +699,7 @@
             "descricao": "Água tônica 350ml",
             "preco": 5.99,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/aguatonica350ml.png",
+            "imagem": "/img/imageproducts/aguatonica350ml.webp",
             "orderCount": 0
         },
         {
@@ -708,7 +708,7 @@
             "descricao": "Água sem gás 500ml",
             "preco": 3,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/aguasemgas500ml.png",
+            "imagem": "/img/imageproducts/aguasemgas500ml.webp",
             "orderCount": 0
         },
         {
@@ -717,7 +717,7 @@
             "descricao": "Água com gás 500ml",
             "preco": 4,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/aguacomgas500ml.png",
+            "imagem": "/img/imageproducts/aguacomgas500ml.webp",
             "orderCount": 0
         },
         {
@@ -726,7 +726,7 @@
             "descricao": "Cerveja Heineken 600ml",
             "preco": 16,
             "categoria": "cervejas",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -735,7 +735,7 @@
             "descricao": "Cerveja Kaiser 600ml",
             "preco": 9,
             "categoria": "cervejas",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -744,7 +744,7 @@
             "descricao": "Cerveja Antarctica 600ml",
             "preco": 13,
             "categoria": "cervejas",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -753,7 +753,7 @@
             "descricao": "Cerveja Amstel 600ml",
             "preco": 13,
             "categoria": "cervejas",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -762,7 +762,7 @@
             "descricao": "Cerveja Original 600ml",
             "preco": 13,
             "categoria": "cervejas",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -771,7 +771,7 @@
             "descricao": "Suco La Fruit 200ml",
             "preco": 3,
             "categoria": "sucos",
-            "imagem": "/assets/img/imageproducts/suco200ml.png",
+            "imagem": "/img/imageproducts/suco200ml.webp",
             "orderCount": 0
         },
         {
@@ -780,7 +780,7 @@
             "descricao": "Suco La Fruit 1L",
             "preco": 9.5,
             "categoria": "sucos",
-            "imagem": "/assets/img/imageproducts/sucolafruit1lt.png",
+            "imagem": "/img/imageproducts/sucolafruit1lt.webp",
             "orderCount": 0
         },
         {
@@ -789,7 +789,7 @@
             "descricao": "Gatorade",
             "preco": 8,
             "categoria": "sucos",
-            "imagem": "/assets/img/imageproducts/gatorade.png",
+            "imagem": "/img/imageproducts/gatorade.webp",
             "orderCount": 0
         },
         {
@@ -798,7 +798,7 @@
             "descricao": "Cerveja Bavaria lata 350ml",
             "preco": 4.99,
             "categoria": "cervejas",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -807,7 +807,7 @@
             "descricao": "Cerveja Antarctica lata 350ml",
             "preco": 5,
             "categoria": "cervejas",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -816,7 +816,7 @@
             "descricao": "Cerveja Sol premium 330ml",
             "preco": 9.99,
             "categoria": "cervejas",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -825,7 +825,7 @@
             "descricao": "Cerveja Amstel lata 350ml",
             "preco": 6.99,
             "categoria": "cervejas",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -834,7 +834,7 @@
             "descricao": "Energético Extra Power latão",
             "preco": 12.99,
             "categoria": "refrigerantes",
-            "imagem": "/assets/img/imageproducts/extrapowerlatao.png",
+            "imagem": "/img/imageproducts/extrapowerlatao.webp",
             "orderCount": 0
         },
         {
@@ -843,7 +843,7 @@
             "descricao": "Cerveja Budweiser 350ml",
             "preco": 6,
             "categoria": "cervejas",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -852,7 +852,7 @@
             "descricao": "Cerveja Heineken 350ml",
             "preco": 7.5,
             "categoria": "cervejas",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -861,7 +861,7 @@
             "descricao": "Cerveja Bavaria 350ml",
             "preco": 4,
             "categoria": "cervejas",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -870,7 +870,7 @@
             "descricao": "Ice 51",
             "preco": 7.5,
             "categoria": "cervejas",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -879,7 +879,7 @@
             "descricao": "Michelob long neck",
             "preco": 8.5,
             "categoria": "cervejas",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -888,7 +888,7 @@
             "descricao": "Heineken long neck",
             "preco": 8.5,
             "categoria": "cervejas",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -897,7 +897,7 @@
             "descricao": "Sol long neck",
             "preco": 7.5,
             "categoria": "cervejas",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -906,7 +906,7 @@
             "descricao": "Corona long neck",
             "preco": 7.5,
             "categoria": "cervejas",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -915,7 +915,7 @@
             "descricao": "Corona long neck",
             "preco": 8.5,
             "categoria": "cervejas",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -924,7 +924,7 @@
             "descricao": "Stella Artois long neck",
             "preco": 8.5,
             "categoria": "cervejas",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -933,7 +933,7 @@
             "descricao": "Cerveja Amstel 600ml",
             "preco": 13,
             "categoria": "cervejas",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -942,7 +942,7 @@
             "descricao": "Cerveja Brahma 600ml",
             "preco": 13,
             "categoria": "cervejas",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -951,7 +951,7 @@
             "descricao": "Cerveja Skol 600ml",
             "preco": 13,
             "categoria": "cervejas",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -960,7 +960,7 @@
             "descricao": "Cerveja Heineken 600ml",
             "preco": 16,
             "categoria": "cervejas",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/placeholder.webp",
             "orderCount": 0
         },
         {
@@ -969,7 +969,7 @@
             "descricao": "Cerveja Budweiser 600ml",
             "preco": 14,
             "categoria": "cervejas",
-            "imagem": "/assets/img/imageproducts/undefinedimg.png",
+            "imagem": "/img/imageproducts/undefinedimg.webp",
             "orderCount": 0
         },
         {
@@ -978,7 +978,7 @@
             "descricao": "Confira os sabores: Acerola, Caju, Tamarindo, Goiaba, Abacaxi, Abacaxi com Hortelã e Umbú",
             "preco": 16,
             "categoria": "sucos",
-            "imagem": "/assets/img/imageproducts/sucolaranjapolpa1lt.png",
+            "imagem": "/img/imageproducts/sucolaranjapolpa1lt.webp",
             "orderCount": 0
         },
         {
@@ -987,7 +987,7 @@
             "descricao": "Suco de laranja copo",
             "preco": 10,
             "categoria": "sucos",
-            "imagem": "/assets/img/imageproducts/sucolaranja400ml.png",
+            "imagem": "/img/imageproducts/sucolaranja400ml.webp",
             "orderCount": 0
         },
         {
@@ -996,7 +996,7 @@
             "descricao": "",
             "preco": 36.99,
             "categoria": "combos",
-            "imagem": "/assets/img/imageproducts/combo1jantinhaerefrilata.png",
+            "imagem": "/img/imageproducts/combo1jantinhaerefrilata.webp",
             "orderCount": 0
         },
         {
@@ -1005,7 +1005,7 @@
             "descricao": "",
             "preco": 56.98,
             "categoria": "combos",
-            "imagem": "/assets/img/imageproducts/combo1jantinha2espetinhos1coca600ml.png",
+            "imagem": "/img/imageproducts/combo1jantinha2espetinhos1coca600ml.webp",
             "orderCount": 0
         },
         {
@@ -1014,7 +1014,7 @@
             "descricao": "",
             "preco": 66.99,
             "categoria": "combos",
-            "imagem": "/assets/img/imageproducts/combo1jantinha1macarrao1coca600ml.png",
+            "imagem": "/img/imageproducts/combo1jantinha1macarrao1coca600ml.webp",
             "orderCount": 0
         },
         {
@@ -1023,7 +1023,7 @@
             "descricao": "",
             "preco": 71.98,
             "categoria": "combos",
-            "imagem": "/assets/img/imageproducts/combo1jantinhaerefrilata.png",
+            "imagem": "/img/imageproducts/combo1jantinhaerefrilata.webp",
             "orderCount": 0
         },
         {
@@ -1032,7 +1032,7 @@
             "descricao": "",
             "preco": 64.00,
             "categoria": "combos",
-            "imagem": "/assets/img/imageproducts/combostrogonoffecoca600ml.png",
+            "imagem": "/img/imageproducts/combostrogonoffecoca600ml.webp",
             "orderCount": 0
         },
         {
@@ -1041,7 +1041,7 @@
             "descricao": "",
             "preco": 96.98,
             "categoria": "combos",
-            "imagem": "/assets/img/imageproducts/combo3jantinhascoca2lt.png",
+            "imagem": "/img/imageproducts/combo3jantinhascoca2lt.webp",
             "orderCount": 0
         }
     ]

@@ -3,9 +3,9 @@ import { Box, useTheme, useMediaQuery } from '@mui/material';
 import EmblaCarousel from '../EmblaCarousel/EmblaCarousel';
 import BannerSlide from './BannerSlide';
 
-import bannerComida from '../../assets/img/frangopassarinhobanner.png';
-import bannerBatata from '../../assets/img/bebidas.png';
-import bannerEspetinhos from '../../assets/img/bannerespetinhos.png';
+import bannerComida from '../../assets/img/frangopassarinhobanner.webp';
+import bannerBatata from '../../assets/img/bebidas.webp';
+import bannerEspetinhos from '../../assets/img/bannerespetinhos.webp';
 
 const Banner = ({ onNavigate }) => {
     const theme = useTheme();
@@ -75,7 +75,7 @@ const Banner = ({ onNavigate }) => {
                     align: 'start'
                 }}
             >
-                {bannerItems.map((item) => (
+                {bannerItems.map((item, index) => (
                     <Box
                         key={item.id}
                         sx={{
@@ -87,6 +87,7 @@ const Banner = ({ onNavigate }) => {
                     >
                         <BannerSlide 
                             item={item} 
+                            isFirst={index === 0}
                             key={item}
                             onNavigate={item.categoryId ? () => onNavigate(item.categoryId) : null}
                         />
